@@ -3,7 +3,6 @@
 ```
 ssh -p 22 root@192.168.1.1
 ```
-
 #  密钥连接
 
 - https://github.com/settings/ssh/new
