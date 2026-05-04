@@ -34,7 +34,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     left: 0;
     top: 50%;
     /* -450px 正好是面板的宽度，把它藏进屏幕左外侧 */
-    transform: translateY(-50%) translateX(-400px); 
+    transform: translateY(-50%) translateX(-350px); 
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 9999;
     display: flex; /* 让面板和把手水平并排 */
@@ -48,7 +48,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 /* 3. 面板主体 (450px 宽) */
 #iframePanel {
-    width: 400px; 
+    width: 350px; 
     height: 650px; 
     background-color: var(--color-canvas-default, #ffffff);
     border: 1px solid var(--color-border-default, #d0d7de);
