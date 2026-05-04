@@ -1,5 +1,77 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>feeday</title><link>https://blog.cpuck.com</link><description>BB Work No Money</description><copyright>feeday</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://blog.cpuck.com</link></image><lastBuildDate>Mon, 04 May 2026 05:40:01 +0000</lastBuildDate><managingEditor>feeday</managingEditor><ttl>60</ttl><webMaster>feeday</webMaster><item><title>iptables</title><link>https://blog.cpuck.com/iptables.html</link><description>Linux 系统上常用的防火墙命令代码。</description><guid isPermaLink="true">https://blog.cpuck.com/iptables.html</guid><pubDate>Mon, 04 May 2026 05:39:32 +0000</pubDate></item><item><title>centos-hostname</title><link>https://blog.cpuck.com/centos-hostname.html</link><description>通过 hostname 命令修改主机名。</description><guid isPermaLink="true">https://blog.cpuck.com/centos-hostname.html</guid><pubDate>Mon, 04 May 2026 05:35:50 +0000</pubDate></item><item><title>sql-root-centos</title><link>https://blog.cpuck.com/sql-root-centos.html</link><description>centos 重置数据库 root 密码。</description><guid isPermaLink="true">https://blog.cpuck.com/sql-root-centos.html</guid><pubDate>Mon, 04 May 2026 05:26:21 +0000</pubDate></item><item><title>formatting-wordpress</title><link>https://blog.cpuck.com/formatting-wordpress.html</link><description>通过修改配置文件的代码可以改文章字数。</description><guid isPermaLink="true">https://blog.cpuck.com/formatting-wordpress.html</guid><pubDate>Mon, 04 May 2026 05:21:58 +0000</pubDate></item><item><title>js-url-go</title><link>https://blog.cpuck.com/js-url-go.html</link><description>通过判断识别终端自动跳转到指定的网址。</description><guid isPermaLink="true">https://blog.cpuck.com/js-url-go.html</guid><pubDate>Mon, 04 May 2026 05:15:11 +0000</pubDate></item><item><title>CentOS 7.6 SSH 防暴力破解</title><link>https://blog.cpuck.com/CentOS%207.6%20SSH%20-fang-bao-li-po-jie.html</link><description>#  普通连接
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>feeday</title><link>https://blog.cpuck.com</link><description>BB Work No Money</description><copyright>feeday</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://blog.cpuck.com</link></image><lastBuildDate>Mon, 04 May 2026 07:17:13 +0000</lastBuildDate><managingEditor>feeday</managingEditor><ttl>60</ttl><webMaster>feeday</webMaster><item><title>hf-mirror-download</title><link>https://blog.cpuck.com/hf-mirror-download.html</link><description>HF 国内镜像下载模型数据集
+
+## 安装依赖
+```
+pip install -U huggingface_hub
+```
+- Linux/macOS (临时生效):
+```
+export HF_ENDPOINT=https://hf-mirror.com
+```
+- Windows PowerShell (临时生效):
+```
+$env:HF_ENDPOINT = 'https://hf-mirror.com'
+```
+## 下载模型文件
+
+```
+import os
+from huggingface_hub import snapshot_download
+
+# 1. 设置环境变量，指向国内镜像站
+os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
+
+# 2. 定义模型 ID 和保存路径
+model_id = 'HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive'
+local_dir = './Qwen3.5-9B-Uncensored'
+
+print(f'开始从镜像站下载模型: {model_id} ...')
+
+# 3. 执行下载
+snapshot_download(
+    repo_id=model_id,
+    local_dir=local_dir,
+    local_dir_use_symlinks=False, # 建议设为 False，直接下载真实文件而非软链接
+    ignore_patterns=['*.msgpack', '*.h5', '*.ot'], # 可选：忽略不需要的格式（如 Pytorch 用户忽略 Rust/TensorFlow 文件）
+    resume_download=True
+)
+
+print('下载完成！模型存放在:', local_dir)
+```
+
+## 下载单个模型文件
+
+```
+import os
+from huggingface_hub import hf_hub_download
+
+# 1. 设置环境变量，强制走国内镜像站
+os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
+
+# 2. 定义模型 ID 和保存路径
+model_id = 'HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive'
+local_dir = 'E:/Models/Qwen3.5-9B-Uncensored'
+
+# 3. 精确指定要下载的文件（单文件模型 + 视觉编码器）
+files_to_download = [
+    'Qwen3.5-9B-Uncensored-HauhauCS-Aggressive-Q6_K.gguf',
+    'mmproj-Qwen3.5-9B-Uncensored-HauhauCS-Aggressive-BF16.gguf'
+]
+
+for filename in files_to_download:
+    print(f'\n开始从镜像站下载: {filename} ...')
+    try:
+        # 新版 huggingface_hub 默认自带断点续传和非软链接特性
+        file_path = hf_hub_download(
+            repo_id=model_id,
+            filename=filename,
+            local_dir=local_dir
+        )
+        print(f'✅ 下载成功！文件已存放在: {file_path}')
+    except Exception as e:
+        print(f'❌ 下载报错: {e}')
+```。</description><guid isPermaLink="true">https://blog.cpuck.com/hf-mirror-download.html</guid><pubDate>Mon, 04 May 2026 07:16:42 +0000</pubDate></item><item><title>iptables</title><link>https://blog.cpuck.com/iptables.html</link><description>Linux 系统上常用的防火墙命令代码。</description><guid isPermaLink="true">https://blog.cpuck.com/iptables.html</guid><pubDate>Mon, 04 May 2026 05:39:32 +0000</pubDate></item><item><title>centos-hostname</title><link>https://blog.cpuck.com/centos-hostname.html</link><description>通过 hostname 命令修改主机名。</description><guid isPermaLink="true">https://blog.cpuck.com/centos-hostname.html</guid><pubDate>Mon, 04 May 2026 05:35:50 +0000</pubDate></item><item><title>sql-root-centos</title><link>https://blog.cpuck.com/sql-root-centos.html</link><description>centos 重置数据库 root 密码。</description><guid isPermaLink="true">https://blog.cpuck.com/sql-root-centos.html</guid><pubDate>Mon, 04 May 2026 05:26:21 +0000</pubDate></item><item><title>formatting-wordpress</title><link>https://blog.cpuck.com/formatting-wordpress.html</link><description>通过修改配置文件的代码可以改文章字数。</description><guid isPermaLink="true">https://blog.cpuck.com/formatting-wordpress.html</guid><pubDate>Mon, 04 May 2026 05:21:58 +0000</pubDate></item><item><title>js-url-go</title><link>https://blog.cpuck.com/js-url-go.html</link><description>通过判断识别终端自动跳转到指定的网址。</description><guid isPermaLink="true">https://blog.cpuck.com/js-url-go.html</guid><pubDate>Mon, 04 May 2026 05:15:11 +0000</pubDate></item><item><title>CentOS 7.6 SSH 防暴力破解</title><link>https://blog.cpuck.com/CentOS%207.6%20SSH%20-fang-bao-li-po-jie.html</link><description>#  普通连接
 
 ```
 ssh -p 22 root@192.168.1.1
