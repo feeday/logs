@@ -368,74 +368,63 @@ if ! fail2ban-client -t; then
 
 </head>
 <style>
-/* 完全保留你原版的布局样式，不破坏 Gmeek 排版 */
 body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
 #header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
 #footer {margin-top:64px; text-align: center;font-size: small;}
 
+/* ================= 🌟 完美左侧抽屉系统 (纯 CSS) 🌟 ================= */
 
-/* ================= 🌟 抽屉式侧边栏系统 (核心修改) 🌟 ================= */
-
-/* 1. 统一容器：固定在左侧垂直居中 */
+/* 1. 抽屉主容器：钉在左边，默认向左隐藏 450px（只露出把手） */
 #drawer-system {
     position: fixed;
     left: 0;
     top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    align-items: center;
+    /* -450px 正好是面板的宽度，把它藏进屏幕左外侧 */
+    transform: translateY(-50%) translateX(-450px); 
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 9999;
+    display: flex; /* 让面板和把手水平并排 */
+    align-items: center;
 }
 
-/* 2. 把手（按钮）：附在抽屉左侧，像个标签 */
-#customSidebar { 
-    position: relative;
-    cursor: pointer;
-    z-index: 10001; /* 保证在最上层 */
+/* 2. 展开状态：偏移量归零，整个抽屉滑出 */
+#drawer-system.is-expanded {
+    transform: translateY(-50%) translateX(0);
 }
 
-.sidebar-btn { 
-    width: 44px; 
-    height: 44px; 
-    border-radius: 5px; /* 改为圆角矩形，更像标签 */
-    background-color: var(--color-canvas-subtle, #f6f8fa); 
-    border: 1px solid var(--color-border-default, #d0d7de); 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.1); 
-    color: var(--color-fg-default, #24292f); 
-    transition: all 0.2s ease-in-out; 
-    /* 修正定位，让它“挂”在屏幕边缘 */
-    position: absolute;
-    right: 1px;
+/* 3. 面板主体 (450px 宽) */
+#iframePanel {
+    width: 450px; 
+    height: 650px; 
+    background-color: var(--color-canvas-default, #ffffff);
+    border: 1px solid var(--color-border-default, #d0d7de);
+    border-left: none; /* 贴着屏幕边缘，不需要左边框 */
+    border-radius: 0 12px 12px 0; /* 右侧圆角 */
+    box-shadow: 4px 8px 24px rgba(0,0,0,0.15);
+    overflow: hidden;
 }
-.sidebar-btn:hover { background-color: var(--color-canvas-default, #ffffff); transform: scale(1.05); box-shadow: 3px 3px 7px rgba(0,0,0,0.15); }
-
-/* 3. 抽屉内容区（面板）：在按钮右侧，垂直居中，默认隐藏 */
-#iframePanel { 
-    width: 450px; /* 用户原版宽度 */
-    height: 650px; /* 用户原版高度 */
-    background-color: var(--color-canvas-default, #ffffff); 
-    border: 1px solid var(--color-border-default, #d0d7de); 
-    border-radius: 12px; 
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15); 
-    display: block; 
-    overflow: hidden; 
-    z-index: 10000;
-    /* 核心动画定位：在按钮右侧，垂直居中，并在视口外 */
-    position: relative;
-    transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
-}
-
-/* 4. 移入视口状态 */
-#drawer-system.is-expanded #iframePanel {
-    transform: translateX(0);
-}
-
 #iframePanel iframe { width: 100%; height: 100%; border: none; display: block; }
 
+/* 4. 抽屉把手 (长条形，视觉上和面板融为一体) */
+#customSidebar { cursor: pointer; }
+
+.sidebar-btn {
+    width: 36px; /* 把手宽度 */
+    height: 70px; /* 把手稍微高一点更易点击 */
+    background-color: var(--color-canvas-default, #ffffff);
+    border: 1px solid var(--color-border-default, #d0d7de);
+    border-left: none; /* 去掉左边框，和面板无缝拼合 */
+    border-radius: 0 8px 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 4px 0 10px rgba(0,0,0,0.05);
+    color: var(--color-fg-default, #24292f);
+    transition: background-color 0.2s;
+}
+.sidebar-btn:hover { background-color: var(--color-canvas-subtle, #f6f8fa); }
+
+/* 手机端隐藏 */
 @media (max-width: 768px) { #drawer-system { display: none !important; } }
 </style>
 
@@ -469,7 +458,6 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 
 <body>
-
     <div id="header">
 <h1 class="postTitle">CentOS 7.6 SSH 防暴力破解</h1>
 <div class="title-right">
@@ -962,21 +950,19 @@ if(""!=""){
 </script>
     </div>
 
-
     <div id="drawer-system">
         
-        <div id="customSidebar">
-            <div class="sidebar-btn" id="toggleIframeBtn" title="展开/收起外部页面">
-                <svg class="octicon" width="20" height="20" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.5 2.75A1.5 1.5 0 013 1.25h10A1.5 1.5 0 0114.5 2.75v10.5A1.5 1.5 0 0113 14.75H3A1.5 1.5 0 011.5 13.25V2.75zm1.5-.25a.25.25 0 00-.25.25v10.5c0 .138.112.25.25.25h10a.25.25 0 00.25-.25V2.75a.25.25 0 00-.25-.25H3zM7 4h4v1H7V4zm0 2h4v1H7V6zm0 2h4v1H7V8z"></path></svg>
-            </div>
-        </div>
-
         <div id="iframePanel">
             <iframe id="ext-iframe" data-src="https://tcq233.com/163/" allow="autoplay" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-downloads allow-presentation"></iframe>
         </div>
 
-    </div>
+        <div id="customSidebar">
+            <div class="sidebar-btn" id="toggleIframeBtn" title="展开/收起系统">
+                <svg class="octicon" width="20" height="20" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.536 3.427a.75.75 0 01.464.694v5.629a2.75 2.75 0 11-1.5-2.449V4.606l-4.5 1.286v4.858a2.75 2.75 0 11-1.5-2.449V3.415a.75.75 0 01.543-.722l6-1.714a.75.75 0 01.493.448zM5.5 11.25a1.25 1.25 0 10-2.5 0 1.25 1.25 0 002.5 0zm6-1.714a1.25 1.25 0 10-2.5 0 1.25 1.25 0 002.5 0z"></path></svg>
+            </div>
+        </div>
 
+    </div>
 </body>
 
 <script>
@@ -1124,7 +1110,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <script>
-// 1. 页面精确加载时间统计 (保留)
+// 1. 页面精确加载时间统计
 window.addEventListener('load', function() {
     setTimeout(function() {
         let loadTimeSpan = document.getElementById('loadTime');
@@ -1138,48 +1124,25 @@ window.addEventListener('load', function() {
     }, 0);
 });
 
-
-// 2. 🌟 抽屉懒加载与把手交互逻辑 (核心修改) 🌟
-
-// 把手移动：将附在右侧的按钮移动到按钮内部，从而挂在抽屉上
-window.addEventListener('DOMContentLoaded', function() {
-    var customSidebar = document.getElementById('customSidebar');
-    var iframePanel = document.getElementById('iframePanel');
-    // 获取把手的尺寸，用于调整位置
-    var btnWidth = parseFloat(getComputedStyle(customSidebar).width) || 0;
-    
-    // 定位把手，使其“挂”在整个抽屉系统的右侧边缘
-    // 这个位置取决于抽屉系统的 right 定位。在 CSS 中它设置为 0。
-    // 所以 right: btnWidth 代表把手附在抽屉面板右侧。
-    // 为了垂直居中，我们需要微调负边距
-    customSidebar.style.position = 'absolute';
-    customSidebar.style.right = -btnWidth + 'px';
-    customSidebar.style.top = '50%';
-    customSidebar.style.marginTop = -btnWidth / 2 + 'px';
-    customSidebar.style.display = 'flex';
-});
-
+// 2. 抽屉式交互逻辑
 var toggleBtn = document.getElementById('toggleIframeBtn');
 if (toggleBtn) {
     toggleBtn.addEventListener('click', function() {
         var drawerSystem = document.getElementById('drawer-system');
         var iframe = document.getElementById('ext-iframe');
 
-        // 切换展开/收起状态
+        // 切换 CSS 类名，触发滑动动画
         if (drawerSystem.classList.contains('is-expanded')) {
-            // 如果面板已展开，则收起
             drawerSystem.classList.remove('is-expanded');
         } else {
-            // 如果面板未展开，检查 iframe 是否已经加载了 src
             var dataSrc = iframe.getAttribute('data-src');
             var currentSrc = iframe.getAttribute('src');
             
-            // 初次点击：把 data-src 填入 src，正式触发加载 (保留懒加载)
+            // 初次点击拉出时加载内容
             if (!currentSrc && dataSrc) {
                 iframe.setAttribute('src', dataSrc);
             }
             
-            // 显示面板
             drawerSystem.classList.add('is-expanded');
         }
     });
