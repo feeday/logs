@@ -26,14 +26,37 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 #header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
 #footer {margin-top:64px; text-align: center;font-size: small;}
 
-/* 边栏按钮容器 */
-#customSidebar { position: fixed; right: 20px; bottom: 30px; z-index: 9999; display: flex; flex-direction: column; gap: 12px; }
+/* 边栏按钮容器：固定在左侧居中 */
+#customSidebar { 
+    position: fixed; 
+    left: 20px; 
+    top: 50%; 
+    transform: translateY(-50%); 
+    z-index: 9999; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 12px; 
+}
+
 .sidebar-btn { width: 44px; height: 44px; border-radius: 50%; background-color: var(--color-canvas-subtle, #f6f8fa); border: 1px solid var(--color-border-default, #d0d7de); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); color: var(--color-fg-default, #24292f); transition: all 0.2s ease-in-out; }
 .sidebar-btn:hover { background-color: var(--color-canvas-default, #ffffff); transform: translateY(-2px); box-shadow: 0 6px 14px rgba(0,0,0,0.15); }
-#backToTopBtn { display: none; }
 
-/* 展开面板 */
-#iframePanel { position: fixed; right: 80px; bottom: 30px; width: 450px; height: 650px; background-color: var(--color-canvas-default, #ffffff); border: 1px solid var(--color-border-default, #d0d7de); border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); display: none; overflow: hidden; z-index: 9998; }
+/* 展开面板：固定在按钮右侧垂直居中 */
+#iframePanel { 
+    position: fixed; 
+    left: 80px; 
+    top: 50%; 
+    transform: translateY(-50%); 
+    width: 450px; 
+    height: 650px; 
+    background-color: var(--color-canvas-default, #ffffff); 
+    border: 1px solid var(--color-border-default, #d0d7de); 
+    border-radius: 12px; 
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15); 
+    display: none; 
+    overflow: hidden; 
+    z-index: 9998; 
+}
 #iframePanel iframe { width: 100%; height: 100%; border: none; display: block; }
 
 @media (max-width: 768px) { #customSidebar { display: none !important; } #iframePanel { display: none !important; } }
@@ -141,9 +164,6 @@ if(""!=""){
     <div id="customSidebar">
         <div class="sidebar-btn" id="toggleIframeBtn" title="展开/收起外部页面">
             <svg class="octicon" width="20" height="20" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.5 2.75A1.5 1.5 0 013 1.25h10A1.5 1.5 0 0114.5 2.75v10.5A1.5 1.5 0 0113 14.75H3A1.5 1.5 0 011.5 13.25V2.75zm1.5-.25a.25.25 0 00-.25.25v10.5c0 .138.112.25.25.25h10a.25.25 0 00.25-.25V2.75a.25.25 0 00-.25-.25H3zM7 4h4v1H7V4zm0 2h4v1H7V6zm0 2h4v1H7V8z"></path></svg>
-        </div>
-        <div class="sidebar-btn" id="backToTopBtn" title="回到顶部">
-            <svg class="octicon" width="20" height="20" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.47 7.78a.75.75 0 010-1.06l4-4a.75.75 0 011.06 0l4 4a.75.75 0 11-1.06 1.06L8.75 5.06v7.19a.75.75 0 01-1.5 0V5.06L4.53 7.78a.75.75 0 01-1.06 0z"></path></svg>
         </div>
     </div>
 
@@ -305,33 +325,13 @@ window.addEventListener('load', function() {
             let timing = performance.getEntriesByType('navigation')[0];
             if (timing && timing.loadEventEnd > 0) {
                 let loadTime = Math.round(timing.loadEventEnd);
-                loadTimeSpan.innerHTML = ' • 页面加载时间: ' + loadTime + 'ms<br>';
+                loadTimeSpan.innerHTML = '页面加载时间: ' + loadTime + 'ms<br>';
             }
         }
     }, 0);
 });
 
-// 2. 监听滚动事件：控制返回顶部按钮的显示与隐藏
-window.addEventListener('scroll', function() {
-    var backToTopBtn = document.getElementById('backToTopBtn');
-    if (backToTopBtn) {
-        if (window.scrollY > 300) {
-            backToTopBtn.style.display = 'flex'; 
-        } else {
-            backToTopBtn.style.display = 'none';
-        }
-    }
-});
-
-// 3. 回到顶部平滑滚动
-var topBtn = document.getElementById('backToTopBtn');
-if (topBtn) {
-    topBtn.addEventListener('click', function() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-}
-
-// 4. 展开面板及懒加载 iframe 逻辑
+// 2. 展开面板及懒加载 iframe 逻辑
 var toggleBtn = document.getElementById('toggleIframeBtn');
 if (toggleBtn) {
     toggleBtn.addEventListener('click', function() {
