@@ -283,16 +283,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <script>
 window.addEventListener('load', function() {
-    // 依然保留 setTimeout，确保浏览器性能接口的数据已经完全写入
-    setTimeout(function() {
-        let loadTimeSpan = document.getElementById('loadTime');
-        if (loadTimeSpan) {
-            let timing = performance.getEntriesByType('navigation')[0];
-            // 精确获取 F12 控制台红字所使用的 loadEventStart 时间点
-            let loadTime = Math.round(timing.loadEventStart);
-            loadTimeSpan.innerHTML = '页面加载时间: ' + loadTime + 'ms';
-        }
-    }, 0);
+    let loadTimeSpan = document.getElementById('loadTime');
+    if (loadTimeSpan) {
+        // 直接读取浏览器底层性能数据
+        let timing = performance.getEntriesByType('navigation')[0];
+        
+        // 此时 load 事件刚触发，loadEventStart 已经有精确值了
+        // 我们直接取这个值，去掉 setTimeout 的 3-4ms 排队延迟
+        let loadTime = Math.round(timing.loadEventStart);
+        
+        loadTimeSpan.innerHTML = '页面加载时间: ' + loadTime + 'ms';
+    }
 });
 </script>
 </html>
