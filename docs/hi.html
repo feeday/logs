@@ -9,8 +9,7 @@
     <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
-    </script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    </script>
 <meta name="description" content="hello。">
 <meta property="og:title" content="hi">
 <meta property="og:description" content="hello。">
@@ -23,49 +22,40 @@
 
 </head>
 <style>
-body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25; background-color: #f8fafc;}
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
 #header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
 #footer {margin-top:64px; text-align: center;font-size: small;}
 
-/* 悬浮引导页 */
-#startup-overlay { position: fixed; inset: 0; z-index: 10000; background: rgba(248,250,252,0.95); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; transition: 0.5s; }
-.startup-card { background: white; p: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; max-width: 300px; border: 1px solid #eee; }
-.fade-out { opacity: 0; visibility: hidden; pointer-events: none; }
-
-/* 边栏 */
+/* 边栏按钮容器 */
 #customSidebar { position: fixed; right: 20px; bottom: 30px; z-index: 9999; display: flex; flex-direction: column; gap: 12px; }
-.sidebar-btn { width: 44px; height: 44px; border-radius: 50%; background: #f6f8fa; border: 1px solid #d0d7de; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.2s; }
-.sidebar-btn:hover { transform: translateY(-2px); background: #fff; }
+.sidebar-btn { width: 44px; height: 44px; border-radius: 50%; background-color: var(--color-canvas-subtle, #f6f8fa); border: 1px solid var(--color-border-default, #d0d7de); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); color: var(--color-fg-default, #24292f); transition: all 0.2s ease-in-out; }
+.sidebar-btn:hover { background-color: var(--color-canvas-default, #ffffff); transform: translateY(-2px); box-shadow: 0 6px 14px rgba(0,0,0,0.15); }
 #backToTopBtn { display: none; }
-
-/* 播放器面板 */
-#iframePanel { position: fixed; right: 80px; bottom: 30px; width: 330px; height: 52px; background: #fff; border: 1px solid #d0d7de; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); display: none; overflow: hidden; z-index: 9998; }
-
-@media (max-width: 768px) { #customSidebar, #iframePanel { display: none !important; } }
+#iframePanel { position: fixed; right: 80px; bottom: 30px; width: 450px; height: 650px; background-color: var(--color-canvas-default, #ffffff); border: 1px solid var(--color-border-default, #d0d7de); border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); display: none; overflow: hidden; z-index: 9998; }
+#iframePanel iframe { width: 100%; height: 100%; border: none; display: block; }
+@media (max-width: 768px) { #customSidebar { display: none !important; } #iframePanel { display: none !important; } }
 </style>
 
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+
+</style>
+
+
+
+
 <body>
-    <div id="startup-overlay">
-        <div class="startup-card">
-            <h3 style="margin-bottom:10px;">Ready to Start</h3>
-            <p style="font-size:12px; color:666; margin-bottom:20px;">点击进入系统并激活背景音乐</p>
-            <button id="enter-btn" style="width:100%; padding:10px; background:#007bff; color:#fff; border:none; border-radius:8px; cursor:pointer; font-weight:bold;">进入系统</button>
-        </div>
-    </div>
-
-    <div id="customSidebar">
-        <div class="sidebar-btn" id="toggleIframeBtn" title="音乐控制">
-            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M11.536 3.427a.75.75 0 01.464.694v5.629a2.75 2.75 0 11-1.5-2.449V4.606l-4.5 1.286v4.858a2.75 2.75 0 11-1.5-2.449V3.415a.75.75 0 01.543-.722l6-1.714a.75.75 0 01.493.448zM5.5 11.25a1.25 1.25 0 10-2.5 0 1.25 1.25 0 002.5 0zm6-1.714a1.25 1.25 0 10-2.5 0 1.25 1.25 0 002.5 0z"></path></svg>
-        </div>
-        <div class="sidebar-btn" id="backToTopBtn" title="回到顶部">
-            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M3.47 7.78a.75.75 0 010-1.06l4-4a.75.75 0 011.06 0l4 4a.75.75 0 11-1.06 1.06L8.75 5.06v7.19a.75.75 0 01-1.5 0V5.06L4.53 7.78a.75.75 0 01-1.06 0z"></path></svg>
-        </div>
-    </div>
-
-    <div id="iframePanel">
-        <iframe id="ext-iframe" data-src="https://tcq233.com/163/" width="100%" height="52" frameborder="0" allow="autoplay"></iframe>
-    </div>
-
     <div id="header">
 <h1 class="postTitle">hi</h1>
 <div class="title-right">
@@ -99,11 +89,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 </div>
     <div id="footer">
-        <div style="margin-bottom:10px;">
-            <script id="LA-DATA-WIDGET" crossorigin="anonymous" charset="UTF-8" src="https://v6-widget.51.la/v6/JRHGRBPWC7lJIaXq/quote.js?theme=0&f=12&display=0,1,0,0,0,0,0,0"></script>
-            <span id="loadTime"></span>
-        </div>
-        <div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://feeday.cn">feeday</a></div>
+         <div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://feeday.cn">feeday</a></div>
 <div id="footer2">
     <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
 </div>
@@ -119,61 +105,151 @@ if(""!=""){
     document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
 }
 </script>
+         <span id="loadTime"></span>
     </div>
 
+    <div id="customSidebar">
+        <div class="sidebar-btn" id="toggleIframeBtn" title="展开/收起外部页面">
+            <svg class="octicon" width="20" height="20" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.5 2.75A1.5 1.5 0 013 1.25h10A1.5 1.5 0 0114.5 2.75v10.5A1.5 1.5 0 0113 14.75H3A1.5 1.5 0 011.5 13.25V2.75zm1.5-.25a.25.25 0 00-.25.25v10.5c0 .138.112.25.25.25h10a.25.25 0 00.25-.25V2.75a.25.25 0 00-.25-.25H3zM7 4h4v1H7V4zm0 2h4v1H7V6zm0 2h4v1H7V8z"></path></svg>
+        </div>
+        <div class="sidebar-btn" id="backToTopBtn" title="回到顶部">
+            <svg class="octicon" width="20" height="20" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.47 7.78a.75.75 0 010-1.06l4-4a.75.75 0 011.06 0l4 4a.75.75 0 11-1.06 1.06L8.75 5.06v7.19a.75.75 0 01-1.5 0V5.06L4.53 7.78a.75.75 0 01-1.06 0z"></path></svg>
+        </div>
+    </div>
+
+    <div id="iframePanel">
+        <iframe id="ext-iframe" data-src="https://tcq233.com/163/" allow="autoplay" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-downloads allow-presentation"></iframe>
+    </div>
+</body>
+
 <script>
-// 1. 核心修复：启动逻辑与自动播放
-document.getElementById('enter-btn').addEventListener('click', function() {
-    document.getElementById('startup-overlay').classList.add('fade-out');
-    var iframe = document.getElementById('ext-iframe');
-    // 点击后才赋值 src，触发真实加载并实现自动播放
-    iframe.src = iframe.getAttribute('data-src');
-    document.getElementById('iframePanel').style.display = 'block';
-});
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
 
-// 2. 侧边栏交互修复
-document.getElementById('toggleIframeBtn').addEventListener('click', function() {
-    var panel = document.getElementById('iframePanel');
-    panel.style.display = (panel.style.display === 'none') ? 'block' : 'none';
-});
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    if(iframe){iframe.contentWindow.postMessage(message,'https://utteranc.es');}
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
 
-document.getElementById('backToTopBtn').addEventListener('click', function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
 
-window.addEventListener('scroll', function() {
-    document.getElementById('backToTopBtn').style.display = (window.scrollY > 300) ? 'flex' : 'none';
-});
 
-// 3. 加载时间统计
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.disabled=true;
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","feeday/logs");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+
+
+</script>
+<script src='/gmeek/GmeekTOC.js'></script>
+
+
+<script>
+// 加载时间
 window.addEventListener('load', function() {
     setTimeout(function() {
-        let timing = performance.getEntriesByType('navigation')[0];
-        if (timing && timing.loadEventEnd > 0) {
-            document.getElementById('loadTime').innerHTML = ' • 加载: ' + Math.round(timing.loadEventEnd) + 'ms';
+        let loadTimeSpan = document.getElementById('loadTime');
+        if (loadTimeSpan) {
+            let timing = performance.getEntriesByType('navigation')[0];
+            if (timing && timing.loadEventEnd > 0) {
+                let loadTime = Math.round(timing.loadEventEnd);
+                loadTimeSpan.innerHTML = '页面加载时间: ' + loadTime + 'ms';
+            }
         }
     }, 0);
 });
 
-// 4. 🌟 重点：站内无刷新跳转逻辑 (PJAX 模拟) 🌟
-// 这段代码会让所有的站内链接点击后只刷新 #content 区域，而不刷新整个网页，从而保证 iframe 里的音乐不断
-document.addEventListener('click', function(e) {
-    let t = e.target.closest('a');
-    if (t && t.href && t.href.indexOf(window.location.origin) === 0 && !t.getAttribute('target')) {
-        e.preventDefault();
-        const url = t.href;
-        fetch(url).then(r => r.text()).then(html => {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-            // 只替换内容区和标题
-            document.getElementById('content').innerHTML = doc.getElementById('content').innerHTML;
-            document.title = doc.title;
-            window.history.pushState(null, '', url);
-            // 重新执行新内容里的脚本（如评论插件）
-            window.scrollTo(0, 0);
-        }).catch(err => window.location.href = url); // 失败则回退到普通跳转
+// 返回顶部显示逻辑
+window.addEventListener('scroll', function() {
+    var backToTopBtn = document.getElementById('backToTopBtn');
+    if(backToTopBtn) {
+        if (window.scrollY > 300) {
+            backToTopBtn.style.display = 'flex';
+        } else {
+            backToTopBtn.style.display = 'none';
+        }
+    }
+});
+
+// 返回顶部点击
+document.getElementById('backToTopBtn').addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// 边栏点击
+document.getElementById('toggleIframeBtn').addEventListener('click', function() {
+    var panel = document.getElementById('iframePanel');
+    var iframe = document.getElementById('ext-iframe');
+
+    if (panel.style.display === 'block') {
+        panel.style.display = 'none';
+    } else {
+        var dataSrc = iframe.getAttribute('data-src');
+        var currentSrc = iframe.getAttribute('src');
+        if (!currentSrc && dataSrc) {
+            iframe.setAttribute('src', dataSrc);
+        }
+        panel.style.display = 'block';
     }
 });
 </script>
-</body>
 </html>
