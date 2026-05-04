@@ -43,7 +43,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     background-color: var(--color-canvas-subtle, #f6f8fa);
     border: 1px solid var(--color-border-default, #d0d7de);
     cursor: pointer;
-    display: flex;
+    display: flex; /* 这里默认用 flex 居中图标 */
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -57,13 +57,18 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     box-shadow: 0 6px 14px rgba(0,0,0,0.15);
 }
 
+/* 默认隐藏回到顶部按钮 */
+#backToTopBtn {
+    display: none; 
+}
+
 /* iframe 展开面板：固定宽度，默认隐藏 */
 #iframePanel {
     position: fixed;
     right: 80px; /* 留在按钮左侧并留出间距 */
     bottom: 30px;
-    width: 350px; /* 固定展开宽度 */
-    height: 500px; /* 面板高度 */
+    width: 400px; /* 固定展开宽度 */
+    height: 700px; /* 面板高度 */
     background-color: var(--color-canvas-default, #ffffff);
     border: 1px solid var(--color-border-default, #d0d7de);
     border-radius: 12px;
@@ -85,8 +90,6 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     #customSidebar { display: none !important; }
     #iframePanel { display: none !important; }
 }
-
-    
 </style>
 
 <style>
@@ -119,18 +122,19 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <body>
 
     <div id="customSidebar">
-    <div class="sidebar-btn" id="toggleIframeBtn" title="展开/收起外部页面">
-        <svg class="octicon" width="20" height="20" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.5 2.75A1.5 1.5 0 013 1.25h10A1.5 1.5 0 0114.5 2.75v10.5A1.5 1.5 0 0113 14.75H3A1.5 1.5 0 011.5 13.25V2.75zm1.5-.25a.25.25 0 00-.25.25v10.5c0 .138.112.25.25.25h10a.25.25 0 00.25-.25V2.75a.25.25 0 00-.25-.25H3zM7 4h4v1H7V4zm0 2h4v1H7V6zm0 2h4v1H7V8z"></path></svg>
+        <div class="sidebar-btn" id="toggleIframeBtn" title="展开/收起外部页面">
+            <svg class="octicon" width="20" height="20" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.5 2.75A1.5 1.5 0 013 1.25h10A1.5 1.5 0 0114.5 2.75v10.5A1.5 1.5 0 0113 14.75H3A1.5 1.5 0 011.5 13.25V2.75zm1.5-.25a.25.25 0 00-.25.25v10.5c0 .138.112.25.25.25h10a.25.25 0 00.25-.25V2.75a.25.25 0 00-.25-.25H3zM7 4h4v1H7V4zm0 2h4v1H7V6zm0 2h4v1H7V8z"></path></svg>
+        </div>
+        
+        <div class="sidebar-btn" id="backToTopBtn" title="回到顶部">
+            <svg class="octicon" width="20" height="20" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.47 7.78a.75.75 0 010-1.06l4-4a.75.75 0 011.06 0l4 4a.75.75 0 11-1.06 1.06L8.75 5.06v7.19a.75.75 0 01-1.5 0V5.06L4.53 7.78a.75.75 0 01-1.06 0z"></path></svg>
+        </div>
+    </div>
+
+    <div id="iframePanel">
+        <iframe data-src="https://tcq233.com" id="customIframe"></iframe>
     </div>
     
-    <div class="sidebar-btn" id="backToTopBtn" title="回到顶部">
-        <svg class="octicon" width="20" height="20" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.47 7.78a.75.75 0 010-1.06l4-4a.75.75 0 011.06 0l4 4a.75.75 0 11-1.06 1.06L8.75 5.06v7.19a.75.75 0 01-1.5 0V5.06L4.53 7.78a.75.75 0 01-1.06 0z"></path></svg>
-    </div>
-</div>
-
-<div id="iframePanel">
-    <iframe src="https://tcq233.com" id="customIframe"></iframe>
-</div>
     <div id="header">
 <div class="title-left">
     <img src="https://github.githubassets.com/favicons/favicon.svg" class="avatar circle" id="avatarImg" alt="avatar"><a class="blogTitle">feeday</a></div>
@@ -260,8 +264,7 @@ if(""!=""){
 }
 </script>
     </div>
-</body>
-    
+
 <script>
 var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'search': 'M15.7 13.3l-3.81-3.83A5.93 5.93 0 0 0 13 6c0-3.31-2.69-6-6-6S1 2.69 1 6s2.69 6 6 6c1.3 0 2.48-.41 3.47-1.11l3.83 3.81c.19.2.45.3.7.3.25 0 .52-.09.7-.3a.996.996 0 0 0 0-1.41v.01zM7 10.7c-2.59 0-4.7-2.11-4.7-4.7 0-2.59 2.11-4.7 4.7-4.7 2.59 0 4.7 2.11 4.7 4.7 0 2.59-2.11 4.7-4.7 4.7z', 'rss': 'M2.002 2.725a.75.75 0 0 1 .797-.699C8.79 2.42 13.58 7.21 13.974 13.201a.75.75 0 0 1-1.497.098 10.502 10.502 0 0 0-9.776-9.776.747.747 0 0 1-.7-.798ZM2.84 7.05h-.002a7.002 7.002 0 0 1 6.113 6.111.75.75 0 0 1-1.49.178 5.503 5.503 0 0 0-4.8-4.8.75.75 0 0 1 .179-1.489ZM2 13a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z', 'upload': 'M2.75 14A1.75 1.75 0 0 1 1 12.25v-2.5a.75.75 0 0 1 1.5 0v2.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25v-2.5a.75.75 0 0 1 1.5 0v2.5A1.75 1.75 0 0 1 13.25 14Z M11.78 4.72a.749.749 0 1 1-1.06 1.06L8.75 3.811V9.5a.75.75 0 0 1-1.5 0V3.811L5.28 5.78a.749.749 0 1 1-1.06-1.06l3.25-3.25a.749.749 0 0 1 1.06 0l3.25 3.25Z', 'post': 'M0 3.75C0 2.784.784 2 1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 14H1.75A1.75 1.75 0 0 1 0 12.25Zm1.75-.25a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25ZM3.5 6.25a.75.75 0 0 1 .75-.75h7a.75.75 0 0 1 0 1.5h-7a.75.75 0 0 1-.75-.75Zm.75 2.25h4a.75.75 0 0 1 0 1.5h-4a.75.75 0 0 1 0-1.5Z', 'add': 'M8 1C8.4 1 8.7 1.3 8.7 1.7V7.3H14.3C14.7 7.3 15 7.6 15 8C15 8.4 14.7 8.7 14.3 8.7H8.7V14.3C8.7 14.7 8.4 15 8 15C7.6 15 7.3 14.7 7.3 14.3V8.7H1.7C1.3 8.7 1 8.4 1 8C1 7.6 1.3 7.3 1.7 7.3H7.3V1.7C7.3 1.3 7.6 1 8 1Z'};
 var utterancesLoad=0;
@@ -314,9 +317,10 @@ document.getElementById("add").setAttribute("d",value=IconList["add"]);
 </script>
 
 
+
 <script>
+// 1. 页面精确加载时间统计
 window.addEventListener('load', function() {
-    // 必须用 setTimeout 把自己推迟到 load 事件彻底结束之后
     setTimeout(function() {
         let loadTimeSpan = document.getElementById('loadTime');
         if (loadTimeSpan) {
@@ -326,23 +330,47 @@ window.addEventListener('load', function() {
                 loadTimeSpan.innerHTML = '页面加载时间: ' + loadTime + 'ms';
             }
         }
-    }, 0); // 即使写 0，浏览器底层也会有约 4ms 的事件轮询损耗
+    }, 0);
 });
-</script>
-    <script>
-// 回到顶部平滑滚动
+
+// 2. 监听滚动事件：控制返回顶部按钮的显示与隐藏
+window.addEventListener('scroll', function() {
+    var backToTopBtn = document.getElementById('backToTopBtn');
+    // 当页面向下滚动超过 300 像素时，显示按钮
+    if (window.scrollY > 300) {
+        backToTopBtn.style.display = 'flex'; // 使用 flex 保持图标居中
+    } else {
+        backToTopBtn.style.display = 'none';
+    }
+});
+
+// 3. 回到顶部平滑滚动逻辑
 document.getElementById('backToTopBtn').addEventListener('click', function() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// 展开/收起外部页面面板
+// 4. 展开面板及懒加载 iframe 逻辑
 document.getElementById('toggleIframeBtn').addEventListener('click', function() {
     var panel = document.getElementById('iframePanel');
+    var iframe = document.getElementById('customIframe');
+
     if (panel.style.display === 'block') {
-        panel.style.display = 'none'; // 如果已显示，则隐藏
+        // 如果面板已展开，则收起
+        panel.style.display = 'none';
     } else {
-        panel.style.display = 'block'; // 如果已隐藏，则显示
+        // 如果面板未展开，先检查 iframe 是否已经加载了 src
+        var dataSrc = iframe.getAttribute('data-src');
+        var currentSrc = iframe.getAttribute('src');
+        
+        // 初次点击：把 data-src 填入 src，正式触发加载
+        if (!currentSrc && dataSrc) {
+            iframe.setAttribute('src', dataSrc);
+        }
+        
+        // 显示面板
+        panel.style.display = 'block';
     }
 });
 </script>
+</body>
 </html>
