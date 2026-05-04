@@ -472,8 +472,10 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <body>
 
     <div id="customSidebar">
-        <div class="sidebar-btn" id="toggleIframeBtn" title="展开/收起外部页面">
-            <svg class="octicon" width="20" height="20" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.5 2.75A1.5 1.5 0 013 1.25h10A1.5 1.5 0 0114.5 2.75v10.5A1.5 1.5 0 0113 14.75H3A1.5 1.5 0 011.5 13.25V2.75zm1.5-.25a.25.25 0 00-.25.25v10.5c0 .138.112.25.25.25h10a.25.25 0 00.25-.25V2.75a.25.25 0 00-.25-.25H3zM7 4h4v1H7V4zm0 2h4v1H7V6zm0 2h4v1H7V8z"></path></svg>
+        <div class="sidebar-btn" id="toggleIframeBtn" title="展开/收起音乐播放器">
+            <svg class="octicon" width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+                <path fill-rule="evenodd" d="M11.536 3.427a.75.75 0 01.464.694v5.629a2.75 2.75 0 11-1.5-2.449V4.606l-4.5 1.286v4.858a2.75 2.75 0 11-1.5-2.449V3.415a.75.75 0 01.543-.722l6-1.714a.75.75 0 01.493.448zM5.5 11.25a1.25 1.25 0 10-2.5 0 1.25 1.25 0 002.5 0zm6-1.714a1.25 1.25 0 10-2.5 0 1.25 1.25 0 002.5 0z"></path>
+            </svg>
         </div>
         
         <div class="sidebar-btn" id="backToTopBtn" title="回到顶部">
@@ -482,7 +484,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     </div>
 
     <div id="iframePanel">
-        <iframe id="ext-iframe" src="https://tcq233.com/163/" class="flex-grow w-full h-full border-none bg-white" allow="autoplay" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-downloads allow-presentation"></iframe>
+        <iframe id="ext-iframe" data-src="https://tcq233.com/163/" class="flex-grow w-full h-full border-none bg-white" allow="autoplay" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-downloads allow-presentation"></iframe>
     </div>
     
     <div id="header">
@@ -1139,9 +1141,8 @@ window.addEventListener('load', function() {
 // 2. 监听滚动事件：控制返回顶部按钮的显示与隐藏
 window.addEventListener('scroll', function() {
     var backToTopBtn = document.getElementById('backToTopBtn');
-    // 当页面向下滚动超过 300 像素时，显示按钮
     if (window.scrollY > 300) {
-        backToTopBtn.style.display = 'flex'; // 使用 flex 保持图标居中
+        backToTopBtn.style.display = 'flex'; 
     } else {
         backToTopBtn.style.display = 'none';
     }
@@ -1152,25 +1153,21 @@ document.getElementById('backToTopBtn').addEventListener('click', function() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// 4. 展开面板及懒加载 iframe 逻辑
+// 4. 展开面板及懒加载 iframe 逻辑 (已修复 ID 不匹配问题)
 document.getElementById('toggleIframeBtn').addEventListener('click', function() {
     var panel = document.getElementById('iframePanel');
-    var iframe = document.getElementById('customIframe');
+    var iframe = document.getElementById('ext-iframe'); // 这里已经改对匹配的 ID 了
 
     if (panel.style.display === 'block') {
-        // 如果面板已展开，则收起
         panel.style.display = 'none';
     } else {
-        // 如果面板未展开，先检查 iframe 是否已经加载了 src
         var dataSrc = iframe.getAttribute('data-src');
         var currentSrc = iframe.getAttribute('src');
         
-        // 初次点击：把 data-src 填入 src，正式触发加载
         if (!currentSrc && dataSrc) {
             iframe.setAttribute('src', dataSrc);
         }
         
-        // 显示面板
         panel.style.display = 'block';
     }
 });
