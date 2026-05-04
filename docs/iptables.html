@@ -133,6 +133,7 @@ iptables -I INPUT -s 123.45.6.0/24 -j DROP    #封IP段即从123.45.6.1到123.45
 
 </div>
     <div id="footer">
+         <span id="loadTime"></span>
         <div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://blog.cpuck.com">feeday</a></div>
 <div id="footer2">
     <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
@@ -149,13 +150,6 @@ if(""!=""){
     document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
 }
 </script>
-        <span id="loadTime"></span>
-        
-        <div style="text-align:center; margin-top:15px;">
-            <div style="margin-top:10px;">
-                <img src="https://tool.lu/netcard/" style="vertical-align:middle;">
-            </div>
-        </div>
     </div>
 </body>
     
@@ -310,7 +304,7 @@ window.addEventListener('load', function() {
         if (loadTimeSpan) {
             // 推荐方法：使用 performance.now()，它表示从页面开始加载到此刻的毫秒数
             let loadTime = Math.round(performance.now());
-            loadTimeSpan.innerHTML = ' • 页面加载时间: ' + loadTime + 'ms';
+            loadTimeSpan.innerHTML = '页面加载时间: ' + loadTime + 'ms';
         }
     }, 10); // 延迟 10 毫秒
 });
