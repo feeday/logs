@@ -288,15 +288,16 @@ function searchShow(){
 
 <script>
 window.addEventListener('load', function() {
-    // 延迟一小段时间执行，确保浏览器的 load 事件彻底结束
+    // 延迟 0 毫秒是为了把任务放到事件队列最后，确保浏览器的 load 事件彻底走完
     setTimeout(function() {
         let loadTimeSpan = document.getElementById('loadTime');
         if (loadTimeSpan) {
-            // 推荐方法：使用 performance.now()，它表示从页面开始加载到此刻的毫秒数
-            let loadTime = Math.round(performance.now());
+            let timing = performance.getEntriesByType('navigation')[0];
+            // 直接获取浏览器底层记录的 load 事件结束的精确时间戳
+            let loadTime = Math.round(timing.loadEventEnd);
             loadTimeSpan.innerHTML = '页面加载时间: ' + loadTime + 'ms';
         }
-    }, 10); // 延迟 10 毫秒
+    }, 0);
 });
 </script>
 </html>
