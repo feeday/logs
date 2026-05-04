@@ -24,8 +24,11 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 .sidebar-btn { width: 44px; height: 44px; border-radius: 50%; background-color: var(--color-canvas-subtle, #f6f8fa); border: 1px solid var(--color-border-default, #d0d7de); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); color: var(--color-fg-default, #24292f); transition: all 0.2s ease-in-out; }
 .sidebar-btn:hover { background-color: var(--color-canvas-default, #ffffff); transform: translateY(-2px); box-shadow: 0 6px 14px rgba(0,0,0,0.15); }
 #backToTopBtn { display: none; }
+
+/* 展开面板 */
 #iframePanel { position: fixed; right: 80px; bottom: 30px; width: 450px; height: 650px; background-color: var(--color-canvas-default, #ffffff); border: 1px solid var(--color-border-default, #d0d7de); border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); display: none; overflow: hidden; z-index: 9998; }
 #iframePanel iframe { width: 100%; height: 100%; border: none; display: block; }
+
 @media (max-width: 768px) { #customSidebar { display: none !important; } #iframePanel { display: none !important; } }
 </style>
 
@@ -85,7 +88,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <div class="notFind" style="display:none;font-size:24px;margin:8px;">Not Find</div>
 </div>
     <div id="footer">
-         <div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://feeday.cn">feeday</a></div>
+        <span id="loadTime"></span>
+        <div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://feeday.cn">feeday</a></div>
 <div id="footer2">
     <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
 </div>
@@ -101,7 +105,6 @@ if(""!=""){
     document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
 }
 </script>
-         <span id="loadTime"></span>
     </div>
 
     <div id="customSidebar">
@@ -309,7 +312,7 @@ function searchShow(){
 
 
 <script>
-// 加载时间
+// 1. 页面精确加载时间统计
 window.addEventListener('load', function() {
     setTimeout(function() {
         let loadTimeSpan = document.getElementById('loadTime');
@@ -317,44 +320,53 @@ window.addEventListener('load', function() {
             let timing = performance.getEntriesByType('navigation')[0];
             if (timing && timing.loadEventEnd > 0) {
                 let loadTime = Math.round(timing.loadEventEnd);
-                loadTimeSpan.innerHTML = '页面加载时间: ' + loadTime + 'ms';
+                loadTimeSpan.innerHTML = ' • 页面加载时间: ' + loadTime + 'ms<br>';
             }
         }
     }, 0);
 });
 
-// 返回顶部显示逻辑
+// 2. 监听滚动事件：控制返回顶部按钮的显示与隐藏
 window.addEventListener('scroll', function() {
     var backToTopBtn = document.getElementById('backToTopBtn');
-    if(backToTopBtn) {
+    if (backToTopBtn) {
         if (window.scrollY > 300) {
-            backToTopBtn.style.display = 'flex';
+            backToTopBtn.style.display = 'flex'; 
         } else {
             backToTopBtn.style.display = 'none';
         }
     }
 });
 
-// 返回顶部点击
-document.getElementById('backToTopBtn').addEventListener('click', function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+// 3. 回到顶部平滑滚动
+var topBtn = document.getElementById('backToTopBtn');
+if (topBtn) {
+    topBtn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
 
-// 边栏点击
-document.getElementById('toggleIframeBtn').addEventListener('click', function() {
-    var panel = document.getElementById('iframePanel');
-    var iframe = document.getElementById('ext-iframe');
+// 4. 展开面板及懒加载 iframe 逻辑
+var toggleBtn = document.getElementById('toggleIframeBtn');
+if (toggleBtn) {
+    toggleBtn.addEventListener('click', function() {
+        var panel = document.getElementById('iframePanel');
+        var iframe = document.getElementById('ext-iframe');
 
-    if (panel.style.display === 'block') {
-        panel.style.display = 'none';
-    } else {
-        var dataSrc = iframe.getAttribute('data-src');
-        var currentSrc = iframe.getAttribute('src');
-        if (!currentSrc && dataSrc) {
-            iframe.setAttribute('src', dataSrc);
+        if (panel.style.display === 'block') {
+            panel.style.display = 'none';
+        } else {
+            var dataSrc = iframe.getAttribute('data-src');
+            var currentSrc = iframe.getAttribute('src');
+            
+            // 初次点击加载网页
+            if (!currentSrc && dataSrc) {
+                iframe.setAttribute('src', dataSrc);
+            }
+            
+            panel.style.display = 'block';
         }
-        panel.style.display = 'block';
-    }
-});
+    });
+}
 </script>
 </html>
