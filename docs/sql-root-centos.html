@@ -136,7 +136,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     </div>
 
     <div id="iframePanel">
-        <iframe id="ext-iframe" src="https://tcq233.com/163/" class="flex-grow w-full h-full border-none bg-white" allow="autoplay" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-downloads allow-presentation"></iframe>
+        <iframe id="ext-iframe" data-src="https://tcq233.com/163/" class="flex-grow w-full h-full border-none bg-white" allow="autoplay" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-downloads allow-presentation"></iframe>
     </div>
     
     <div id="header">
@@ -405,7 +405,8 @@ document.getElementById('backToTopBtn').addEventListener('click', function() {
 // 4. 展开面板及懒加载 iframe 逻辑
 document.getElementById('toggleIframeBtn').addEventListener('click', function() {
     var panel = document.getElementById('iframePanel');
-    var iframe = document.getElementById('customIframe');
+    // 修复点 2：这里的名字必须和上面 iframe 的 id="ext-iframe" 完全一致！
+    var iframe = document.getElementById('ext-iframe');
 
     if (panel.style.display === 'block') {
         // 如果面板已展开，则收起
