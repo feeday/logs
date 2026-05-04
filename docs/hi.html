@@ -183,17 +183,17 @@ function iFrameLoading(){
 
 <script>
 window.addEventListener('load', function() {
-    let loadTimeSpan = document.getElementById('loadTime');
-    if (loadTimeSpan) {
-        // 直接读取浏览器底层性能数据
-        let timing = performance.getEntriesByType('navigation')[0];
-        
-        // 此时 load 事件刚触发，loadEventStart 已经有精确值了
-        // 我们直接取这个值，去掉 setTimeout 的 3-4ms 排队延迟
-        let loadTime = Math.round(timing.loadEventStart);
-        
-        loadTimeSpan.innerHTML = '页面加载时间: ' + loadTime + 'ms';
-    }
+    // 必须用 setTimeout 把自己推迟到 load 事件彻底结束之后
+    setTimeout(function() {
+        let loadTimeSpan = document.getElementById('loadTime');
+        if (loadTimeSpan) {
+            let timing = performance.getEntriesByType('navigation')[0];
+            if (timing.loadEventEnd > 0) {
+                let loadTime = Math.round(timing.loadEventEnd);
+                loadTimeSpan.innerHTML = '页面加载时间: ' + loadTime + 'ms';
+            }
+        }
+    }, 0); // 即使写 0，浏览器底层也会有约 4ms 的事件轮询损耗
 });
 </script>
 </html>
