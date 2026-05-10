@@ -1,10 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>feeday</title><link>https://feeday.cn</link><description>BB Work No Money</description><copyright>feeday</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://feeday.cn</link></image><lastBuildDate>Sun, 10 May 2026 11:58:20 +0000</lastBuildDate><managingEditor>feeday</managingEditor><ttl>60</ttl><webMaster>feeday</webMaster><item><title>win10-Menu-Key</title><link>https://feeday.cn/win10-Menu-Key.html</link><description># 微软系统右键菜单修改
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>feeday</title><link>https://feeday.cn</link><description>BB Work No Money</description><copyright>feeday</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://feeday.cn</link></image><lastBuildDate>Sun, 10 May 2026 12:00:45 +0000</lastBuildDate><managingEditor>feeday</managingEditor><ttl>60</ttl><webMaster>feeday</webMaster><item><title>win10-Menu-Key</title><link>https://feeday.cn/win10-Menu-Key.html</link><description># 微软系统右键菜单修改
 
-Windows 11 默认右键菜单被简化，若要恢复类似 Windows 10 的完整菜单，可通过以下方法实现。</description><guid isPermaLink="true">https://feeday.cn/win10-Menu-Key.html</guid><pubDate>Sun, 10 May 2026 04:01:40 +0000</pubDate></item><item><title>VEDetector</title><link>https://feeday.cn/VEDetector.html</link><description>以下是关于关闭剪映电脑版启动时环境监测的说明，整理为 Markdown 格式：
-
-
-# 关闭剪映电脑版启动时的环境监测
+Windows 11 默认右键菜单被简化，若要恢复类似 Windows 10 的完整菜单，可通过以下方法实现。</description><guid isPermaLink="true">https://feeday.cn/win10-Menu-Key.html</guid><pubDate>Sun, 10 May 2026 04:01:40 +0000</pubDate></item><item><title>VEDetector</title><link>https://feeday.cn/VEDetector.html</link><description>
+关闭剪映电脑版启动时的环境监测
 
 ## 方法一：重命名或移除环境检测程序文件
 
