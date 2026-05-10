@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>feeday</title><link>https://feeday.cn</link><description>BB Work No Money</description><copyright>feeday</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://feeday.cn</link></image><lastBuildDate>Sun, 10 May 2026 12:00:45 +0000</lastBuildDate><managingEditor>feeday</managingEditor><ttl>60</ttl><webMaster>feeday</webMaster><item><title>win10-Menu-Key</title><link>https://feeday.cn/win10-Menu-Key.html</link><description># 微软系统右键菜单修改
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>feeday</title><link>https://feeday.cn</link><description>BB Work No Money</description><copyright>feeday</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://feeday.cn</link></image><lastBuildDate>Sun, 10 May 2026 12:01:28 +0000</lastBuildDate><managingEditor>feeday</managingEditor><ttl>60</ttl><webMaster>feeday</webMaster><item><title>win10-Menu-Key</title><link>https://feeday.cn/win10-Menu-Key.html</link><description># 微软系统右键菜单修改
 
 Windows 11 默认右键菜单被简化，若要恢复类似 Windows 10 的完整菜单，可通过以下方法实现。</description><guid isPermaLink="true">https://feeday.cn/win10-Menu-Key.html</guid><pubDate>Sun, 10 May 2026 04:01:40 +0000</pubDate></item><item><title>VEDetector</title><link>https://feeday.cn/VEDetector.html</link><description>
 关闭剪映电脑版启动时的环境监测
 
-## 方法一：重命名或移除环境检测程序文件
+## 重命名程序文件
 
 通过重命名或移除环境检测程序文件（例如 `VEDetector.exe`），可以跳过启动时的环境监测。</description><guid isPermaLink="true">https://feeday.cn/VEDetector.html</guid><pubDate>Sun, 10 May 2026 03:54:49 +0000</pubDate></item><item><title>hf-mirror-download</title><link>https://feeday.cn/hf-mirror-download.html</link><description>HF 国内镜像下载模型数据集
 
