@@ -74,15 +74,16 @@ audio { outline: none; }
   <div class="card">
    <div class="button-grid" style="margin-top: 15px;">
      <button class="btn" id="btnClearOutput" title="复制文本并彻底重置所有控制状态">清空重置</button>
-     <button class="btn" id="btnAiAction">润色文本</button> 
-     <button class="btn btn-primary" id="btnCombinedAction">保存记录</button>  
+     <button class="btn btn-primary" id="btnCombinedAction">保存记录</button>
+     <button class="btn" id="btnExportRecords">导出记录</button>
+          <button class="btn" id="btnAiAction">润色文本</button> 
       <button class="btn" id="btnExtractPoints">提炼要点</button>
       <button class="btn" id="btnExtractLinks">提链去重</button>
       <button class="btn" id="btnHtmlPreview">网页预览</button>
       <button class="btn" id="btnFrames">抽帧取音</button>
       <button class="btn" id="optimize-btn">自然排版</button>
       <button class="btn" id="btnDecodeQR">识别二维码</button>
-      <button class="btn" id="btnExportRecords">导出记录</button>
+      
     </div>
 
     <div id="responseWrap">
@@ -259,7 +260,7 @@ async function toBase64(file) {
 // 纯前端：留言板的本地存储模拟
 function fetchMockComments() {
     const localData = JSON.parse(localStorage.getItem('local_comments') || '[]');
-    let placeholderText = "🚀 在此输入你想记录的内容\n(注: 当前为纯前端HTML版，记录仅保存在您本地)\n";
+    let placeholderText = "🚀 在此输入你想记录的内容\n";
     const recentData = localData.slice(-4); // 在输入框背景中仅展示最新4条
     recentData.forEach(item => { 
         placeholderText += "📝 " + item.replace(/\n/g, ' ').substring(0, 30) + "...\n"; 
