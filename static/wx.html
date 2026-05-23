@@ -144,10 +144,10 @@ audio { outline: none; }
   <div class="card">
    <div class="button-grid" style="margin-top: 15px;">
       <button class="btn" id="btnClearOutput" title="复制文本并彻底重置所有控制状态">清空重置</button>
-      <button class="btn btn-primary" id="btnCombinedAction">💬 AI 对话</button>
+      <button class="btn btn-save" id="btnSaveLocal">随手记录</button>
+      <button class="btn btn-primary" id="btnCombinedAction">模型测试</button>
       <button class="btn" id="btnFrames">抽帧取音</button>
       <button class="btn" id="btnHtmlPreview">网页预览</button>
-      <button class="btn btn-save" id="btnSaveLocal">💾 保存记录</button>
       <button class="btn" id="btnExportRecords">导出记录</button>
       <button class="btn" id="btnAiAction">润色文本</button> 
       <button class="btn" id="btnExtractPoints">提炼要点</button>
@@ -413,8 +413,8 @@ function fetchMockComments() {
     let placeholderText = "🚀 在此输入你想记录的内容\n";
     const recentData = localData.slice(-4); // 在输入框背景中仅展示最新4条
     recentData.forEach(item => { 
-        // 去掉了 substring 截断和 "..."，并将结尾的换行符 \n 替换为空格间距
-        placeholderText += "📝 " + item.replace(/\n/g, ' ') + "   "; 
+        // 内部的换行替换为空格，但每条记录结尾保留换行符（\n）
+        placeholderText += "📝 " + item.replace(/\n/g, ' ') + "\n"; 
     });
     universalText.placeholder = placeholderText || "在此输入你想说的话...";
 }
