@@ -26,8 +26,8 @@ textarea.input-style::placeholder { color: #888; font-family: ui-monospace, Cons
 .btn { background: #F0F2F5; color: #333; border: none; padding: 10px 0; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; transition: 0.2s; text-align: center; display: inline-flex; justify-content: center; align-items: center; user-select: none; }
 .btn:active { background: #E4E6EB; transform: scale(0.98); }
 .btn:disabled { opacity: 0.5; cursor: not-allowed; }
-.btn-tucao { background: linear-gradient(45deg, #00c6ff, #0072ff); color: #FFF; box-shadow: 0 2px 8px rgba(0,114,255,0.3); }
-.btn-tucao:active { filter: brightness(0.9); }
+.btn-primary { background: linear-gradient(45deg, #00c6ff, #0072ff); color: #FFF; box-shadow: 0 2px 8px rgba(0,114,255,0.3); }
+.btn-primary:active { filter: brightness(0.9); }
 .btn-danger { background: #FFF0F0; color: #FA5151; }
 #response { white-space: pre-wrap; word-break: break-all; font-family: ui-monospace, Consolas, monospace; background: #282C34; color: #98C379; border-radius: 8px; padding: 12px; font-size: 12px; max-height: 400px; overflow-y: auto; margin-top: 10px; text-align: left; }
 #responseWrap { display: none; margin-top: 15px; }
@@ -72,16 +72,17 @@ audio { outline: none; }
   </div>
 
   <div class="card">
-   <div class="button-grid" style="margin-top: 15px; grid-template-columns: 1fr 1fr 1fr;">
+   <div class="button-grid" style="margin-top: 15px;">
      <button class="btn" id="btnClearOutput" title="复制文本并彻底重置所有控制状态">清空重置</button>
      <button class="btn" id="btnAiAction">润色文本</button> 
-     <button class="btn btn-tucao" id="btnCombinedAction">随手记录</button>  
+     <button class="btn btn-primary" id="btnCombinedAction">保存记录</button>  
       <button class="btn" id="btnExtractPoints">提炼要点</button>
       <button class="btn" id="btnExtractLinks">提链去重</button>
       <button class="btn" id="btnHtmlPreview">网页预览</button>
       <button class="btn" id="btnFrames">抽帧取音</button>
       <button class="btn" id="optimize-btn">自然排版</button>
       <button class="btn" id="btnDecodeQR">识别二维码</button>
+      <button class="btn" id="btnExportRecords">导出记录</button>
     </div>
 
     <div id="responseWrap">
@@ -258,9 +259,10 @@ async function toBase64(file) {
 // 纯前端：留言板的本地存储模拟
 function fetchMockComments() {
     const localData = JSON.parse(localStorage.getItem('local_comments') || '[]');
-    let placeholderText = "🚀 在此输入你想说的话\n(注: 当前为纯前端HTML版，留言仅保存在您本地)\n";
-    localData.forEach(item => { 
-        placeholderText += "吐槽墙 : " + item + "\n"; 
+    let placeholderText = "🚀 在此输入你想记录的内容\n(注: 当前为纯前端HTML版，记录仅保存在您本地)\n";
+    const recentData = localData.slice(-4); // 在输入框背景中仅展示最新4条
+    recentData.forEach(item => { 
+        placeholderText += "📝 " + item.replace(/\n/g, ' ').substring(0, 30) + "...\n"; 
     });
     universalText.placeholder = placeholderText || "在此输入你想说的话...";
 }
@@ -279,22 +281,22 @@ function onModelChange() {
         apiKeyInput.style.display = "none";
         proxyInput.style.display = "none";
         if(btnCombinedAction) {
-            btnCombinedAction.innerHTML = "🚀 我要吐槽";
-            btnCombinedAction.className = "btn btn-tucao";
+            btnCombinedAction.innerHTML = "🚀 保存记录";
+            btnCombinedAction.className = "btn btn-primary";
         }
     } else if (isImageModel) {
         apiKeyInput.style.display = "block";
         proxyInput.style.display = "block";
         if(btnCombinedAction) {
             btnCombinedAction.innerHTML = "🎨 生成图像";
-            btnCombinedAction.className = "btn btn-tucao";
+            btnCombinedAction.className = "btn btn-primary";
         }
     } else {
         apiKeyInput.style.display = "block";
         proxyInput.style.display = "block";
         if(btnCombinedAction) {
             btnCombinedAction.innerHTML = "💬 AI 对话";
-            btnCombinedAction.className = "btn btn-tucao";
+            btnCombinedAction.className = "btn btn-primary";
         }
     }
 }
@@ -366,6 +368,30 @@ universalFile.addEventListener('change', (e) => {
     }
 });
 
+// ================= 导出历史记录 =================
+bindEvent("btnExportRecords", "click", () => {
+    const localData = JSON.parse(localStorage.getItem('local_comments') || '[]');
+    if (localData.length === 0) return alert("暂无本地记录可导出！");
+    
+    let exportStr = "=== 随手记 - 本地数据导出 ===\n\n";
+    localData.forEach((item, index) => {
+        exportStr += `【记录 ${index + 1}】\n${item}\n\n`;
+    });
+    
+    const blob = new Blob([exportStr], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const now = new Date();
+    const dateStr = now.getFullYear() + String(now.getMonth()+1).padStart(2,'0') + String(now.getDate()).padStart(2,'0');
+    
+    a.href = url;
+    a.download = `随手记录导出_${dateStr}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+});
+
 // ================= 直接请求大模型前端直连逻辑 =================
 async function fetchDirectAPI(endpoint, payload) {
     const proxy = getApiProxy();
@@ -399,13 +425,19 @@ if(btnCombinedAction) {
         const content = universalText.value.trim();
         const model = document.getElementById('unifiedModel').value;
         
-        // 1. 本地吐槽
+        // 1. 本地记录
         if (model === "comment-wall") {
-            if (!content) return alert("请输入吐槽内容");
+            if (!content) return alert("请输入记录内容");
             const localData = JSON.parse(localStorage.getItem('local_comments') || '[]');
-            localData.push(content);
-            if(localData.length > 3) localData.shift();
+            const timeStr = new Date().toLocaleString();
+            
+            // 为了向下兼容，继续推入格式化的字符串
+            localData.push(`[${timeStr}]\n${content}`);
+            
+            // 本地扩容保存至200条以供随时导出
+            if(localData.length > 200) localData.shift(); 
             localStorage.setItem('local_comments', JSON.stringify(localData));
+            
             universalText.value = ''; updateStats(); checkEmptyState(); fetchMockComments();
             
             const oldText = btnCombinedAction.innerHTML;
@@ -841,7 +873,7 @@ bindEvent("btnFrames", "click", async () => {
             audioEl.style.cssText = "width:100%; height:40px; outline:none;";
             
             const audioBtn = document.createElement('button');
-            audioBtn.className = "btn btn-tucao"; 
+            audioBtn.className = "btn btn-primary"; 
             audioBtn.style.cssText = "margin-top:10px; width:100%; border:none;";
             if (isWechatClient) audioBtn.style.display = 'none';
 
