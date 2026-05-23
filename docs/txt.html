@@ -53,10 +53,62 @@ audio { outline: none; }
 #imageOptionsWrapper { display: none; margin-top: 10px; background: #F8F9FA; padding: 10px; border-radius: 8px; border: 1px dashed #E5E5E5; }
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
 .sub-text { font-size: 12px; color: #666; }
+
+/* ================= 顶部搜索框特有样式 ================= */
+.search-card { padding: 12px 15px; display: flex; align-items: center; justify-content: center; }
+.search-wrapper { display: flex; align-items: center; width: 100%; position: relative; }
+.custom-select { position: relative; display: flex; align-items: center; cursor: pointer; user-select: none; }
+.select-trigger { display: flex; align-items: center; font-size: 14px; font-weight: bold; color: #333; }
+.arrow-icon { width: 16px; height: 16px; fill: currentColor; margin-left: 2px; transition: transform 0.2s; }
+.custom-select.open .arrow-icon { transform: rotate(180deg); }
+.select-options { display: none; position: absolute; top: 100%; left: -5px; background: #FFF; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); z-index: 1000; margin-top: 12px; overflow: hidden; min-width: 90px; border: 1px solid #E5E5E5; }
+.custom-select.open .select-options { display: block; }
+.option-item { padding: 10px 15px; font-size: 14px; color: #333; transition: background 0.2s; cursor: pointer; text-align: center; }
+.option-item:active { background: #F0F2F5; }
+.option-item.selected { color: #0072ff; font-weight: bold; background: #f2f8fc; }
+.search-inner-divider { width: 1px; height: 18px; background: #E5E5E5; margin: 0 12px; }
+.search-input { flex: 1; border: none; outline: none; font-size: 14px; background: transparent; color: #333; min-width: 0; }
+.search-input::placeholder { color: #888; font-family: inherit; font-size: 14px; }
+.search-clear { font-size: 16px; color: #bbb; cursor: pointer; padding: 0 8px; display: none; user-select: none; }
+.search-clear:active { color: #333; }
+.external-search-btn { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; background: #F0F2F5; border-radius: 8px; cursor: pointer; color: #333; transition: 0.2s; margin-left: 5px; }
+.external-search-btn:active { background: #E4E6EB; transform: scale(0.95); }
+.external-search-btn svg { width: 18px; height: 18px; }
 </style>
 </head>
 <body>
 <div class="app-container">
+
+  <!-- 新增：顶部聚合搜索框 -->
+  <div class="card search-card">
+      <div class="search-wrapper">
+          <div class="custom-select" id="customSelect">
+              <div class="select-trigger" onclick="toggleSelect(event)">
+                  <span id="currentEngineText">Google</span>
+                  <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+              </div>
+              <input type="hidden" id="searchEngineValue" value="https://www.google.com/search?q=">
+              <div class="select-options" id="selectOptions">
+                  <div class="option-item selected" onclick="selectEngine('https://www.google.com/search?q=', 'Google', this)">Google</div>
+                  <div class="option-item" onclick="selectEngine('https://www.youtube.com/results?search_query=', 'YouTube', this)">YouTube</div>
+                  <div class="option-item" onclick="selectEngine('https://yandex.by/images/search?text=', 'Yandex', this)">Yandex</div>
+                  <div class="option-item" onclick="selectEngine('https://search.bilibili.com/all?keyword=', 'B站', this)">B站</div>
+                  <div class="option-item" onclick="selectEngine('https://www.douyin.com/search/', '抖音', this)">抖音</div>
+                  <div class="option-item" onclick="selectEngine('https://www.baidu.com/s?q2=', '百度', this)">百度</div>
+                  <div class="option-item" onclick="selectEngine('https://tieba.baidu.com/f/search/res?ie=utf-8&amp;qw=', '贴吧', this)">贴吧</div>
+                  <div class="option-item" onclick="selectEngine('https://s.weibo.com/weibo?q=', '微博', this)">微博</div>
+              </div>
+          </div>
+          
+          <div class="search-inner-divider"></div>
+          <input type="text" class="search-input" id="searchInput" placeholder="搜索标题或简介..." autocomplete="off">
+          <span class="search-clear" id="searchClear" onmousedown="event.preventDefault()" onclick="clearSearch()">✕</span>
+          
+          <div class="external-search-btn" id="externalSearchBtn" title="搜索">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </div>
+      </div>
+  </div>
 
   <div class="card">
     <input type="file" id="universalFile" class="input-style" accept="image/*,audio/*,video/*" />
@@ -179,6 +231,52 @@ audio { outline: none; }
 </div>
 
 <script>
+// ================= 搜索框交互逻辑 =================
+function toggleSelect(e) {
+    e.stopPropagation();
+    document.getElementById('customSelect').classList.toggle('open');
+}
+function selectEngine(url, name, elem) {
+    document.getElementById('searchEngineValue').value = url;
+    document.getElementById('currentEngineText').innerText = name;
+    document.querySelectorAll('.option-item').forEach(el => el.classList.remove('selected'));
+    elem.classList.add('selected');
+}
+function clearSearch() {
+    const input = document.getElementById('searchInput');
+    input.value = '';
+    input.focus();
+    toggleClearBtn();
+}
+function toggleClearBtn() {
+    const val = document.getElementById('searchInput').value;
+    document.getElementById('searchClear').style.display = val.length > 0 ? 'inline' : 'none';
+}
+document.addEventListener('click', () => {
+    const select = document.getElementById('customSelect');
+    if(select && select.classList.contains('open')) select.classList.remove('open');
+});
+
+const searchInputEl = document.getElementById('searchInput');
+if(searchInputEl) {
+    searchInputEl.addEventListener('input', toggleClearBtn);
+    searchInputEl.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') executeSearch();
+    });
+}
+const externalSearchBtnEl = document.getElementById('externalSearchBtn');
+if(externalSearchBtnEl) {
+    externalSearchBtnEl.addEventListener('click', executeSearch);
+}
+function executeSearch() {
+    const query = document.getElementById('searchInput').value.trim();
+    if(query) {
+        const engine = document.getElementById('searchEngineValue').value;
+        window.open(engine + encodeURIComponent(query), '_blank');
+    }
+}
+
+
 // ================= 全局状态与基础配置 =================
 const universalText = document.getElementById("universalText");
 const universalFile = document.getElementById("universalFile");
