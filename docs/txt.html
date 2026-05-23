@@ -360,25 +360,152 @@ bindEvent("btnDecodeQR", "click", () => {
 // ---------- Ping 检测逻辑 (纯前端 Image 探针探测，完全兼容) ----------
 let currentUrl = "https://www.baidu.com", pingData = []; 
 function openPingModal() { document.getElementById("pingModal").classList.add("show"); }
-function closePingModal() { document.getElementById("pingModal").classList.remove("show"); }
-function changeSite(url, name) { currentUrl = url; document.getElementById("siteName").innerText = name; pingData = []; closePingModal(); doPing(); }
+function closePingModal(e) { 
+    if (e && e.target.id === "pingSheet") return; 
+    document.getElementById("pingModal").classList.remove("show"); 
+}
+function changeSite(url, name) { 
+    currentUrl = url; 
+    document.getElementById("siteName").innerText = name; 
+    document.getElementById("descSite").innerText = name; 
+    pingData = []; 
+    closePingModal(); 
+    doPing(); 
+}
 
 function doPing() {
     const img = new Image(); const start = performance.now(); let isFinished = false;
     img.onload = () => handlePing(performance.now() - start);
     img.onerror = () => handlePing(500);
     setTimeout(() => { if (!isFinished) handlePing(500); }, 2000);
+    
     function handlePing(ms) {
-        isFinished = true; const pingMs = Math.floor(ms);
-        document.getElementById("pingText").innerText = ms === 500 ? "超时/断网" : pingMs + " ms";
-        pingData.push({ ms: ms === 500 ? 500 : pingMs });
+        if (isFinished) return;
+        isFinished = true; 
+        const pingMs = Math.floor(ms);
+        const textElem = document.getElementById("pingText");
+        
+        // 更新文字颜色和数值
+        textElem.innerText = ms === 500 ? "超时/断网" : pingMs + " ms";
+        if (pingMs < 50) textElem.style.color = "#07C160";
+        else if (pingMs < 100) textElem.style.color = "#d9a23a";
+        else textElem.style.color = "#FA5151";
+
+        // 记录当前时间，用于图表底部显示
+        const now = new Date();
+        const timeStr = now.getHours().toString().padStart(2, '0') + ':' + 
+                        now.getMinutes().toString().padStart(2, '0') + ':' + 
+                        now.getSeconds().toString().padStart(2, '0');
+
+        pingData.push({ ms: ms === 500 ? 500 : pingMs, time: timeStr });
         if(pingData.length > 20) pingData.shift();
         drawChart();
     }
     img.src = currentUrl + "/favicon.ico?t=" + Date.now();
 }
+
 setInterval(() => { if (document.visibilityState === 'visible') doPing(); }, 2000);
-function drawChart() { /* Canvas 绘图逻辑同原版 */ }
+setTimeout(doPing, 1000);
+
+// 恢复完整版的 Canvas 绘图逻辑
+function drawChart() {
+    const canvas = document.getElementById("chart");
+    if(!canvas) return;
+    const ctx = canvas.getContext("2d");
+    
+    const rect = canvas.parentNode.getBoundingClientRect();
+    canvas.width = rect.width * 2;
+    canvas.height = rect.height * 2;
+    ctx.scale(2, 2);
+    
+    const w = rect.width;
+    const h = rect.height;
+
+    ctx.clearRect(0, 0, w, h);
+
+    const paddingLeft = 30;
+    const paddingBottom = 20;
+    const chartW = w - paddingLeft - 10; 
+    const chartH = h - paddingBottom;
+
+    const maxMs = pingData.length > 0 ? Math.max(...pingData.map(d => d.ms), 60) : 60; 
+    
+    // 画背景参考线
+    ctx.strokeStyle = "#e5eef2"; 
+    ctx.lineWidth = 1;
+    ctx.fillStyle = "#9ba5b1";   
+    ctx.font = "10px ui-monospace, Consolas, sans-serif";
+    ctx.textAlign = "right";
+    ctx.textBaseline = "middle";
+
+    const ySteps = 4; 
+    for(let i=0; i<=ySteps; i++){
+        let val = Math.round((maxMs / ySteps) * i);
+        let y = chartH - (i * (chartH / ySteps));
+        y = Math.max(y, 10);
+
+        ctx.beginPath();
+        ctx.moveTo(paddingLeft, y);
+        ctx.lineTo(w, y);
+        ctx.stroke();
+
+        ctx.fillText(val, paddingLeft - 6, y);
+    }
+
+    if(pingData.length < 2) return;
+
+    // 计算坐标点
+    let points = [];
+    pingData.forEach((d, i) => {
+        let x = paddingLeft + i * (chartW / (pingData.length - 1));
+        let y = chartH - (d.ms / maxMs) * (chartH - 10); 
+        points.push({x: x, y: Math.max(10, Math.min(y, chartH))});
+    });
+
+    // 绘制平滑曲线
+    let linePath = new Path2D();
+    linePath.moveTo(points[0].x, points[0].y);
+    
+    for (let i = 0; i < points.length - 1; i++) {
+        let xMid = (points[i].x + points[i + 1].x) / 2;
+        linePath.bezierCurveTo(xMid, points[i].y, xMid, points[i + 1].y, points[i + 1].x, points[i + 1].y);
+    }
+
+    // 绘制下方渐变区域
+    let fillPath = new Path2D(linePath);
+    fillPath.lineTo(points[points.length - 1].x, chartH); 
+    fillPath.lineTo(points[0].x, chartH);                  
+    fillPath.closePath();                                  
+
+    const fillGradient = ctx.createLinearGradient(0, 0, 0, chartH);
+    fillGradient.addColorStop(0, "rgba(249, 168, 104, 0.15)"); 
+    fillGradient.addColorStop(1, "rgba(108, 56, 161, 0.0)");   
+
+    ctx.fillStyle = fillGradient;
+    ctx.fill(fillPath);
+
+    // 绘制主线
+    const lineGradient = ctx.createLinearGradient(paddingLeft, 0, w, 0);
+    lineGradient.addColorStop(0, "#fca869");   
+    lineGradient.addColorStop(0.5, "#ea6068"); 
+    lineGradient.addColorStop(1, "#753aa7");   
+
+    ctx.strokeStyle = lineGradient;
+    ctx.lineWidth = 2;
+    ctx.lineJoin = 'round';
+    ctx.lineCap = 'round';
+    ctx.stroke(linePath);
+
+    // 绘制底部时间文字
+    ctx.fillStyle = "#9ba5b1";
+    ctx.textBaseline = "top";
+    
+    ctx.textAlign = "left";
+    ctx.fillText(pingData[0].time, paddingLeft, chartH + 5); 
+    
+    ctx.textAlign = "right";
+    ctx.fillText(pingData[pingData.length - 1].time, points[points.length - 1].x, chartH + 5); 
+}
 </script>
 </body>
 </html>
