@@ -6,9 +6,7 @@
 <meta name="referrer" content="same-origin" />
 <title>─=≡Σ((( つ•̀ω•́)つ </title>
 
-<script
-// ================= 微信环境专属适配 =================
-window.addEventListener('DOMContentLoaded', () => {
+<script window.addEventListener('DOMContentLoaded', () => {
     // 检测是否在微信内置浏览器中打开
     const isWechatClient = /micromessenger/i.test(navigator.userAgent.toLowerCase());
     
@@ -32,15 +30,15 @@ window.addEventListener('DOMContentLoaded', () => {
                 firstAvailableOption = item; // 记录第一个保留的引擎
             }
         });
-
-        // 3. 因为页面默认选中了百度（已被隐藏），我们需要自动将默认引擎切换为保留的引擎（比如 Bilibili）
         const currentEngineText = document.getElementById('currentEngineText').innerText.trim();
         if (currentEngineText !== 'Weibo' && currentEngineText !== 'Bilibili' && firstAvailableOption) {
             firstAvailableOption.click(); 
         }
     }
-});
-    </script>
+});</script>
+
+
+    
 <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/exifr/dist/full.umd.js"></script>
