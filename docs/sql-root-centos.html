@@ -121,7 +121,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
         </svg>
     </a>
     
-    <a href="https://github.com/feeday/logs/issues/5" target="_blank" class="btn btn-invisible circle" title="Issue">
+    <a href="https://github.com/feeday/logs/issues/13" target="_blank" class="btn btn-invisible circle" title="Issue">
         <svg class="octicon" width="16" height="16">
             <path id="pathIssue" fill-rule="evenodd"></path>
         </svg>
@@ -138,42 +138,26 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
     <div id="content">
 <div class="markdown-body" id="postBody"><p>centos 重置数据库 root 密码。</p>
-<ul>
-<li>编辑MySQL配置文件：</li>
-</ul>
+<h1>编辑MySQL配置文件：</h1>
 <pre class="notranslate"><code class="notranslate">vim /etc/my.cnf
 </code></pre>
-<ul>
-<li>按【I】键在[mysqld]的段中插入：</li>
-</ul>
+<p>按【I】键在[mysqld]的段中插入：</p>
 <pre class="notranslate"><code class="notranslate">skip-grant-tables
 </code></pre>
-<ul>
-<li>
-<p>此段命令应该是跳过相关验证，当改完密码为了安全建议删除或者注释掉。</p>
-</li>
-<li>
-<p>按【ESC】键退出，在光标处输入【:wq】保存关闭配置文件。</p>
-</li>
-<li>
-<p>停止重启MySQL：</p>
-</li>
-</ul>
+<p>此段命令应该是跳过相关验证，当改完密码为了安全建议删除或者注释掉。<br>
+按【ESC】键退出，在光标处输入【:wq】保存关闭配置文件。</p>
+<h1>停止重启MySQL：</h1>
 <pre class="notranslate"><code class="notranslate">systemctl stop mysqld
 systemctl start mysqld
 </code></pre>
-<ul>
-<li>登陆MySQL重置密码：</li>
-</ul>
+<h1>登陆MySQL重置密码：</h1>
 <pre class="notranslate"><code class="notranslate">mysql
 mysql&gt; use mysql
 mysql&gt; update user set password=password("12345678") where user='root'
 mysql&gt; flush privileges
 exit
 </code></pre>
-<ul>
-<li>【12345678】就是重置完的root密码。</li>
-</ul></div>
+<p>【12345678】就是重置完的root密码。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
