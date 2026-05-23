@@ -127,15 +127,14 @@ audio { outline: none; }
   <div class="card">
    <div class="button-grid" style="margin-top: 15px;">
       <button class="btn" id="btnClearOutput" title="复制文本并彻底重置所有控制状态">清空重置</button>
-      <button class="btn" id="btnFrames">抽帧取音</button>
-      <!-- 主操作按钮改为AI对话，独立出保存记录按钮 -->
       <button class="btn btn-primary" id="btnCombinedAction">💬 AI 对话</button>
+      <button class="btn" id="btnFrames">抽帧取音</button>
+      <button class="btn" id="btnHtmlPreview">网页预览</button>
       <button class="btn btn-save" id="btnSaveLocal">💾 保存记录</button>
       <button class="btn" id="btnExportRecords">导出记录</button>
       <button class="btn" id="btnAiAction">润色文本</button> 
       <button class="btn" id="btnExtractPoints">提炼要点</button>
       <button class="btn" id="btnExtractLinks">提链去重</button>
-      <button class="btn" id="btnHtmlPreview">网页预览</button>
       <button class="btn" id="optimize-btn">自然排版</button>
       <button class="btn" id="btnDecodeQR">解二维码</button>
     </div>
@@ -201,7 +200,7 @@ audio { outline: none; }
         <input type="file" id="imgUpload" class="input-style" accept="image/*" style="margin-bottom:0; background: #FFF;" placeholder="可选：上传垫图 (图生图)">
     </div>
     
-    <input type="text" id="apiProxy" class="input-style" placeholder="🌐 自定义 API 代理URL" value="https://api.apimart.ai" />
+    <input type="text" id="apiProxy" class="input-style" placeholder="🌐 自定义 API 代理URL" value="https://api.poixe.com" />
     <input type="password" id="apiKey" class="input-style" placeholder="🔑 API Key" />
     
     <!-- 取消了随手记选项，默认设为 deepseek -->
