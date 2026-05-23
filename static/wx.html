@@ -413,7 +413,8 @@ function fetchMockComments() {
     let placeholderText = "🚀 在此输入你想记录的内容\n";
     const recentData = localData.slice(-4); // 在输入框背景中仅展示最新4条
     recentData.forEach(item => { 
-        placeholderText += "📝 " + item.replace(/\n/g, ' ').substring(0, 30) + "...\n"; 
+        // 去掉了 substring 截断和 "..."，并将结尾的换行符 \n 替换为空格间距
+        placeholderText += "📝 " + item.replace(/\n/g, ' ') + "   "; 
     });
     universalText.placeholder = placeholderText || "在此输入你想说的话...";
 }
