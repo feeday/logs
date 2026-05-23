@@ -29,6 +29,7 @@ textarea.input-style::placeholder { color: #888; font-family: ui-monospace, Cons
 .btn-primary { background: linear-gradient(45deg, #00c6ff, #0072ff); color: #FFF; box-shadow: 0 2px 8px rgba(0,114,255,0.3); }
 .btn-primary:active { filter: brightness(0.9); }
 .btn-danger { background: #FFF0F0; color: #FA5151; }
+.btn-save { background: #e8f4fd; color: #0072ff; }
 #response { white-space: pre-wrap; word-break: break-all; font-family: ui-monospace, Consolas, monospace; background: #282C34; color: #98C379; border-radius: 8px; padding: 12px; font-size: 12px; max-height: 400px; overflow-y: auto; margin-top: 10px; text-align: left; }
 #responseWrap { display: none; margin-top: 15px; }
 #stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px 5px; font-size: 11px; color: #666; margin: 10px 0; padding: 10px 5px; background: #F8F9FA; border-radius: 8px; border: 1px dashed #E5E5E5; text-align: center; }
@@ -79,7 +80,7 @@ audio { outline: none; }
 <body>
 <div class="app-container">
 
-  <!-- 新增：顶部聚合搜索框 -->
+  <!-- 顶部聚合搜索框 -->
   <div class="card search-card">
       <div class="search-wrapper">
           <div class="custom-select" id="customSelect">
@@ -125,17 +126,17 @@ audio { outline: none; }
 
   <div class="card">
    <div class="button-grid" style="margin-top: 15px;">
-     <button class="btn" id="btnClearOutput" title="复制文本并彻底重置所有控制状态">清空重置</button>
-    <button class="btn" id="btnFrames">抽帧取音</button>
-     <button class="btn btn-primary" id="btnCombinedAction">保存记录</button>
-     <button class="btn" id="btnExportRecords">导出记录</button>
-    <button class="btn" id="btnAiAction">润色文本</button> 
+      <button class="btn" id="btnClearOutput" title="复制文本并彻底重置所有控制状态">清空重置</button>
+      <button class="btn btn-primary" id="btnCombinedAction">💬 AI 对话</button>
+      <button class="btn" id="btnFrames">抽帧取音</button>
+      <button class="btn" id="btnHtmlPreview">网页预览</button>
+      <button class="btn btn-save" id="btnSaveLocal">💾 保存记录</button>
+      <button class="btn" id="btnExportRecords">导出记录</button>
+      <button class="btn" id="btnAiAction">润色文本</button> 
       <button class="btn" id="btnExtractPoints">提炼要点</button>
       <button class="btn" id="btnExtractLinks">提链去重</button>
-      <button class="btn" id="btnHtmlPreview">网页预览</button>
       <button class="btn" id="optimize-btn">自然排版</button>
       <button class="btn" id="btnDecodeQR">解二维码</button>
-      
     </div>
 
     <div id="responseWrap">
@@ -199,17 +200,16 @@ audio { outline: none; }
         <input type="file" id="imgUpload" class="input-style" accept="image/*" style="margin-bottom:0; background: #FFF;" placeholder="可选：上传垫图 (图生图)">
     </div>
     
-    <input type="text" id="apiProxy" class="input-style" placeholder="🌐 自定义 API 代理URL" value="https://api.apimart.ai" />
+    <input type="text" id="apiProxy" class="input-style" placeholder="🌐 自定义 API 代理URL" value="https://api.poixe.com" />
     <input type="password" id="apiKey" class="input-style" placeholder="🔑 API Key" />
     
+    <!-- 取消了随手记选项，默认设为 deepseek -->
     <select id="unifiedModel" class="input-style" onchange="onModelChange()">
-        <optgroup label="🚀 随手记">
-            <option value="comment-wall" selected>随手记 (离线版)</option>
-        </optgroup>
         <optgroup label="💬 文本对话">
+            <option value="deepseek-v4-flash" selected>DeepSeek-V4</option>
             <option value="gemini-3.5-flash">Gemini-3.5-Flash</option>
-            <option value="claude-3-5-sonnet-20241022">Claude-Sonnet-3.5</option>
-            <option value="deepseek-chat">DeepSeek-V3</option>
+            <option value="gpt-5.5-2026-04-23">GPT-5.5</option> 
+            <option value="claude-opus-4-7">Claude-Opus-4.7</option>
         </optgroup>
         <optgroup label="🎨 图像生成">
             <option value="gpt-image-2">GPT-Image-2</option>
@@ -287,6 +287,7 @@ const displayedImage = document.getElementById("displayedImage");
 const imageDisplayContainer = document.getElementById("imageDisplayContainer");
 const mediaPreview = document.getElementById("mediaPreview");
 const btnCombinedAction = document.getElementById("btnCombinedAction"); 
+const btnSaveLocal = document.getElementById("btnSaveLocal");
 const btnAiAction = document.getElementById("btnAiAction");
 const btnExtractPoints = document.getElementById("btnExtractPoints");
 const frameControls = document.getElementById("frameControls");
@@ -376,14 +377,7 @@ function onModelChange() {
 
     imageOptionsWrapper.style.display = isImageModel ? 'block' : 'none';
 
-    if (model === "comment-wall") {
-        apiKeyInput.style.display = "none";
-        proxyInput.style.display = "none";
-        if(btnCombinedAction) {
-            btnCombinedAction.innerHTML = "🚀 保存记录";
-            btnCombinedAction.className = "btn btn-primary";
-        }
-    } else if (isImageModel) {
+    if (isImageModel) {
         apiKeyInput.style.display = "block";
         proxyInput.style.display = "block";
         if(btnCombinedAction) {
@@ -467,6 +461,31 @@ universalFile.addEventListener('change', (e) => {
     }
 });
 
+// ================= 独立保存记录逻辑 =================
+if(btnSaveLocal) {
+    btnSaveLocal.onclick = () => {
+        const content = universalText.value.trim();
+        if (!content) return alert("请输入记录内容");
+        const localData = JSON.parse(localStorage.getItem('local_comments') || '[]');
+        const timeStr = new Date().toLocaleString();
+        
+        localData.push(`[${timeStr}]\n${content}`);
+        
+        if(localData.length > 200) localData.shift(); 
+        localStorage.setItem('local_comments', JSON.stringify(localData));
+        
+        universalText.value = ''; updateStats(); checkEmptyState(); fetchMockComments();
+        
+        const oldText = btnSaveLocal.innerHTML;
+        btnSaveLocal.innerHTML = "✓ 保存成功"; 
+        btnSaveLocal.style.background = "#07C160"; btnSaveLocal.style.color = "#FFF";
+        setTimeout(() => { 
+            btnSaveLocal.innerHTML = oldText;
+            btnSaveLocal.style.background = ""; btnSaveLocal.style.color = "";
+        }, 2000);
+    };
+}
+
 // ================= 导出历史记录 =================
 bindEvent("btnExportRecords", "click", () => {
     const localData = JSON.parse(localStorage.getItem('local_comments') || '[]');
@@ -523,31 +542,6 @@ if(btnCombinedAction) {
     btnCombinedAction.onclick = async () => {
         const content = universalText.value.trim();
         const model = document.getElementById('unifiedModel').value;
-        
-        // 1. 本地记录
-        if (model === "comment-wall") {
-            if (!content) return alert("请输入记录内容");
-            const localData = JSON.parse(localStorage.getItem('local_comments') || '[]');
-            const timeStr = new Date().toLocaleString();
-            
-            // 为了向下兼容，继续推入格式化的字符串
-            localData.push(`[${timeStr}]\n${content}`);
-            
-            // 本地扩容保存至200条以供随时导出
-            if(localData.length > 200) localData.shift(); 
-            localStorage.setItem('local_comments', JSON.stringify(localData));
-            
-            universalText.value = ''; updateStats(); checkEmptyState(); fetchMockComments();
-            
-            const oldText = btnCombinedAction.innerHTML;
-            btnCombinedAction.innerHTML = "✓ 本地保存成功"; 
-            btnCombinedAction.style.background = "#07C160"; btnCombinedAction.style.color = "#FFF";
-            setTimeout(() => { 
-                btnCombinedAction.innerHTML = oldText;
-                btnCombinedAction.style.background = ""; btnCombinedAction.style.color = "";
-            }, 2000);
-            return;
-        }
 
         if (!content) return alert("请输入内容！");
         const oldText = btnCombinedAction.innerHTML;
@@ -555,7 +549,7 @@ if(btnCombinedAction) {
         responseWrap.style.display = "block";
 
         try {
-            // 2. 文本对话
+            // 文本对话
             if (TEXT_MODELS.includes(model)) {
                 btnCombinedAction.innerHTML = "⏳ 思考中...";
                 respStatus.textContent = "正在处理对话..."; respStatus.style.color = "#666";
@@ -581,7 +575,7 @@ if(btnCombinedAction) {
                 updateStats(); checkEmptyState();
                 
             } 
-            // 3. 图像生成
+            // 图像生成
             else if (model === "gpt-image-2") {
                 btnCombinedAction.innerHTML = "🎨 提交绘图...";
                 respStatus.textContent = "正在连接画棚..."; respStatus.style.color = "#666";
@@ -625,7 +619,7 @@ if(btnAiAction) {
         const content = universalText.value.trim();
         if (!content) return alert("请在文本框输入您的提示词或润色要求！");
         const model = document.getElementById('unifiedModel').value;
-        if (model === "comment-wall" || model === "gpt-image-2") return alert("润色功能仅支持选择有效的文本对话模型！");
+        if (model === "gpt-image-2") return alert("润色功能仅支持选择有效的文本对话模型！");
 
         const oldText = btnAiAction.innerHTML; 
         btnAiAction.disabled = true; 
@@ -665,7 +659,7 @@ if(btnExtractPoints) {
         const content = universalText.value.trim();
         if (!content) return alert("请在文本框输入您的文本内容！");
         const model = document.getElementById('unifiedModel').value;
-        if (model === "comment-wall" || model === "gpt-image-2") return alert("提炼功能仅支持选择有效的文本模型！");
+        if (model === "gpt-image-2") return alert("提炼功能仅支持选择有效的文本模型！");
 
         const btn = document.getElementById("btnExtractPoints"); 
         const oldText = btn.innerHTML; btn.disabled = true; responseWrap.style.display = "block";
@@ -965,7 +959,7 @@ bindEvent("btnFrames", "click", async () => {
             
             const audioLabel = document.createElement('div');
             audioLabel.style.cssText = "font-size:13px; font-weight:bold; color:#333; margin-bottom:10px;";
-            audioLabel.innerText = "🎵 提取的 MP3 音频";
+            audioLabel.innerText = "🎵 提取的 MP3音频";
             
             const audioEl = document.createElement('audio');
             audioEl.controls = true; audioEl.src = mp3Url; 
