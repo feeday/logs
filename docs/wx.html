@@ -144,9 +144,9 @@ audio { outline: none; }
   <div class="card">
    <div class="button-grid" style="margin-top: 15px;">
       <button class="btn" id="btnClearOutput" title="复制文本并彻底重置所有控制状态">清空重置</button>
-      <button class="btn btn-primary" id="btnCombinedAction">模型测试</button>
-      <button class="btn btn-save" id="btnSaveLocal">随手记录</button>
       <button class="btn" id="btnFrames">抽帧取音</button>
+      <button class="btn btn-save" id="btnSaveLocal">随手记录</button>
+      <button class="btn" id="btnCombinedAction">文本测试</button>
       <button class="btn" id="btnHtmlPreview">网页预览</button>
       <button class="btn" id="btnExportRecords">导出记录</button>
       <button class="btn" id="btnAiAction">润色文本</button> 
@@ -343,7 +343,7 @@ const btnAiAction = document.getElementById("btnAiAction");
 const btnExtractPoints = document.getElementById("btnExtractPoints");
 const frameControls = document.getElementById("frameControls");
 const framePager = document.getElementById("framePager");
-const TEXT_MODELS = ['gemini-3.5-flash', 'claude-3-5-sonnet-20241022', 'deepseek-chat'];
+const TEXT_MODELS = ['deepseek-v4-flash', 'gemini-3.5-flash', 'gpt-5.5-2026-04-23', 'claude-opus-4-7'];
 
 let images = [];
 let currentImageIndex = -1;
@@ -440,7 +440,7 @@ function onModelChange() {
         apiKeyInput.style.display = "block";
         proxyInput.style.display = "block";
         if(btnCombinedAction) {
-            btnCombinedAction.innerHTML = "模型测试";
+            btnCombinedAction.innerHTML = "文本测试";
             btnCombinedAction.className = "btn btn-primary";
         }
     }
