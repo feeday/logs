@@ -80,36 +80,38 @@ audio { outline: none; }
 <body>
 <div class="app-container">
 
-  <!-- 顶部聚合搜索框 -->
-  <div class="card search-card">
-      <div class="search-wrapper">
-          <div class="custom-select" id="customSelect">
-              <div class="select-trigger" onclick="toggleSelect(event)">
-                  <span id="currentEngineText">Google</span>
-                  <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-              </div>
-              <input type="hidden" id="searchEngineValue" value="https://www.google.com/search?q=">
-              <div class="select-options" id="selectOptions">
-                  <div class="option-item  onclick="selectEngine('https://x.com/search?q=', 'X', this)">X</div>
-                  <div class="option-item" onclick="selectEngine('https://www.tiktok.com/search?q=', 'YouTube', this)">Tiktok</div>
-                  <div class="option-item" onclick="selectEngine('https://yandex.by/images/search?text=', 'Yandex', this)">Yandex</div>
-                  <div class="option-item" onclick="selectEngine('https://search.bilibili.com/all?keyword=', 'B站', this)">B站</div>
-                  <div class="option-item" onclick="selectEngine('https://www.douyin.com/search/', '抖音', this)">抖音</div>
-                  <div class="option-item" selected" onclick="selectEngine('https://www.baidu.com/s?q2=', '百度', this)">百度</div>
-                  <div class="option-item" onclick="selectEngine('https://tieba.baidu.com/f/search/res?ie=utf-8&amp;qw=', '贴吧', this)">贴吧</div>
-                  <div class="option-item" onclick="selectEngine('https://s.weibo.com/weibo?q=', '微博', this)">微博</div>
-              </div>
-          </div>
-          
-          <div class="search-inner-divider"></div>
-          <input type="text" class="search-input" id="searchInput" placeholder="搜索标题或简介..." autocomplete="off">
-          <span class="search-clear" id="searchClear" onmousedown="event.preventDefault()" onclick="clearSearch()">✕</span>
-          
-          <div class="external-search-btn" id="externalSearchBtn" title="搜索">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-          </div>
-      </div>
-  </div>
+
+<!-- 顶部聚合搜索框 -->
+<div class="card search-card">
+    <div class="search-wrapper">
+        <div class="custom-select" id="customSelect">
+            <div class="select-trigger" onclick="toggleSelect(event)">
+                <span id="currentEngineText">Baidu</span>
+                <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+            </div>
+            <input type="hidden" id="searchEngineValue" value="https://www.baidu.com/s?q2=">
+            <div class="select-options" id="selectOptions">
+                <div class="option-item" onclick="selectEngine('https://x.com/search?q=', 'X', this)">X</div>
+                <div class="option-item" onclick="selectEngine('https://www.tiktok.com/search?q=', 'TikTok', this)">TikTok</div>
+                <div class="option-item" onclick="selectEngine('https://yandex.by/images/search?text=', 'Yandex', this)">Yandex</div>
+                <div class="option-item" onclick="selectEngine('https://search.bilibili.com/all?keyword=', 'Bilibili', this)">Bilibili</div>
+                <div class="option-item" onclick="selectEngine('https://www.douyin.com/search/', 'Douyin', this)">Douyin</div>
+                <div class="option-item" onclick="selectEngine('https://www.baidu.com/s?q2=', 'Baidu', this)">Baidu</div>
+                <div class="option-item" onclick="selectEngine('https://tieba.baidu.com/f/search/res?ie=utf-8&amp;qw=', 'Tieba', this)">Tieba</div>
+                <div class="option-item" onclick="selectEngine('https://s.weibo.com/weibo?q=', 'Weibo', this)">Weibo</div>
+            </div>
+        </div>
+        
+        <div class="search-inner-divider"></div>
+        <input type="text" class="search-input" id="searchInput" placeholder="Search..." autocomplete="off">
+        <span class="search-clear" id="searchClear" onmousedown="event.preventDefault()" onclick="clearSearch()">✕</span>
+        
+        <div class="external-search-btn" id="externalSearchBtn" title="Search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </div>
+    </div>
+</div>
+
 
   <div class="card">
     <input type="file" id="universalFile" class="input-style" accept="image/*,audio/*,video/*" />
