@@ -1,17 +1,14 @@
 通过判断识别终端自动跳转到指定的网址。
 
-## 直接跳转代码
-- 此代码插入网页代码中,当用户访问将自动跳转到指定的网址。
-
+# 直接跳转
+此代码插入网页代码中,当用户访问将自动跳转到指定的网址。
 ```
 <script language="javascript" type="text/javascript">
-window.location.href='http://cpuck.com';
+window.location.href='http://regurl.cn';
 </script>
 ```
-
-## 移动端跳转代码
-- 此代码插入PC网页代码中，当移动端用户访问页面将自动跳转到指定的网址。
-
+# 移动端跳转1
+此代码插入PC网页代码中，当移动端用户访问页面将自动跳转到指定的网址。
 ```
 <script type="text/javascript">
     function browserRedirect() {
@@ -24,17 +21,15 @@ window.location.href='http://cpuck.com';
         var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
         var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
         if (bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
-            window.location.href = 'http://cpuck.com/';
+            window.location.href = 'http://regurl.cn';
         } else {
         }
     }
     browserRedirect();
 </script>
 ```
-
-## 移动端跳转代码
-- 此代码插入PC网页代码中，当移动端用户访问将自动跳转到指定的网址。
-
+# 移动端跳转2
+此代码插入PC网页代码中，当移动端用户访问将自动跳转到指定的网址。
 ```
 <script language='javascript'>
 function is_mobile() {
@@ -51,14 +46,12 @@ function is_mobile() {
  }
  }
  if (is_mobile()) {
- document.location.href= 'http://cpuck.com/';
+ document.location.href= 'http://regurl.cn';
  }
 </script>
 ```
-
-## 微信端跳转代码
-- 此代码插入网页代码中，当用户不是通过微信端打开的网页将跳转到指定的网址
-
+# 微信端跳转
+此代码插入网页代码中，当用户不是通过微信端打开的网页将跳转到指定的网址。
 ```
 <script type="text/javascript">
  var ua = navigator.userAgent.toLowerCase();
@@ -66,21 +59,19 @@ function is_mobile() {
  var isAndroid = ua.indexOf('android') != -1;
  var isIos = (ua.indexOf('iphone') != -1) || (ua.indexOf('ipad') != -1);
  if (!isWeixin) {
- document.location.href= 'http://cpuck.com/';
+ document.location.href= 'http://regurl.cn';
  }
 </script>
 ```
-
-## 随机跳转代码
-- 此代码插入网页代码中，用户访问时候将随机跳转到设定好的网址。
-
+# 随机跳转
+此代码插入网页代码中，用户访问时候将随机跳转到设定好的网址。
 ```
 <script language='javascript'>
  function test(){
 	var url=new Array();
-	url[0]='http://cpuck.com/';
-	url[1]='http://cpuck.com/';
-	url[2]='http://cpuck.com/';
+	url[0]='http://regurl.cn/';
+	url[1]='http://regurl.cn/';
+	url[2]='http://regurl.cn/';
 	var ints=parseInt(Math.random()*(url.length));
 	// window.open(url[ints]);//本窗口打开
 	window.location=url[ints];//新窗口打开
@@ -88,10 +79,8 @@ function is_mobile() {
  </script>
 <script type='text/javascript'>var _url = 'http://'+test()+'/';</script>
 ```
-
-## 电脑移动端分别跳转
-- 此代码插入网页代码中，电脑端和移动端用户访问时候分别跳转到设定好的网址。
-
+# 电脑移动分别跳转
+此代码插入网页代码中，电脑端和移动端用户访问时候分别跳转到设定好的网址。
 ```
 <script language="javascript" type="text/javascript">
 function goPAGE() {
@@ -104,10 +93,8 @@ function goPAGE() {
 goPAGE();
 </script>
 ```
-
-## 某宝某京东跳转
-- 说明：微信访问自动跳转到指定链接，非微信端访问跳转到其他随机链接。
-
+# 某宝东网页跳转
+说明：微信访问自动跳转到指定链接，非微信端访问跳转到其他随机链接。
 ```
 <script type="text/javascript">
             var ua = navigator.userAgent.toLowerCase();
@@ -115,7 +102,7 @@ goPAGE();
             var isAndroid = ua.indexOf('android') != -1;
             var isIos = (ua.indexOf('iphone') != -1) || (ua.indexOf('ipad') != -1);
             if (isWeixin) {
-                 document.location.href= 'http://cpuck.com;
+                 document.location.href= 'http://regurl.cn;
             }
 </script>
 <script language='javascript'>
