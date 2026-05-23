@@ -68,18 +68,18 @@ audio { outline: none; }
       <span id="numbers">数字: 0</span>
       <span id="duplicate">重复: 0</span>
     </div>
-    <textarea id="universalText" class="input-style is-empty" placeholder="🚀 获取最新留言中..."></textarea>
+    <textarea id="universalText" class="input-style is-empty" placeholder="随时记录中..."></textarea>
   </div>
 
   <div class="card">
    <div class="button-grid" style="margin-top: 15px; grid-template-columns: 1fr 1fr 1fr;">
-     <button class="btn" id="btnClearOutput" title="复制文本并彻底重置所有控制状态">📋 复制并重置</button>
-     <button class="btn" id="btnAiAction">✨ 润色文本</button> 
-     <button class="btn btn-tucao" id="btnCombinedAction">🚀 我要吐槽</button>  
+     <button class="btn" id="btnClearOutput" title="复制文本并彻底重置所有控制状态">清空重置</button>
+     <button class="btn" id="btnAiAction">润色文本</button> 
+     <button class="btn btn-tucao" id="btnCombinedAction">随手记录</button>  
       <button class="btn" id="btnExtractPoints">提炼要点</button>
-      <button class="btn" id="btnExtractLinks">提链去重行</button>
+      <button class="btn" id="btnExtractLinks">提链去重</button>
       <button class="btn" id="btnHtmlPreview">网页预览</button>
-      <button class="btn" id="btnFrames">视频抽帧+音频</button>
+      <button class="btn" id="btnFrames">抽帧取音</button>
       <button class="btn" id="optimize-btn">自然排版</button>
       <button class="btn" id="btnDecodeQR">识别二维码</button>
     </div>
@@ -145,12 +145,12 @@ audio { outline: none; }
         <input type="file" id="imgUpload" class="input-style" accept="image/*" style="margin-bottom:0; background: #FFF;" placeholder="可选：上传垫图 (图生图)">
     </div>
     
-    <input type="text" id="apiProxy" class="input-style" placeholder="🌐 自定义 API 代理URL (支持跨域CORS的后端)" value="https://api.apimart.ai" />
-    <input type="password" id="apiKey" class="input-style" placeholder="🔑 专属 API Key (必填，不提供默认)" />
+    <input type="text" id="apiProxy" class="input-style" placeholder="🌐 自定义 API 代理URL" value="https://api.apimart.ai" />
+    <input type="password" id="apiKey" class="input-style" placeholder="🔑 API Key" />
     
     <select id="unifiedModel" class="input-style" onchange="onModelChange()">
-        <optgroup label="🚀 留言吐槽栏">
-            <option value="comment-wall" selected>吐槽留言功能 (本地版)</option>
+        <optgroup label="🚀 随手记">
+            <option value="comment-wall" selected>随手记 (离线版)</option>
         </optgroup>
         <optgroup label="💬 文本对话">
             <option value="gemini-3.5-flash">Gemini-3.5-Flash</option>
@@ -162,7 +162,7 @@ audio { outline: none; }
         </optgroup>
     </select>
     <a href="#">
-    <img src="https://tool.lu/netcard/" title="吐槽墙" alt="吐槽墙" style="width: 100%; height: auto; display: block; border-radius: 8px;" />
+    <img src="https://tool.lu/netcard/" title="随手记" alt="随手记" style="width: 100%; height: auto; display: block; border-radius: 8px;" />
   </a>
   </div>
 </div>
