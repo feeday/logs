@@ -14,7 +14,7 @@
 <meta property="og:title" content="js-url-go">
 <meta property="og:description" content="通过判断识别终端自动跳转到指定的网址。">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://feeday.cn/js-url-go.html">
+<meta property="og:url" content="https://md.cpuck.com/js-url-go.html">
 <meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
 <title>js-url-go</title>
 
@@ -115,13 +115,13 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <div id="header">
 <h1 class="postTitle">js-url-go</h1>
 <div class="title-right">
-    <a href="https://feeday.cn" id="buttonHome" class="btn btn-invisible circle" title="首页">
+    <a href="https://md.cpuck.com" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
             <path id="pathHome" fill-rule="evenodd"></path>
         </svg>
     </a>
     
-    <a href="https://github.com/feeday/logs/issues/12" target="_blank" class="btn btn-invisible circle" title="Issue">
+    <a href="https://github.com/feeday/logs/issues/3" target="_blank" class="btn btn-invisible circle" title="Issue">
         <svg class="octicon" width="16" height="16">
             <path id="pathIssue" fill-rule="evenodd"></path>
         </svg>
@@ -138,14 +138,18 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
     <div id="content">
 <div class="markdown-body" id="postBody"><p>通过判断识别终端自动跳转到指定的网址。</p>
-<h1>直接跳转</h1>
-<p>此代码插入网页代码中,当用户访问将自动跳转到指定的网址。</p>
+<h2>直接跳转代码</h2>
+<ul>
+<li>此代码插入网页代码中,当用户访问将自动跳转到指定的网址。</li>
+</ul>
 <pre class="notranslate"><code class="notranslate">&lt;script language="javascript" type="text/javascript"&gt;
-window.location.href='http://regurl.cn';
+window.location.href='http://cpuck.com';
 &lt;/script&gt;
 </code></pre>
-<h1>移动端跳转1</h1>
-<p>此代码插入PC网页代码中，当移动端用户访问页面将自动跳转到指定的网址。</p>
+<h2>移动端跳转代码</h2>
+<ul>
+<li>此代码插入PC网页代码中，当移动端用户访问页面将自动跳转到指定的网址。</li>
+</ul>
 <pre class="notranslate"><code class="notranslate">&lt;script type="text/javascript"&gt;
     function browserRedirect() {
         var sUserAgent = navigator.userAgent.toLowerCase();
@@ -157,15 +161,17 @@ window.location.href='http://regurl.cn';
         var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
         var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
         if (bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
-            window.location.href = 'http://regurl.cn';
+            window.location.href = 'http://cpuck.com/';
         } else {
         }
     }
     browserRedirect();
 &lt;/script&gt;
 </code></pre>
-<h1>移动端跳转2</h1>
-<p>此代码插入PC网页代码中，当移动端用户访问将自动跳转到指定的网址。</p>
+<h2>移动端跳转代码</h2>
+<ul>
+<li>此代码插入PC网页代码中，当移动端用户访问将自动跳转到指定的网址。</li>
+</ul>
 <pre class="notranslate"><code class="notranslate">&lt;script language='javascript'&gt;
 function is_mobile() {
  var regex_match = /(nokia|iphone|android|motorola|^mot-|softbank|foma|docomo|kddi|up.browser|up.link|htc|dopod|blazer|netfront|helio|hosin|huawei|novarra|CoolPad|webos|techfaith|palmsource|blackberry|alcatel|amoi|ktouch|nexian|samsung|^sam-|s[cg]h|^lge|ericsson|philips|sagem|wellcom|bunjalloo|maui|symbian|smartphone|midp|wap|phone|windows ce|iemobile|^spice|^bird|^zte-|longcos|pantech|gionee|^sie-|portalmmm|jigs browser|hiptop|^benq|haier|^lct|operas*mobi|opera*mini|320x320|240x320|176x220)/i;
@@ -181,30 +187,34 @@ function is_mobile() {
  }
  }
  if (is_mobile()) {
- document.location.href= 'http://regurl.cn';
+ document.location.href= 'http://cpuck.com/';
  }
 &lt;/script&gt;
 </code></pre>
-<h1>微信端跳转</h1>
-<p>此代码插入网页代码中，当用户不是通过微信端打开的网页将跳转到指定的网址。</p>
+<h2>微信端跳转代码</h2>
+<ul>
+<li>此代码插入网页代码中，当用户不是通过微信端打开的网页将跳转到指定的网址</li>
+</ul>
 <pre class="notranslate"><code class="notranslate">&lt;script type="text/javascript"&gt;
  var ua = navigator.userAgent.toLowerCase();
  var isWeixin = ua.indexOf('micromessenger') != -1;
  var isAndroid = ua.indexOf('android') != -1;
  var isIos = (ua.indexOf('iphone') != -1) || (ua.indexOf('ipad') != -1);
  if (!isWeixin) {
- document.location.href= 'http://regurl.cn';
+ document.location.href= 'http://cpuck.com/';
  }
 &lt;/script&gt;
 </code></pre>
-<h1>随机跳转</h1>
-<p>此代码插入网页代码中，用户访问时候将随机跳转到设定好的网址。</p>
+<h2>随机跳转代码</h2>
+<ul>
+<li>此代码插入网页代码中，用户访问时候将随机跳转到设定好的网址。</li>
+</ul>
 <pre class="notranslate"><code class="notranslate">&lt;script language='javascript'&gt;
  function test(){
 	var url=new Array();
-	url[0]='http://regurl.cn/';
-	url[1]='http://regurl.cn/';
-	url[2]='http://regurl.cn/';
+	url[0]='http://cpuck.com/';
+	url[1]='http://cpuck.com/';
+	url[2]='http://cpuck.com/';
 	var ints=parseInt(Math.random()*(url.length));
 	// window.open(url[ints]);//本窗口打开
 	window.location=url[ints];//新窗口打开
@@ -212,8 +222,10 @@ function is_mobile() {
  &lt;/script&gt;
 &lt;script type='text/javascript'&gt;var _url = 'http://'+test()+'/';&lt;/script&gt;
 </code></pre>
-<h1>电脑移动分别跳转</h1>
-<p>此代码插入网页代码中，电脑端和移动端用户访问时候分别跳转到设定好的网址。</p>
+<h2>电脑移动端分别跳转</h2>
+<ul>
+<li>此代码插入网页代码中，电脑端和移动端用户访问时候分别跳转到设定好的网址。</li>
+</ul>
 <pre class="notranslate"><code class="notranslate">&lt;script language="javascript" type="text/javascript"&gt;
 function goPAGE() {
 	if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
@@ -225,15 +237,17 @@ function goPAGE() {
 goPAGE();
 &lt;/script&gt;
 </code></pre>
-<h1>某宝东网页跳转</h1>
-<p>说明：微信访问自动跳转到指定链接，非微信端访问跳转到其他随机链接。</p>
+<h2>某宝某京东跳转</h2>
+<ul>
+<li>说明：微信访问自动跳转到指定链接，非微信端访问跳转到其他随机链接。</li>
+</ul>
 <pre class="notranslate"><code class="notranslate">&lt;script type="text/javascript"&gt;
             var ua = navigator.userAgent.toLowerCase();
             var isWeixin = ua.indexOf('micromessenger') != -1;
             var isAndroid = ua.indexOf('android') != -1;
             var isIos = (ua.indexOf('iphone') != -1) || (ua.indexOf('ipad') != -1);
             if (isWeixin) {
-                 document.location.href= 'http://regurl.cn;
+                 document.location.href= 'http://cpuck.com;
             }
 &lt;/script&gt;
 &lt;script language='javascript'&gt;
@@ -255,7 +269,7 @@ goPAGE();
 </div>
     <div id="footer">
         <span id="loadTime"></span>
-        <div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://feeday.cn">feeday</a></div>
+        <div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://md.cpuck.com">MD</a></div>
 <div id="footer2">
     <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
 </div>

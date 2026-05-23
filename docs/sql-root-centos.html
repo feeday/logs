@@ -14,7 +14,7 @@
 <meta property="og:title" content="sql-root-centos">
 <meta property="og:description" content="centos 重置数据库 root 密码。">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://feeday.cn/sql-root-centos.html">
+<meta property="og:url" content="https://md.cpuck.com/sql-root-centos.html">
 <meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
 <title>sql-root-centos</title>
 
@@ -115,13 +115,13 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <div id="header">
 <h1 class="postTitle">sql-root-centos</h1>
 <div class="title-right">
-    <a href="https://feeday.cn" id="buttonHome" class="btn btn-invisible circle" title="首页">
+    <a href="https://md.cpuck.com" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
             <path id="pathHome" fill-rule="evenodd"></path>
         </svg>
     </a>
     
-    <a href="https://github.com/feeday/logs/issues/13" target="_blank" class="btn btn-invisible circle" title="Issue">
+    <a href="https://github.com/feeday/logs/issues/5" target="_blank" class="btn btn-invisible circle" title="Issue">
         <svg class="octicon" width="16" height="16">
             <path id="pathIssue" fill-rule="evenodd"></path>
         </svg>
@@ -138,26 +138,42 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
     <div id="content">
 <div class="markdown-body" id="postBody"><p>centos 重置数据库 root 密码。</p>
-<h1>编辑MySQL配置文件：</h1>
+<ul>
+<li>编辑MySQL配置文件：</li>
+</ul>
 <pre class="notranslate"><code class="notranslate">vim /etc/my.cnf
 </code></pre>
-<p>按【I】键在[mysqld]的段中插入：</p>
+<ul>
+<li>按【I】键在[mysqld]的段中插入：</li>
+</ul>
 <pre class="notranslate"><code class="notranslate">skip-grant-tables
 </code></pre>
-<p>此段命令应该是跳过相关验证，当改完密码为了安全建议删除或者注释掉。<br>
-按【ESC】键退出，在光标处输入【:wq】保存关闭配置文件。</p>
-<h1>停止重启MySQL：</h1>
+<ul>
+<li>
+<p>此段命令应该是跳过相关验证，当改完密码为了安全建议删除或者注释掉。</p>
+</li>
+<li>
+<p>按【ESC】键退出，在光标处输入【:wq】保存关闭配置文件。</p>
+</li>
+<li>
+<p>停止重启MySQL：</p>
+</li>
+</ul>
 <pre class="notranslate"><code class="notranslate">systemctl stop mysqld
 systemctl start mysqld
 </code></pre>
-<h1>登陆MySQL重置密码：</h1>
+<ul>
+<li>登陆MySQL重置密码：</li>
+</ul>
 <pre class="notranslate"><code class="notranslate">mysql
 mysql&gt; use mysql
 mysql&gt; update user set password=password("12345678") where user='root'
 mysql&gt; flush privileges
 exit
 </code></pre>
-<p>【12345678】就是重置完的root密码。</p></div>
+<ul>
+<li>【12345678】就是重置完的root密码。</li>
+</ul></div>
 <div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
@@ -166,7 +182,7 @@ exit
 </div>
     <div id="footer">
         <span id="loadTime"></span>
-        <div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://feeday.cn">feeday</a></div>
+        <div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://md.cpuck.com">MD</a></div>
 <div id="footer2">
     <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
 </div>
