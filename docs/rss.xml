@@ -1,5 +1,36 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>feeday</title><link>https://feeday.cn</link><description>BB Work No Money</description><copyright>feeday</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://feeday.cn</link></image><lastBuildDate>Sun, 24 May 2026 05:58:49 +0000</lastBuildDate><managingEditor>feeday</managingEditor><ttl>60</ttl><webMaster>feeday</webMaster><item><title>qwen3.5</title><link>https://feeday.cn/qwen3.5.html</link><description># 下载模型
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>feeday</title><link>https://feeday.cn</link><description>BB Work No Money</description><copyright>feeday</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://feeday.cn</link></image><lastBuildDate>Mon, 25 May 2026 14:52:31 +0000</lastBuildDate><managingEditor>feeday</managingEditor><ttl>60</ttl><webMaster>feeday</webMaster><item><title>gpt4o</title><link>https://feeday.cn/gpt4o.html</link><description>图像反推提示词
+
+## 正反提示词
+```
+# 自动安装依赖
+try:
+    import requests
+except ImportError:
+    import os
+    os.system('pip install requests')
+    import requests
+
+import base64
+
+# API 配置  0.02 折合每张  https://poixe.com/pricing?i=token
+url = 'https://api.poixe.com/v1/chat/completions'
+
+headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'sk-2'
+}
+
+# 本地图片路径
+image_path = r'C:\Users\X\Downloads\douyin\无人\douyin_20260525_0173.jpg'
+
+# 读取图片
+with open(image_path, 'rb') as image_file:
+    base64_image = base64.b64encode(image_file.read()).decode('utf-8')
+
+# 提示词
+prompt = '''
+你是世界级 AI 绘图提示词反推专家。</description><guid isPermaLink="true">https://feeday.cn/gpt4o.html</guid><pubDate>Mon, 25 May 2026 14:52:02 +0000</pubDate></item><item><title>qwen3.5</title><link>https://feeday.cn/qwen3.5.html</link><description># 下载模型
 
 ```
 wget -c 'https://huggingface.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive/resolve/main/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf' -O Qwen3.5-9B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf
