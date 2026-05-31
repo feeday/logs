@@ -1,17 +1,20 @@
 
-1、下载工具和模型
+## 下载工具和模型
 ```
 https://github.com/ggml-org/llama.cpp/releases/download/b9437/llama-b9437-bin-win-cuda-13.3-x64.zip
 https://modelscope.cn/models/Qwen/Qwen3.6-35B-A3B
 ```
-2、解压工具包
+## 解压工具包
 ```
 llama-b9437-bin-win-cuda-13.3-x64.zip
 ```
 在目录下创建 models 文件夹
 把下载的模型放进去
 
-3、在目录文件夹下创建 run.bat 
+## 运行脚本
+
+在目录文件夹下创建 run.bat 
+
 ```
 @echo off
 chcp 65001 >nul
@@ -137,9 +140,9 @@ if "%mm_choice%"=="0" (
 
 pause
 ```
-4、点击 run.bat 启动脚本
+点击 run.bat 启动脚本
 
-5、测试效果
+## 测试效果
 ```
 机器配置信息
 处理器：i7-12700H
@@ -148,6 +151,6 @@ pause
 速度：17-18t/s
 ```
 
-6、遇到的问题
+## 遇到的问题
 
 简单计算都要思考无法关闭，暂无解决方法。

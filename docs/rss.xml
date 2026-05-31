@@ -1,18 +1,21 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>feeday</title><link>https://feeday.cn</link><description>BB Work No Money</description><copyright>feeday</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://feeday.cn</link></image><lastBuildDate>Sun, 31 May 2026 03:02:14 +0000</lastBuildDate><managingEditor>feeday</managingEditor><ttl>60</ttl><webMaster>feeday</webMaster><item><title>qwen3.6-bat</title><link>https://feeday.cn/qwen3.6-bat.html</link><description>
-1、下载工具和模型
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>feeday</title><link>https://feeday.cn</link><description>BB Work No Money</description><copyright>feeday</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://feeday.cn</link></image><lastBuildDate>Sun, 31 May 2026 03:16:40 +0000</lastBuildDate><managingEditor>feeday</managingEditor><ttl>60</ttl><webMaster>feeday</webMaster><item><title>qwen3.6-bat</title><link>https://feeday.cn/qwen3.6-bat.html</link><description>
+## 下载工具和模型
 ```
 https://github.com/ggml-org/llama.cpp/releases/download/b9437/llama-b9437-bin-win-cuda-13.3-x64.zip
 https://modelscope.cn/models/Qwen/Qwen3.6-35B-A3B
 ```
-2、解压工具包
+## 解压工具包
 ```
 llama-b9437-bin-win-cuda-13.3-x64.zip
 ```
 在目录下创建 models 文件夹
 把下载的模型放进去
 
-3、在目录文件夹下创建 run.bat 
+## 运行脚本
+
+在目录文件夹下创建 run.bat 
+
 ```
 @echo off
 chcp 65001 &gt;nul
