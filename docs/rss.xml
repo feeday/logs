@@ -1,5 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>feeday</title><link>https://feeday.cn</link><description>BB Work No Money</description><copyright>feeday</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://feeday.cn</link></image><lastBuildDate>Sun, 31 May 2026 03:16:40 +0000</lastBuildDate><managingEditor>feeday</managingEditor><ttl>60</ttl><webMaster>feeday</webMaster><item><title>qwen3.6-bat</title><link>https://feeday.cn/qwen3.6-bat.html</link><description>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>feeday</title><link>https://feeday.cn</link><description>BB Work No Money</description><copyright>feeday</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://feeday.cn</link></image><lastBuildDate>Sun, 31 May 2026 13:49:25 +0000</lastBuildDate><managingEditor>feeday</managingEditor><ttl>60</ttl><webMaster>feeday</webMaster><item><title>codex</title><link>https://feeday.cn/codex.html</link><description>### 常用链接
+
+- 网页使用：[https://chatgpt.com/codex/cloud/](https://chatgpt.com/codex/cloud/)
+- 用量查询：[https://chatgpt.com/codex/cloud/settings/analytics#usage](https://chatgpt.com/codex/cloud/settings/analytics#usage)
+- 工具下载：[https://chatgpt.com/zh-Hans-CN/download](https://chatgpt.com/zh-Hans-CN/download/)
+- 插件安装：[VS Code 插件安装页](https://marketplace.visualstudio.com/items?itemName=openai.chatgpt)
+- 使用说明：[https://developers.openai.com/codex/ide](https://developers.openai.com/codex/ide)
+
+
+安装插件后，在 VS Code 侧边栏打开 Codex，使用 ChatGPT 账号登录即可。</description><guid isPermaLink="true">https://feeday.cn/codex.html</guid><pubDate>Sun, 31 May 2026 13:48:53 +0000</pubDate></item><item><title>qwen3.6-bat</title><link>https://feeday.cn/qwen3.6-bat.html</link><description>
 ## 下载工具和模型
 ```
 https://github.com/ggml-org/llama.cpp/releases/download/b9437/llama-b9437-bin-win-cuda-13.3-x64.zip
