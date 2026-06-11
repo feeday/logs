@@ -1,5 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>feeday</title><link>https://feeday.cn</link><description>BB Work No Money</description><copyright>feeday</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://feeday.cn</link></image><lastBuildDate>Sun, 31 May 2026 13:49:25 +0000</lastBuildDate><managingEditor>feeday</managingEditor><ttl>60</ttl><webMaster>feeday</webMaster><item><title>codex</title><link>https://feeday.cn/codex.html</link><description>### 常用链接
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>feeday</title><link>https://feeday.cn</link><description>BB Work No Money</description><copyright>feeday</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://feeday.cn</link></image><lastBuildDate>Thu, 11 Jun 2026 23:19:13 +0000</lastBuildDate><managingEditor>feeday</managingEditor><ttl>60</ttl><webMaster>feeday</webMaster><item><title>gemini-log-20260611</title><link>https://feeday.cn/gemini-log-20260611.html</link><description>---
+
+**提问：海拉细胞故事为什么能活那么久**
+
+**回答：**
+“海拉细胞”（HeLa cells）是人类医学史上最重要的细胞系之一，也是第一个在体外培养中实现“永生”的人类细胞系。</description><guid isPermaLink="true">https://feeday.cn/gemini-log-20260611.html</guid><pubDate>Thu, 11 Jun 2026 23:18:48 +0000</pubDate></item><item><title>codex</title><link>https://feeday.cn/codex.html</link><description>### 常用链接
 
 - 网页使用：[https://chatgpt.com/codex/cloud/](https://chatgpt.com/codex/cloud/)
 - 用量查询：[https://chatgpt.com/codex/cloud/settings/analytics#usage](https://chatgpt.com/codex/cloud/settings/analytics#usage)
