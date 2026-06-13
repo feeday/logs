@@ -1,5 +1,24 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>feeday</title><link>https://feeday.cn</link><description>BB Work No Money</description><copyright>feeday</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://feeday.cn</link></image><lastBuildDate>Thu, 11 Jun 2026 23:19:13 +0000</lastBuildDate><managingEditor>feeday</managingEditor><ttl>60</ttl><webMaster>feeday</webMaster><item><title>gemini-log-20260611</title><link>https://feeday.cn/gemini-log-20260611.html</link><description>---
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>feeday</title><link>https://feeday.cn</link><description>BB Work No Money</description><copyright>feeday</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://feeday.cn</link></image><lastBuildDate>Sat, 13 Jun 2026 11:02:05 +0000</lastBuildDate><managingEditor>feeday</managingEditor><ttl>60</ttl><webMaster>feeday</webMaster><item><title>md</title><link>https://feeday.cn/md.html</link><description># GitHub 推送合并教程
+
+## 目录
+
+1. 引言：Git与GitHub的基本概念
+2. 准备工作：安装Git、配置用户信息、创建SSH密钥
+3. 本地仓库的创建与初始提交
+4. 远程仓库关联与推送（Push）
+5. 合并操作详解：Merge、Rebase与Fast-forward
+6. Pull Request（PR）工作流：从创建到合并
+7. 冲突的产生与解决方法
+8. 高级话题：合并策略、Squash、Cherry-pick
+9. 最佳实践与常见错误
+10. 总结
+
+---
+
+## 1. 引言
+
+Git是目前最流行的分布式版本控制系统，而GitHub是基于Git的代码托管平台。</description><guid isPermaLink="true">https://feeday.cn/md.html</guid><pubDate>Sat, 13 Jun 2026 11:01:31 +0000</pubDate></item><item><title>gemini-log-20260611</title><link>https://feeday.cn/gemini-log-20260611.html</link><description>---
 
 **提问：海拉细胞故事为什么能活那么久**
 
