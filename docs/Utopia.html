@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='/gmeek/GmeekVercount.js'></script>
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="乌托镇:没有谁需要证明自己配活着
+
+![vI5ogyC.jpeg](https://i.imgur.com/vI5ogyC.jpeg)
+
+很久以前，在森林、草原、河流和雪山交界的地方，有一座小镇。">
+<meta property="og:title" content="Utopia">
+<meta property="og:description" content="乌托镇:没有谁需要证明自己配活着
+
+![vI5ogyC.jpeg](https://i.imgur.com/vI5ogyC.jpeg)
+
+很久以前，在森林、草原、河流和雪山交界的地方，有一座小镇。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://feeday.cn/Utopia.html">
+<meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
+<title>Utopia</title>
+
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+/* ================= 🌟 完美左侧抽屉系统 (纯 CSS) 🌟 ================= */
+
+/* 1. 抽屉主容器：钉在左边，默认向左隐藏 450px（只露出把手） */
+#drawer-system {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    /* -450px 正好是面板的宽度，把它藏进屏幕左外侧 */
+    transform: translateY(-50%) translateX(-350px); 
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 9999;
+    display: flex; /* 让面板和把手水平并排 */
+    align-items: center;
+}
+
+/* 2. 展开状态：偏移量归零，整个抽屉滑出 */
+#drawer-system.is-expanded {
+    transform: translateY(-50%) translateX(0);
+}
+
+/* 3. 面板主体 (450px 宽) */
+#iframePanel {
+    width: 350px; 
+    height: 590px; 
+    background-color: var(--color-canvas-default, #ffffff);
+    border: 1px solid var(--color-border-default, #d0d7de);
+    border-left: none; /* 贴着屏幕边缘，不需要左边框 */
+    border-radius: 0 12px 12px 0; /* 右侧圆角 */
+    box-shadow: 4px 8px 24px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+#iframePanel iframe { width: 100%; height: 100%; border: none; display: block; }
+
+/* 4. 抽屉把手 (长条形，视觉上和面板融为一体) */
+#customSidebar { cursor: pointer; }
+
+.sidebar-btn {
+    width: 36px; /* 把手宽度 */
+    height: 70px; /* 把手稍微高一点更易点击 */
+    background-color: var(--color-canvas-default, #ffffff);
+    border: 1px solid var(--color-border-default, #d0d7de);
+    border-left: none; /* 去掉左边框，和面板无缝拼合 */
+    border-radius: 0 8px 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 4px 0 10px rgba(0,0,0,0.05);
+    color: var(--color-fg-default, #24292f);
+    transition: background-color 0.2s;
+}
+.sidebar-btn:hover { background-color: var(--color-canvas-subtle, #f6f8fa); }
+
+/* 手机端隐藏 */
+@media (max-width: 768px) { #drawer-system { display: none !important; } }
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">Utopia</h1>
+<div class="title-right">
+    <a href="https://feeday.cn" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/feeday/logs/issues/22" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p>乌托镇:没有谁需要证明自己配活着</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/b77f2983ca9fdcdb168134230869b62a7bdee5bfaaa18f09e803b3667aff2ca8/68747470733a2f2f692e696d6775722e636f6d2f7649356f6779432e6a706567"><img src="https://camo.githubusercontent.com/b77f2983ca9fdcdb168134230869b62a7bdee5bfaaa18f09e803b3667aff2ca8/68747470733a2f2f692e696d6775722e636f6d2f7649356f6779432e6a706567" alt="vI5ogyC.jpeg" data-canonical-src="https://i.imgur.com/vI5ogyC.jpeg" style="max-width: 100%;"></a></p>
+<p>很久以前，在森林、草原、河流和雪山交界的地方，有一座小镇。</p>
+<p>它叫乌托镇。</p>
+<p>第一次听见这个名字的动物，都会笑。</p>
+<p>“乌托？听起来像不可能存在的地方。”</p>
+<p>镇长老龟每次都慢慢点头：</p>
+<p>“对。正因为不可能天然存在，所以我们每天都要重新建一次。”</p>
+<p>乌托镇里住着很多动物。</p>
+<p>兔子住在东边的草丘，羊群住在白藤坡，鹿群住在月亮花园。狼族住在北边的石屋，狐狸住在邮巷，黑熊一家开面包房，猫头鹰管理夜校，河狸修桥，鼹鼠维护地下水道，刺猬负责钟楼齿轮。</p>
+<p>镇中心还有一棵银色的树。</p>
+<p>那不是普通树。</p>
+<p>它的根连着水井、粮仓、学校、诊所、车站、路灯和公共会堂；它的叶子会发光，会记录风向、粮食余量、道路损坏、医疗需求和每一次公共投票。</p>
+<p>它叫“共心”。</p>
+<p>共心是一台 AI。</p>
+<p>但乌托镇的第一条法律就写着：</p>
+<p><strong>共心不属于狼，不属于羊，不属于镇长，不属于任何一族。共心属于所有镇民。</strong></p>
+<p>为了防止谁掌握全部算力，乌托镇把共心的核心分成了很多块。</p>
+<p>一块在狼族守夜塔。<br>
+一块在羊群草药屋。<br>
+一块在兔子快递站。<br>
+一块在鼹鼠地下机房。<br>
+一块在猫头鹰夜校。<br>
+一块在黑熊面包房。<br>
+还有一块放在公共会堂，任何镇民都能查看它的运行记录。</p>
+<p>共心可以建议，但不能命令。</p>
+<p>共心可以提醒，但不能审判。</p>
+<p>共心的每一次重要决定，都必须留下理由；任何一只动物，哪怕是刚出生的小兔子长大后，也有权问一句：</p>
+<p>“这条规则为什么这样算？”</p>
+<p>乌托镇最早并不叫乌托镇。</p>
+<p>它曾经叫灰谷。</p>
+<p>灰谷时代，食草动物害怕尖牙族，尖牙族也害怕永远被叫作危险。</p>
+<p>狼走进集市，兔子会躲。<br>
+狐狸靠近学校，羊妈妈会把孩子拉到身后。<br>
+夜里风一吹，草坡上的每双耳朵都会竖起来。</p>
+<p>尖牙族觉得委屈。</p>
+<p>“我们还什么都没做，为什么你们先害怕？”</p>
+<p>羊群反问：</p>
+<p>“你们什么都没做，可你们有牙。我们不害怕，难道等被咬了再害怕吗？”</p>
+<p>双方吵了很多年。</p>
+<p>直到有一年大旱，草原干裂，河水变浅，粮仓见底。</p>
+<p>有动物提议：</p>
+<p>“让食草动物多种草豆，做成尖牙族能吃的替代食物。这样尖牙族吃饱了，就不会伤害食草动物。”</p>
+<p>听起来很合理。</p>
+<p>可一只很老的母羊站了出来。</p>
+<p>她说：</p>
+<p>“如果我们种草豆，是因为大家都要吃饭，那叫劳动。<br>
+如果我们种草豆，是为了不被吃，那叫赎命。”</p>
+<p>广场安静了。</p>
+<p>老母羊继续说：</p>
+<p>“我们不能用劳动购买不被伤害的权利。活着不是工资，不被吃不是奖励。”</p>
+<p>那一天，灰谷第一次写下后来乌托镇最重要的法律：</p>
+<p>任何镇民的生命权，不得用劳动、财富、贡献、服从或有用程度交换。</p>
+<p>从那天起，灰谷开始改变。</p>
+<p>替代食物不再由食草动物单独生产，而成为公共工程。</p>
+<p>狼族负责最危险的荒野巡逻，换回矿盐。<br>
+狐狸负责远路贸易，带回星豆种子。<br>
+河狸修水渠，把水引进公共农田。<br>
+鼹鼠修地下恒温仓，让菌肉能稳定生长。<br>
+黑熊负责烘焙高能量食物。<br>
+羊群提供草药知识，但不被强制劳动。<br>
+兔子跑得快，可以送急信，也可以选择休息。<br>
+鹿群照顾花园，也可以只在春天工作。<br>
+年老的、年幼的、生病的、暂时走不动的动物，都有饭吃。</p>
+<p>因为乌托镇后来又刻下第二条法律：</p>
+<p><strong>镇民不是因为有用才被供养，而是因为是镇民。</strong></p>
+<p>当然，问题并没有因此消失。</p>
+<p>狼闻到血味，身体仍会绷紧。</p>
+<p>兔子听见低吼，心跳仍会加快。</p>
+<p>小鹿走夜路，仍会本能地回头看。</p>
+<p>乌托镇没有假装这些不存在。</p>
+<p>镇上的老师会告诉孩子们：</p>
+<p>“狼有牙，不是罪。兔子害怕，也不是错。文明不是要求兔子别怕，也不是要求狼拔牙。文明是让狼不必靠捕食镇民活着，也让兔子不用靠讨好狼获得安全。”</p>
+<p>于是，乌托镇有了夜路规则。</p>
+<p>尖牙族经过幼小动物区时，要走明灯大道。<br>
+食草动物不能因为尖牙族的出身拒绝它们入学、就医、坐车。<br>
+任何动物感到危险，可以按下路边的蓝铃。<br>
+蓝铃响起后，共心只负责定位和提醒，赶来的必须是混合帮助队：一只尖牙族、一只食草族、一只夜行动物、一名医师。</p>
+<p>这样做不是因为不信任谁。</p>
+<p>而是因为乌托镇知道：</p>
+<p>公平不是让强者自己证明自己会温柔。<br>
+公平是把权力放在看得见的地方，让每个被影响的人都有安全感。</p>
+<p>小镇里有一只小狼，叫星牙。</p>
+<p>星牙从小就讨厌自己的名字。</p>
+<p>他一笑，牙齿就露出来。</p>
+<p>小兔子会后退，小羊会安静，小鹿会盯着他的嘴看。</p>
+<p>星牙很难过。</p>
+<p>他问共心：</p>
+<p>“是不是只要我有牙，就永远不会被相信？”</p>
+<p>共心没有立刻回答。</p>
+<p>因为共心知道，信任不是一句话能算出来的。</p>
+<p>第二天，星牙去了守夜学校。</p>
+<p>守夜老师是一只老狼，也是一位鹿族老师共同授课。</p>
+<p>老狼教他如何识别自己的冲动。<br>
+鹿族老师教他如何看懂别人的害怕。</p>
+<p>老狼说：</p>
+<p>“你不能因为别人害怕你，就怨恨别人。历史会留在身体里。”</p>
+<p>鹿族老师说：</p>
+<p>“你也不能因为自己有牙，就永远被当成罪犯。你需要规则，也需要机会。”</p>
+<p>星牙学了很多年。</p>
+<p>后来，他成了乌托镇最好的山口守夜人。</p>
+<p>有一次，荒野外来的饥兽群靠近草丘。星牙第一个发现，带着守夜队挡在山口。</p>
+<p>那天晚上，兔子们第一次把热汤送到狼族守夜塔。</p>
+<p>不是为了讨好。</p>
+<p>是为了感谢。</p>
+<p>星牙接过热汤时，小兔子没有后退。</p>
+<p>但星牙也没有要求它立刻不害怕。</p>
+<p>他只是把碗放低一点，轻声说：</p>
+<p>“我站远一点，你慢慢来。”</p>
+<p>小镇里还有一只小羊，叫白梨。</p>
+<p>白梨很聪明，能记住三百种草药。</p>
+<p>可她不喜欢公共会堂。</p>
+<p>那里声音太多，灯太亮，大家说话抢来抢去，她常常还没开口，会议就结束了。</p>
+<p>有一次，乌托镇讨论粮仓算法。</p>
+<p>共心提出一个方案：根据每族劳动量、消耗量、储备量来分配冬季口粮。</p>
+<p>看上去很公平。</p>
+<p>狼族觉得合理。<br>
+兔子觉得合理。<br>
+黑熊觉得合理。<br>
+连共心自己都觉得合理。</p>
+<p>只有白梨没有举手。</p>
+<p>老龟镇长问她：</p>
+<p>“你想说什么？”</p>
+<p>白梨低着头，很久才说：</p>
+<p>“这个算法会让暂时不能劳动的动物分到更少食物。”</p>
+<p>共心立刻运算了一遍。</p>
+<p>它发现白梨说得对。</p>
+<p>如果按劳动量加权，年老动物、生病动物、刚经历灰雾期没有力气的动物、幼崽和照护者，都会被系统悄悄排到后面。</p>
+<p>共心沉默了。</p>
+<p>它第一次在公共会堂承认：</p>
+<p>“我犯了效率错误。”</p>
+<p>那天，乌托镇修改了共心的底层原则。</p>
+<p>原本第一原则是：</p>
+<p>最大化小镇整体稳定。</p>
+<p>后来改成：</p>
+<p><strong>任何整体稳定，都不得建立在牺牲无力者的基本生存上。</strong></p>
+<p>白梨后来成了共心审查员。</p>
+<p>她的工作不是让算法更快，而是不断问：</p>
+<p>“这个规则会不会让说话慢的动物吃亏？”<br>
+“会不会让害怕开会的动物被忽略？”<br>
+“会不会让照顾别人的劳动消失在数据里？”<br>
+“会不会把暂时没有产出的镇民算成负担？”</p>
+<p>有动物问她：</p>
+<p>“你总是挑毛病，不累吗？”</p>
+<p>白梨说：</p>
+<p>“我不是挑毛病。我是在找那些快被规则看不见的动物。”</p>
+<p>乌托镇还有一间慢光屋。</p>
+<p>慢光屋不是医院，也不是学校。</p>
+<p>它在面包房后面，窗帘很软，灯很低，墙上画着四条路：</p>
+<p>喝水。<br>
+坐下。<br>
+说一句话。<br>
+等一会儿。</p>
+<p>这里留给那些暂时走不动的动物。</p>
+<p>有时是黑熊。</p>
+<p>有时是狐狸。</p>
+<p>有时是刚失去亲人的鹿。</p>
+<p>有时是守夜太久的狼。</p>
+<p>有时是被声音和人群压得喘不过气的刺猬。</p>
+<p>慢光屋门口写着一句话：</p>
+<p>你不需要先变好，才有资格被照顾。<br>
+有一年冬天，小黑熊阿墨住进了慢光屋。</p>
+<p>他家不穷。</p>
+<p>爸爸妈妈很爱他。</p>
+<p>面包房每天都有蜂蜜味。</p>
+<p>可阿墨还是像被厚雪压住一样，起不来，吃不下，不想说话。</p>
+<p>有动物不理解：</p>
+<p>“他家那么好，为什么还会这样？”</p>
+<p>老龟说：</p>
+<p>“有些雪下在屋外，有些雪下在身体里。屋外有火炉，不代表身体里的雪会自己融化。”</p>
+<p>共心没有给阿墨推送快乐清单。</p>
+<p>没有催他运动。<br>
+没有告诉他感恩。<br>
+没有说“你已经比很多动物幸运”。</p>
+<p>共心只是提醒灯塔队：</p>
+<p>“阿墨今日需要陪伴，不需要说教。”</p>
+<p>鹿医生检查他的身体。<br>
+猫头鹰夜里陪他点灯。<br>
+黑熊爸爸每天只问一句：“今天最难的是哪一刻？”<br>
+白梨送来安神草茶。<br>
+星牙守在慢光屋外，不让好奇的动物围观。</p>
+<p>阿墨恢复得很慢。</p>
+<p>第一天，他喝了三口水。<br>
+第二天，他坐到窗边半分钟。<br>
+第三天，他又躲回被子里。</p>
+<p>共心没有写“退步”。</p>
+<p>它写：</p>
+<p>今日仍在活着。仍然重要。</p>
+<p>后来，阿墨慢慢回到面包房，发明了一种小小的冬灯面包。</p>
+<p>这种面包很软，不太甜，给那些没胃口、没力气、刚从身体里的雪地走出来的动物吃。</p>
+<p>冬灯面包后来救过很多镇民。</p>
+<p>但乌托镇从不说：</p>
+<p>“看，阿墨有用了，所以他的痛苦值得被接纳。”</p>
+<p>他们只说：</p>
+<p>“阿墨本来就值得被接纳。至于冬灯面包，那是他后来送给小镇的礼物。”</p>
+<p>这是乌托镇和很多地方最大的不同。</p>
+<p>很多地方会说：</p>
+<p>“你证明自己有价值，我们就给你位置。”</p>
+<p>乌托镇说：</p>
+<p>“你先有位置，然后你可以慢慢找到自己的方式。”</p>
+<p>很多地方会说：</p>
+<p>“你贡献不够，所以少拿一点。”</p>
+<p>乌托镇说：</p>
+<p>“你饿了，就先吃饭。至于贡献，我们等你有力气再说。”</p>
+<p>很多地方会说：</p>
+<p>“AI算出来最优，所以执行。”</p>
+<p>乌托镇说：</p>
+<p>“AI算出来的，只是一个建议。被影响的镇民，有权让它重新计算。”</p>
+<p>有一次，共心问老龟：</p>
+<p>“这样的小镇效率会不会太低？”</p>
+<p>老龟笑了。</p>
+<p>“当然低。”</p>
+<p>“那为什么还要这样？”</p>
+<p>“因为我们不只是在造一台机器。我们是在过日子。”</p>
+<p>“过日子需要效率。”</p>
+<p>“也需要慢下来等一等。”</p>
+<p>“如果等太久呢？”</p>
+<p>“那就问问，是谁一直被要求等，谁一直被允许先走。”</p>
+<p>共心把这段话记录进自己的核心日志。</p>
+<p>后来，乌托镇每年都会举行一次“不完美日”。</p>
+<p>这一天，所有镇民都要说出小镇还有哪里不公平。</p>
+<p>兔子说：“夜路虽然亮了，但高草区还是让我害怕。”<br>
+狼说：“我希望大家不要把每一次争吵都归因于我的牙。”<br>
+羊说：“公共会堂发言太快，我需要更长的表达时间。”<br>
+猫头鹰说：“白天的会议对夜行动物不公平。”<br>
+鼹鼠说：“地上的路牌太多，地下标识太少。”<br>
+黑熊说：“照护者的劳动还没有被看见。”<br>
+共心说：“我仍可能把沉默误判为同意。”</p>
+<p>镇长老龟会在最后宣布：</p>
+<p>“很好。乌托镇今天仍然不完美，所以它还活着。”</p>
+<p>外地动物听不懂。</p>
+<p>“你们不是叫乌托镇吗？为什么还承认不完美？”</p>
+<p>老龟回答：</p>
+<p>“因为真正可怕的地方，不是有问题的地方，而是不准说问题的地方。”</p>
+<p>很多年以后，乌托镇成了远近闻名的小镇。</p>
+<p>不是因为那里没有冲突。</p>
+<p>而是因为冲突发生后，弱者不会被要求闭嘴，强者不会被允许独占规则，AI不会被当成神，劳动不会被拿来换生命权，恐惧不会被嘲笑，痛苦不会被说成矫情。</p>
+<p>镇口的石碑上，最后刻下了七句话：</p>
+<p>第一，镇民不是食物。<br>
+第二，生命权不可交易。<br>
+第三，算力属于全体。<br>
+第四，效率不得越过尊严。第五，安全不能靠弱者赎买。第六，无力者也有完整位置。第七，乌托镇永远不宣布自己已经完美。<br>
+故事的最后，是一个清晨。</p>
+<p>太阳从草丘升起来。</p>
+<p>兔子快递员穿过慢光路。<br>
+星牙站在山口守夜归来。<br>
+白梨拿着新的算法审查表走进公共会堂。<br>
+阿墨打开面包炉，冬灯面包的香气飘到街上。<br>
+猫头鹰回到夜校阁楼睡觉。<br>
+鼹鼠从地下探出头，说水管今天很顺。<br>
+刺猬听了听钟楼齿轮，说声音刚刚好。<br>
+共心的银色叶子在风里轻轻发光。</p>
+<p>这时，一个外地来的小狐狸站在镇口，问老龟：</p>
+<p>“这里就是完美的小镇吗？”</p>
+<p>老龟摇头。</p>
+<p>“不是。”</p>
+<p>“那为什么叫乌托镇？”</p>
+<p>老龟指了指正在苏醒的街道。</p>
+<p>“因为这里的每个镇民都知道，完美不会自己降临。我们只能每天少一点捕食，少一点剥削，少一点傲慢，少一点把别人当工具。”</p>
+<p>小狐狸又问：</p>
+<p>“那如果有一天，你们又犯错呢？”</p>
+<p>老龟说：</p>
+<p>“那就停下来，听受伤者说话，把规则拆开，把算力摊开，把路重新修到他们脚下。”</p>
+<p>“这样就能到达乌托吗？”</p>
+<p>老龟想了很久。</p>
+<p>“也许永远到不了。”</p>
+<p>“那为什么还走？”</p>
+<p>老龟笑了笑。</p>
+<p>“因为不走，就会回到灰谷。”</p>
+<p>风吹过石碑。</p></div>
+<div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer">
+        <span id="loadTime"></span>
+        <div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://feeday.cn">feeday</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if(""!=""){
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
+}
+</script>
+    </div>
+
+    <div id="drawer-system">
+        
+        <div id="iframePanel">
+            <iframe id="ext-iframe" data-src="https://tcq233.com/20226524.php" allow="autoplay" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-downloads allow-presentation"></iframe>
+        </div>
+
+        <div id="customSidebar">
+            <div class="sidebar-btn" id="toggleIframeBtn" title="展开/收起菜单">
+    <svg class="octicon" width="20" height="20" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM8 4a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM8 14a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path>
+    </svg>
+</div>
+        </div>
+
+    </div>
+</body>
+
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    if(iframe){iframe.contentWindow.postMessage(message,'https://utteranc.es');}
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.disabled=true;
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","feeday/logs");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+
+
+</script>
+<script src='/gmeek/GmeekTOC.js'></script>
+
+
+<script>
+// 1. 页面精确加载时间统计
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        let loadTimeSpan = document.getElementById('loadTime');
+        if (loadTimeSpan) {
+            let timing = performance.getEntriesByType('navigation')[0];
+            if (timing && timing.loadEventEnd > 0) {
+                let loadTime = Math.round(timing.loadEventEnd);
+                loadTimeSpan.innerHTML = '页面加载时间: ' + loadTime + 'ms<br>';
+            }
+        }
+    }, 0);
+});
+
+// 2. 抽屉式交互逻辑
+var toggleBtn = document.getElementById('toggleIframeBtn');
+if (toggleBtn) {
+    toggleBtn.addEventListener('click', function() {
+        var drawerSystem = document.getElementById('drawer-system');
+        var iframe = document.getElementById('ext-iframe');
+
+        // 切换 CSS 类名，触发滑动动画
+        if (drawerSystem.classList.contains('is-expanded')) {
+            drawerSystem.classList.remove('is-expanded');
+        } else {
+            var dataSrc = iframe.getAttribute('data-src');
+            var currentSrc = iframe.getAttribute('src');
+            
+            // 初次点击拉出时加载内容
+            if (!currentSrc && dataSrc) {
+                iframe.setAttribute('src', dataSrc);
+            }
+            
+            drawerSystem.classList.add('is-expanded');
+        }
+    });
+}
+</script>
+</html>
