@@ -59,43 +59,7 @@ for item in url_list:
 
     print(f'✅ done: test/{name}')
 ```
-![ScreenShot_2026-07-04_133815_204.png](https://i.imgur.com/77UHCUb.png)
-```
-from huggingface_hub import HfApi
-import requests
-
-# =========================
-# 1. 配置
-# =========================
-repo_id = 'datxy/demo'
-file_name = 'eso1242a.psb'
-url = 'https://cdn2.eso.org/images/original/eso1242a.psb'
-
-# =========================
-# 2. 初始化 HF
-# =========================
-api = HfApi()
-
-# 如果没创建 repo，这里会自动创建
-api.create_repo(repo_id=repo_id, repo_type='dataset', exist_ok=True)
-
-# =========================
-# 3. 流式下载 + 直接上传（核心🔥）
-# =========================
-response = requests.get(url, stream=True)
-response.raise_for_status()
-
-print('🚀 start streaming upload...')
-
-api.upload_file(
-    path_or_fileobj=response.raw,   # ⭐关键：流式数据
-    path_in_repo=f'test/{file_name}',
-    repo_id=repo_id,
-    repo_type='dataset'
-)
-
-print('✅ done!')
-```。">
+![ScreenShot_2026-07-04_133815_204.png](https://i.imgur.com/77UHCUb.png)。">
 <meta property="og:title" content="hf-up">
 <meta property="og:description" content="- https://colab.new
 - https://huggingface.co/datasets/datxy/demo/blob/main/test/eso1242a.psb
@@ -146,43 +110,7 @@ for item in url_list:
 
     print(f'✅ done: test/{name}')
 ```
-![ScreenShot_2026-07-04_133815_204.png](https://i.imgur.com/77UHCUb.png)
-```
-from huggingface_hub import HfApi
-import requests
-
-# =========================
-# 1. 配置
-# =========================
-repo_id = 'datxy/demo'
-file_name = 'eso1242a.psb'
-url = 'https://cdn2.eso.org/images/original/eso1242a.psb'
-
-# =========================
-# 2. 初始化 HF
-# =========================
-api = HfApi()
-
-# 如果没创建 repo，这里会自动创建
-api.create_repo(repo_id=repo_id, repo_type='dataset', exist_ok=True)
-
-# =========================
-# 3. 流式下载 + 直接上传（核心🔥）
-# =========================
-response = requests.get(url, stream=True)
-response.raise_for_status()
-
-print('🚀 start streaming upload...')
-
-api.upload_file(
-    path_or_fileobj=response.raw,   # ⭐关键：流式数据
-    path_in_repo=f'test/{file_name}',
-    repo_id=repo_id,
-    repo_type='dataset'
-)
-
-print('✅ done!')
-```。">
+![ScreenShot_2026-07-04_133815_204.png](https://i.imgur.com/77UHCUb.png)。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://feeday.cn/hf-up.html">
 <meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
@@ -356,42 +284,7 @@ for item in url_list:
 
     print(f"✅ done: test/{name}")
 </code></pre>
-<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/26a7e94949a1c9aa2f2300e761c08e84726a78e655e00ca8a3d0d9a5ff8631c8/68747470733a2f2f692e696d6775722e636f6d2f373755484355622e706e67"><img src="https://camo.githubusercontent.com/26a7e94949a1c9aa2f2300e761c08e84726a78e655e00ca8a3d0d9a5ff8631c8/68747470733a2f2f692e696d6775722e636f6d2f373755484355622e706e67" alt="ScreenShot_2026-07-04_133815_204.png" data-canonical-src="https://i.imgur.com/77UHCUb.png" style="max-width: 100%;"></a></p>
-<pre class="notranslate"><code class="notranslate">from huggingface_hub import HfApi
-import requests
-
-# =========================
-# 1. 配置
-# =========================
-repo_id = "datxy/demo"
-file_name = "eso1242a.psb"
-url = "https://cdn2.eso.org/images/original/eso1242a.psb"
-
-# =========================
-# 2. 初始化 HF
-# =========================
-api = HfApi()
-
-# 如果没创建 repo，这里会自动创建
-api.create_repo(repo_id=repo_id, repo_type="dataset", exist_ok=True)
-
-# =========================
-# 3. 流式下载 + 直接上传（核心🔥）
-# =========================
-response = requests.get(url, stream=True)
-response.raise_for_status()
-
-print("🚀 start streaming upload...")
-
-api.upload_file(
-    path_or_fileobj=response.raw,   # ⭐关键：流式数据
-    path_in_repo=f"test/{file_name}",
-    repo_id=repo_id,
-    repo_type="dataset"
-)
-
-print("✅ done!")
-</code></pre></div>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/26a7e94949a1c9aa2f2300e761c08e84726a78e655e00ca8a3d0d9a5ff8631c8/68747470733a2f2f692e696d6775722e636f6d2f373755484355622e706e67"><img src="https://camo.githubusercontent.com/26a7e94949a1c9aa2f2300e761c08e84726a78e655e00ca8a3d0d9a5ff8631c8/68747470733a2f2f692e696d6775722e636f6d2f373755484355622e706e67" alt="ScreenShot_2026-07-04_133815_204.png" data-canonical-src="https://i.imgur.com/77UHCUb.png" style="max-width: 100%;"></a></p></div>
 <div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>

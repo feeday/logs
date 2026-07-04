@@ -48,39 +48,3 @@ for item in url_list:
     print(f"✅ done: test/{name}")
 ```
 ![ScreenShot_2026-07-04_133815_204.png](https://i.imgur.com/77UHCUb.png)
-```
-from huggingface_hub import HfApi
-import requests
-
-# =========================
-# 1. 配置
-# =========================
-repo_id = "datxy/demo"
-file_name = "eso1242a.psb"
-url = "https://cdn2.eso.org/images/original/eso1242a.psb"
-
-# =========================
-# 2. 初始化 HF
-# =========================
-api = HfApi()
-
-# 如果没创建 repo，这里会自动创建
-api.create_repo(repo_id=repo_id, repo_type="dataset", exist_ok=True)
-
-# =========================
-# 3. 流式下载 + 直接上传（核心🔥）
-# =========================
-response = requests.get(url, stream=True)
-response.raise_for_status()
-
-print("🚀 start streaming upload...")
-
-api.upload_file(
-    path_or_fileobj=response.raw,   # ⭐关键：流式数据
-    path_in_repo=f"test/{file_name}",
-    repo_id=repo_id,
-    repo_type="dataset"
-)
-
-print("✅ done!")
-```
