@@ -1,4 +1,7 @@
-- https://colab.new/
+- https://colab.new
+- https://huggingface.co/datasets/datxy/demo/blob/main/test/eso1242a.psb
+- https://hf-mirror.com/datasets/datxy/demo/blob/main/test/eso1242a.psb
+
 ```
 from huggingface_hub import login, HfApi
 import requests
