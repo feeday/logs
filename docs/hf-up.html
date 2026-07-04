@@ -11,6 +11,7 @@
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
 <meta name="description" content="- https://colab.new
+- https://hf-mirror.com
 - https://huggingface.co/datasets/datxy/demo/blob/main/test/eso1242a.psb
 - https://hf-mirror.com/datasets/datxy/demo/blob/main/test/eso1242a.psb
 
@@ -59,9 +60,123 @@ for item in url_list:
 
     print(f'✅ done: test/{name}')
 ```
-![ScreenShot_2026-07-04_133815_204.png](https://i.imgur.com/77UHCUb.png)。">
+![ScreenShot_2026-07-04_133815_204.png](https://i.imgur.com/77UHCUb.png)
+
+```
+import os
+from huggingface_hub import snapshot_download, hf_hub_download
+
+# =========================
+# 🌍 镜像（可选）
+# Windows PowerShell 
+# $env:HF_ENDPOINT = 'https://hf-mirror.com'
+# =========================
+os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
+
+
+# =========================
+# 🧠 自动识别 repo 类型
+# =========================
+def detect_repo_type(repo_id: str):
+
+    r = repo_id.lower()
+
+    if any(x in r for x in ['dataset', 'data', 'demo']):
+        return 'dataset'
+
+    return 'model'
+
+
+# =========================
+# 🚀 ULTRA CORRECT ENGINE
+# =========================
+def download(repo_id, file_list=None, local_dir='./downloads'):
+
+    os.makedirs(local_dir, exist_ok=True)
+
+    repo_type = detect_repo_type(repo_id)
+
+    print('\n==============================')
+    print('🚀 ULTRA CORRECT ENGINE START')
+    print('==============================')
+    print('📦 Repo:', repo_id)
+    print('🧠 Type:', repo_type)
+    print('📁 Dir :', local_dir)
+    print('==============================\n')
+
+    # =========================
+    # CASE 1：全量下载（唯一正确方式）
+    # =========================
+    if not file_list:
+
+        print('📦 FULL SNAPSHOT MODE')
+
+        path = snapshot_download(
+            repo_id=repo_id,
+            repo_type=repo_type,
+            local_dir=local_dir,
+            resume_download=True,
+            local_dir_use_symlinks=False
+        )
+
+        print('\n✅ 完成:', path)
+        return
+
+
+    # =========================
+    # CASE 2：单文件（正确方式，不猜路径）
+    # =========================
+    print('📦 SINGLE FILE MODE')
+
+    for file in file_list:
+
+        print('\n⬇️ 目标文件:', file)
+
+        try:
+
+            # ❗ 不再猜 test/ data/
+            # ❗ 只使用真实路径
+            path = hf_hub_download(
+                repo_id=repo_id,
+                filename=file,
+                repo_type=repo_type,
+                local_dir=local_dir
+            )
+
+            print('✅ 成功:', path)
+
+        except Exception as e:
+            print('❌ 失败:', file)
+            print('原因:', str(e))
+
+
+# =========================
+# 🚀 示例使用
+# =========================
+if __name__ == '__main__':
+
+    # =========================
+    # 🔥 你只需要改这里
+    # =========================
+
+    REPO = 'datxy/demo'
+
+    # 👉 None = 全量下载
+    FILES = None
+
+    # 👉 指定文件（必须写完整路径！！）
+    # FILES = ['test/eso1242a.psb']
+
+    download(
+        repo_id=REPO,
+        file_list=FILES,
+        local_dir='./downloads'
+    )
+```
+![ScreenShot_2026-07-04_150813_644.png](https://i.imgur.com/kT69aFt.png)。">
 <meta property="og:title" content="hf-up">
 <meta property="og:description" content="- https://colab.new
+- https://hf-mirror.com
 - https://huggingface.co/datasets/datxy/demo/blob/main/test/eso1242a.psb
 - https://hf-mirror.com/datasets/datxy/demo/blob/main/test/eso1242a.psb
 
@@ -110,7 +225,120 @@ for item in url_list:
 
     print(f'✅ done: test/{name}')
 ```
-![ScreenShot_2026-07-04_133815_204.png](https://i.imgur.com/77UHCUb.png)。">
+![ScreenShot_2026-07-04_133815_204.png](https://i.imgur.com/77UHCUb.png)
+
+```
+import os
+from huggingface_hub import snapshot_download, hf_hub_download
+
+# =========================
+# 🌍 镜像（可选）
+# Windows PowerShell 
+# $env:HF_ENDPOINT = 'https://hf-mirror.com'
+# =========================
+os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
+
+
+# =========================
+# 🧠 自动识别 repo 类型
+# =========================
+def detect_repo_type(repo_id: str):
+
+    r = repo_id.lower()
+
+    if any(x in r for x in ['dataset', 'data', 'demo']):
+        return 'dataset'
+
+    return 'model'
+
+
+# =========================
+# 🚀 ULTRA CORRECT ENGINE
+# =========================
+def download(repo_id, file_list=None, local_dir='./downloads'):
+
+    os.makedirs(local_dir, exist_ok=True)
+
+    repo_type = detect_repo_type(repo_id)
+
+    print('\n==============================')
+    print('🚀 ULTRA CORRECT ENGINE START')
+    print('==============================')
+    print('📦 Repo:', repo_id)
+    print('🧠 Type:', repo_type)
+    print('📁 Dir :', local_dir)
+    print('==============================\n')
+
+    # =========================
+    # CASE 1：全量下载（唯一正确方式）
+    # =========================
+    if not file_list:
+
+        print('📦 FULL SNAPSHOT MODE')
+
+        path = snapshot_download(
+            repo_id=repo_id,
+            repo_type=repo_type,
+            local_dir=local_dir,
+            resume_download=True,
+            local_dir_use_symlinks=False
+        )
+
+        print('\n✅ 完成:', path)
+        return
+
+
+    # =========================
+    # CASE 2：单文件（正确方式，不猜路径）
+    # =========================
+    print('📦 SINGLE FILE MODE')
+
+    for file in file_list:
+
+        print('\n⬇️ 目标文件:', file)
+
+        try:
+
+            # ❗ 不再猜 test/ data/
+            # ❗ 只使用真实路径
+            path = hf_hub_download(
+                repo_id=repo_id,
+                filename=file,
+                repo_type=repo_type,
+                local_dir=local_dir
+            )
+
+            print('✅ 成功:', path)
+
+        except Exception as e:
+            print('❌ 失败:', file)
+            print('原因:', str(e))
+
+
+# =========================
+# 🚀 示例使用
+# =========================
+if __name__ == '__main__':
+
+    # =========================
+    # 🔥 你只需要改这里
+    # =========================
+
+    REPO = 'datxy/demo'
+
+    # 👉 None = 全量下载
+    FILES = None
+
+    # 👉 指定文件（必须写完整路径！！）
+    # FILES = ['test/eso1242a.psb']
+
+    download(
+        repo_id=REPO,
+        file_list=FILES,
+        local_dir='./downloads'
+    )
+```
+![ScreenShot_2026-07-04_150813_644.png](https://i.imgur.com/kT69aFt.png)。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://feeday.cn/hf-up.html">
 <meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
@@ -237,6 +465,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <div id="content">
 <div class="markdown-body" id="postBody"><ul>
 <li><a href="https://colab.new" rel="nofollow">https://colab.new</a></li>
+<li><a href="https://hf-mirror.com" rel="nofollow">https://hf-mirror.com</a></li>
 <li><a href="https://huggingface.co/datasets/datxy/demo/blob/main/test/eso1242a.psb" rel="nofollow">https://huggingface.co/datasets/datxy/demo/blob/main/test/eso1242a.psb</a></li>
 <li><a href="https://hf-mirror.com/datasets/datxy/demo/blob/main/test/eso1242a.psb" rel="nofollow">https://hf-mirror.com/datasets/datxy/demo/blob/main/test/eso1242a.psb</a></li>
 </ul>
@@ -284,7 +513,118 @@ for item in url_list:
 
     print(f"✅ done: test/{name}")
 </code></pre>
-<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/26a7e94949a1c9aa2f2300e761c08e84726a78e655e00ca8a3d0d9a5ff8631c8/68747470733a2f2f692e696d6775722e636f6d2f373755484355622e706e67"><img src="https://camo.githubusercontent.com/26a7e94949a1c9aa2f2300e761c08e84726a78e655e00ca8a3d0d9a5ff8631c8/68747470733a2f2f692e696d6775722e636f6d2f373755484355622e706e67" alt="ScreenShot_2026-07-04_133815_204.png" data-canonical-src="https://i.imgur.com/77UHCUb.png" style="max-width: 100%;"></a></p></div>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/26a7e94949a1c9aa2f2300e761c08e84726a78e655e00ca8a3d0d9a5ff8631c8/68747470733a2f2f692e696d6775722e636f6d2f373755484355622e706e67"><img src="https://camo.githubusercontent.com/26a7e94949a1c9aa2f2300e761c08e84726a78e655e00ca8a3d0d9a5ff8631c8/68747470733a2f2f692e696d6775722e636f6d2f373755484355622e706e67" alt="ScreenShot_2026-07-04_133815_204.png" data-canonical-src="https://i.imgur.com/77UHCUb.png" style="max-width: 100%;"></a></p>
+<pre class="notranslate"><code class="notranslate">import os
+from huggingface_hub import snapshot_download, hf_hub_download
+
+# =========================
+# 🌍 镜像（可选）
+# Windows PowerShell 
+# $env:HF_ENDPOINT = "https://hf-mirror.com"
+# =========================
+os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
+
+
+# =========================
+# 🧠 自动识别 repo 类型
+# =========================
+def detect_repo_type(repo_id: str):
+
+    r = repo_id.lower()
+
+    if any(x in r for x in ["dataset", "data", "demo"]):
+        return "dataset"
+
+    return "model"
+
+
+# =========================
+# 🚀 ULTRA CORRECT ENGINE
+# =========================
+def download(repo_id, file_list=None, local_dir="./downloads"):
+
+    os.makedirs(local_dir, exist_ok=True)
+
+    repo_type = detect_repo_type(repo_id)
+
+    print("\n==============================")
+    print("🚀 ULTRA CORRECT ENGINE START")
+    print("==============================")
+    print("📦 Repo:", repo_id)
+    print("🧠 Type:", repo_type)
+    print("📁 Dir :", local_dir)
+    print("==============================\n")
+
+    # =========================
+    # CASE 1：全量下载（唯一正确方式）
+    # =========================
+    if not file_list:
+
+        print("📦 FULL SNAPSHOT MODE")
+
+        path = snapshot_download(
+            repo_id=repo_id,
+            repo_type=repo_type,
+            local_dir=local_dir,
+            resume_download=True,
+            local_dir_use_symlinks=False
+        )
+
+        print("\n✅ 完成:", path)
+        return
+
+
+    # =========================
+    # CASE 2：单文件（正确方式，不猜路径）
+    # =========================
+    print("📦 SINGLE FILE MODE")
+
+    for file in file_list:
+
+        print("\n⬇️ 目标文件:", file)
+
+        try:
+
+            # ❗ 不再猜 test/ data/
+            # ❗ 只使用真实路径
+            path = hf_hub_download(
+                repo_id=repo_id,
+                filename=file,
+                repo_type=repo_type,
+                local_dir=local_dir
+            )
+
+            print("✅ 成功:", path)
+
+        except Exception as e:
+            print("❌ 失败:", file)
+            print("原因:", str(e))
+
+
+# =========================
+# 🚀 示例使用
+# =========================
+if __name__ == "__main__":
+
+    # =========================
+    # 🔥 你只需要改这里
+    # =========================
+
+    REPO = "datxy/demo"
+
+    # 👉 None = 全量下载
+    FILES = None
+
+    # 👉 指定文件（必须写完整路径！！）
+    # FILES = ["test/eso1242a.psb"]
+
+    download(
+        repo_id=REPO,
+        file_list=FILES,
+        local_dir="./downloads"
+    )
+</code></pre>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/c63162e7126ff19cd768ddee840e576e9b466fd576d316f2a439681d21572c16/68747470733a2f2f692e696d6775722e636f6d2f6b5436396146742e706e67"><img src="https://camo.githubusercontent.com/c63162e7126ff19cd768ddee840e576e9b466fd576d316f2a439681d21572c16/68747470733a2f2f692e696d6775722e636f6d2f6b5436396146742e706e67" alt="ScreenShot_2026-07-04_150813_644.png" data-canonical-src="https://i.imgur.com/kT69aFt.png" style="max-width: 100%;"></a></p></div>
 <div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
