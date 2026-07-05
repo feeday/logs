@@ -10,7 +10,7 @@
     "gemini": "M8 0a1 1 0 0 1 .846.467l2.13 3.407 3.408 2.131a1 1 0 0 1 0 1.692l-3.408 2.13-2.13 3.408a1 1 0 0 1-1.692 0l-2.13-3.408-3.408-2.13a1 1 0 0 1 0-1.692l3.408-2.131L7.154.467A1 1 0 0 1 8 0z"
   },
   "exlink": {
-    "gemini": "https://github.com/feeday/logs/issues/new"
+    "gemini": "/md"
   },
   "GMEEK_VERSION": "last"
 }
