@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>feeday</title><link>https://feeday.cn</link><description>BB Work No Money</description><copyright>feeday</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://feeday.cn</link></image><lastBuildDate>Sun, 05 Jul 2026 05:17:47 +0000</lastBuildDate><managingEditor>feeday</managingEditor><ttl>60</ttl><webMaster>feeday</webMaster><item><title>bat-1gb-txt</title><link>https://feeday.cn/bat-1gb-txt.html</link><description>通过代码命令快速创建指定大小容量的文件。</description><guid isPermaLink="true">https://feeday.cn/bat-1gb-txt.html</guid><pubDate>Sun, 05 Jul 2026 05:17:17 +0000</pubDate></item><item><title>hf-up</title><link>https://feeday.cn/hf-up.html</link><description>- https://colab.new
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MD</title><link>https://md.cpuck.com</link><description>BB Work No Money</description><copyright>MD</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://md.cpuck.com</link></image><lastBuildDate>Sun, 05 Jul 2026 05:59:10 +0000</lastBuildDate><managingEditor>MD</managingEditor><ttl>60</ttl><webMaster>MD</webMaster><item><title>bat-1gb-txt</title><link>https://md.cpuck.com/bat-1gb-txt.html</link><description>通过代码命令快速创建指定大小容量的文件。</description><guid isPermaLink="true">https://md.cpuck.com/bat-1gb-txt.html</guid><pubDate>Sun, 05 Jul 2026 05:17:17 +0000</pubDate></item><item><title>hf-up</title><link>https://md.cpuck.com/hf-up.html</link><description>- https://colab.new
 - https://hf-mirror.com
 - https://huggingface.co/datasets/datxy/demo/blob/main/test/eso1242a.psb
 - https://hf-mirror.com/datasets/datxy/demo/blob/main/test/eso1242a.psb
@@ -162,11 +162,11 @@ if __name__ == '__main__':
         local_dir='./downloads'
     )
 ```
-![ScreenShot_2026-07-04_150813_644.png](https://i.imgur.com/kT69aFt.png)。</description><guid isPermaLink="true">https://feeday.cn/hf-up.html</guid><pubDate>Sat, 04 Jul 2026 05:39:26 +0000</pubDate></item><item><title>Utopia</title><link>https://feeday.cn/Utopia.html</link><description>乌托镇:没有谁需要证明自己配活着
+![ScreenShot_2026-07-04_150813_644.png](https://i.imgur.com/kT69aFt.png)。</description><guid isPermaLink="true">https://md.cpuck.com/hf-up.html</guid><pubDate>Sat, 04 Jul 2026 05:39:26 +0000</pubDate></item><item><title>Utopia</title><link>https://md.cpuck.com/Utopia.html</link><description>乌托镇:没有谁需要证明自己配活着
 
 ![vI5ogyC.jpeg](https://i.imgur.com/vI5ogyC.jpeg)
 
-很久以前，在森林、草原、河流和雪山交界的地方，有一座小镇。</description><guid isPermaLink="true">https://feeday.cn/Utopia.html</guid><pubDate>Thu, 02 Jul 2026 16:10:05 +0000</pubDate></item><item><title>v2a.py</title><link>https://feeday.cn/v2a.py.html</link><description>多视频合并一个音频
+很久以前，在森林、草原、河流和雪山交界的地方，有一座小镇。</description><guid isPermaLink="true">https://md.cpuck.com/Utopia.html</guid><pubDate>Thu, 02 Jul 2026 16:10:05 +0000</pubDate></item><item><title>v2a.py</title><link>https://md.cpuck.com/v2a.py.html</link><description>多视频合并一个音频
 ```
 import os
 import time
@@ -378,7 +378,7 @@ while True:
 process.wait()
 
 print('\n\n✅ 完成输出:', output_path)
-```。</description><guid isPermaLink="true">https://feeday.cn/v2a.py.html</guid><pubDate>Fri, 19 Jun 2026 05:50:15 +0000</pubDate></item><item><title>md</title><link>https://feeday.cn/md.html</link><description># GitHub 推送合并教程
+```。</description><guid isPermaLink="true">https://md.cpuck.com/v2a.py.html</guid><pubDate>Fri, 19 Jun 2026 05:50:15 +0000</pubDate></item><item><title>md</title><link>https://md.cpuck.com/md.html</link><description># GitHub 推送合并教程
 
 ## 目录
 
@@ -397,12 +397,12 @@ print('\n\n✅ 完成输出:', output_path)
 
 ## 1. 引言
 
-Git是目前最流行的分布式版本控制系统，而GitHub是基于Git的代码托管平台。</description><guid isPermaLink="true">https://feeday.cn/md.html</guid><pubDate>Sat, 13 Jun 2026 11:01:31 +0000</pubDate></item><item><title>gemini-log-20260611</title><link>https://feeday.cn/gemini-log-20260611.html</link><description>---
+Git是目前最流行的分布式版本控制系统，而GitHub是基于Git的代码托管平台。</description><guid isPermaLink="true">https://md.cpuck.com/md.html</guid><pubDate>Sat, 13 Jun 2026 11:01:31 +0000</pubDate></item><item><title>gemini-log-20260611</title><link>https://md.cpuck.com/gemini-log-20260611.html</link><description>---
 
 **提问：海拉细胞故事为什么能活那么久**
 
 **回答：**
-“海拉细胞”（HeLa cells）是人类医学史上最重要的细胞系之一，也是第一个在体外培养中实现“永生”的人类细胞系。</description><guid isPermaLink="true">https://feeday.cn/gemini-log-20260611.html</guid><pubDate>Thu, 11 Jun 2026 23:18:48 +0000</pubDate></item><item><title>codex</title><link>https://feeday.cn/codex.html</link><description>### 常用链接
+“海拉细胞”（HeLa cells）是人类医学史上最重要的细胞系之一，也是第一个在体外培养中实现“永生”的人类细胞系。</description><guid isPermaLink="true">https://md.cpuck.com/gemini-log-20260611.html</guid><pubDate>Thu, 11 Jun 2026 23:18:48 +0000</pubDate></item><item><title>codex</title><link>https://md.cpuck.com/codex.html</link><description>### 常用链接
 
 - 网页使用：[https://chatgpt.com/codex/cloud/](https://chatgpt.com/codex/cloud/)
 - 用量查询：[https://chatgpt.com/codex/cloud/settings/analytics#usage](https://chatgpt.com/codex/cloud/settings/analytics#usage)
@@ -411,7 +411,7 @@ Git是目前最流行的分布式版本控制系统，而GitHub是基于Git的�
 - 使用说明：[https://developers.openai.com/codex/ide](https://developers.openai.com/codex/ide)
 
 
-安装插件后，在 VS Code 侧边栏打开 Codex，使用 ChatGPT 账号登录即可。</description><guid isPermaLink="true">https://feeday.cn/codex.html</guid><pubDate>Sun, 31 May 2026 13:48:53 +0000</pubDate></item><item><title>qwen3.6-bat</title><link>https://feeday.cn/qwen3.6-bat.html</link><description>
+安装插件后，在 VS Code 侧边栏打开 Codex，使用 ChatGPT 账号登录即可。</description><guid isPermaLink="true">https://md.cpuck.com/codex.html</guid><pubDate>Sun, 31 May 2026 13:48:53 +0000</pubDate></item><item><title>qwen3.6-bat</title><link>https://md.cpuck.com/qwen3.6-bat.html</link><description>
 ## 下载工具和模型
 ```
 https://github.com/ggml-org/llama.cpp/releases/download/b9437/llama-b9437-bin-win-cuda-13.3-x64.zip
@@ -509,7 +509,7 @@ netsh advfirewall firewall add rule name='LLM_Server_AutoPort' dir=in action=all
 if !errorlevel! equ 0 (
     echo  [成功] 已自动为您开放局域网进站端口: !port!
 ) else (
-    echo  [提示] 自动开放端口失败。</description><guid isPermaLink="true">https://feeday.cn/qwen3.6-bat.html</guid><pubDate>Sun, 31 May 2026 03:01:45 +0000</pubDate></item><item><title>llama.cpp</title><link>https://feeday.cn/llama.cpp.html</link><description>- https://github.com/ggml-org/llama.cpp/releases/tag/b9433
+    echo  [提示] 自动开放端口失败。</description><guid isPermaLink="true">https://md.cpuck.com/qwen3.6-bat.html</guid><pubDate>Sun, 31 May 2026 03:01:45 +0000</pubDate></item><item><title>llama.cpp</title><link>https://md.cpuck.com/llama.cpp.html</link><description>- https://github.com/ggml-org/llama.cpp/releases/tag/b9433
 
 ## 启动脚本
 ```
@@ -604,7 +604,7 @@ if '%mm_choice%'=='0' (
 
 pause
 ```
-。</description><guid isPermaLink="true">https://feeday.cn/llama.cpp.html</guid><pubDate>Sat, 30 May 2026 14:27:35 +0000</pubDate></item><item><title>gpt4o</title><link>https://feeday.cn/gpt4o.html</link><description>图像反推提示词
+。</description><guid isPermaLink="true">https://md.cpuck.com/llama.cpp.html</guid><pubDate>Sat, 30 May 2026 14:27:35 +0000</pubDate></item><item><title>gpt4o</title><link>https://md.cpuck.com/gpt4o.html</link><description>图像反推提示词
 
 ## 正反提示词
 ```
@@ -635,7 +635,7 @@ with open(image_path, 'rb') as image_file:
 
 # 提示词
 prompt = '''
-你是世界级 AI 绘图提示词反推专家。</description><guid isPermaLink="true">https://feeday.cn/gpt4o.html</guid><pubDate>Mon, 25 May 2026 14:52:02 +0000</pubDate></item><item><title>qwen3.5</title><link>https://feeday.cn/qwen3.5.html</link><description># 下载模型
+你是世界级 AI 绘图提示词反推专家。</description><guid isPermaLink="true">https://md.cpuck.com/gpt4o.html</guid><pubDate>Mon, 25 May 2026 14:52:02 +0000</pubDate></item><item><title>qwen3.5</title><link>https://md.cpuck.com/qwen3.5.html</link><description># 下载模型
 
 ```
 wget -c 'https://huggingface.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive/resolve/main/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf' -O Qwen3.5-9B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf
@@ -645,15 +645,15 @@ wget -c 'https://huggingface.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressi
 # 工具加载模型
 
 - https://github.com/LostRuins/koboldcpp
-- https://github.com/a-ghorbani/pocketpal-ai。</description><guid isPermaLink="true">https://feeday.cn/qwen3.5.html</guid><pubDate>Sun, 24 May 2026 05:58:17 +0000</pubDate></item><item><title>sql-root-centos</title><link>https://feeday.cn/sql-root-centos.html</link><description>centos 重置数据库 root 密码。</description><guid isPermaLink="true">https://feeday.cn/sql-root-centos.html</guid><pubDate>Sat, 23 May 2026 07:53:23 +0000</pubDate></item><item><title>js-url-go</title><link>https://feeday.cn/js-url-go.html</link><description>通过判断识别终端自动跳转到指定的网址。</description><guid isPermaLink="true">https://feeday.cn/js-url-go.html</guid><pubDate>Sat, 23 May 2026 07:50:34 +0000</pubDate></item><item><title>url</title><link>https://feeday.cn/url.html</link><description>## 常用链接
-* [ChatGPT](https://chat.openai.com/) - 全能型 AI 助手，支持文本、代码、识图与绘图。</description><guid isPermaLink="true">https://feeday.cn/url.html</guid><pubDate>Sat, 23 May 2026 06:38:46 +0000</pubDate></item><item><title>win10-Menu-Key</title><link>https://feeday.cn/win10-Menu-Key.html</link><description># 微软系统右键菜单修改
+- https://github.com/a-ghorbani/pocketpal-ai。</description><guid isPermaLink="true">https://md.cpuck.com/qwen3.5.html</guid><pubDate>Sun, 24 May 2026 05:58:17 +0000</pubDate></item><item><title>sql-root-centos</title><link>https://md.cpuck.com/sql-root-centos.html</link><description>centos 重置数据库 root 密码。</description><guid isPermaLink="true">https://md.cpuck.com/sql-root-centos.html</guid><pubDate>Sat, 23 May 2026 07:53:23 +0000</pubDate></item><item><title>js-url-go</title><link>https://md.cpuck.com/js-url-go.html</link><description>通过判断识别终端自动跳转到指定的网址。</description><guid isPermaLink="true">https://md.cpuck.com/js-url-go.html</guid><pubDate>Sat, 23 May 2026 07:50:34 +0000</pubDate></item><item><title>url</title><link>https://md.cpuck.com/url.html</link><description>## 常用链接
+* [ChatGPT](https://chat.openai.com/) - 全能型 AI 助手，支持文本、代码、识图与绘图。</description><guid isPermaLink="true">https://md.cpuck.com/url.html</guid><pubDate>Sat, 23 May 2026 06:38:46 +0000</pubDate></item><item><title>win10-Menu-Key</title><link>https://md.cpuck.com/win10-Menu-Key.html</link><description># 微软系统右键菜单修改
 
-Windows 11 默认右键菜单被简化，若要恢复类似 Windows 10 的完整菜单，可通过以下方法实现。</description><guid isPermaLink="true">https://feeday.cn/win10-Menu-Key.html</guid><pubDate>Sun, 10 May 2026 04:01:40 +0000</pubDate></item><item><title>VEDetector</title><link>https://feeday.cn/VEDetector.html</link><description>
+Windows 11 默认右键菜单被简化，若要恢复类似 Windows 10 的完整菜单，可通过以下方法实现。</description><guid isPermaLink="true">https://md.cpuck.com/win10-Menu-Key.html</guid><pubDate>Sun, 10 May 2026 04:01:40 +0000</pubDate></item><item><title>VEDetector</title><link>https://md.cpuck.com/VEDetector.html</link><description>
 关闭剪映电脑版启动时的环境监测
 
 ## 重命名程序文件
 
-通过重命名或移除环境检测程序文件（例如 `VEDetector.exe`），可以跳过启动时的环境监测。</description><guid isPermaLink="true">https://feeday.cn/VEDetector.html</guid><pubDate>Sun, 10 May 2026 03:54:49 +0000</pubDate></item><item><title>hf-mirror-download</title><link>https://feeday.cn/hf-mirror-download.html</link><description>HF 国内镜像下载模型数据集
+通过重命名或移除环境检测程序文件（例如 `VEDetector.exe`），可以跳过启动时的环境监测。</description><guid isPermaLink="true">https://md.cpuck.com/VEDetector.html</guid><pubDate>Sun, 10 May 2026 03:54:49 +0000</pubDate></item><item><title>hf-mirror-download</title><link>https://md.cpuck.com/hf-mirror-download.html</link><description>HF 国内镜像下载模型数据集
 
 ## 安装依赖
 ```
@@ -725,7 +725,7 @@ for filename in files_to_download:
         print(f'✅ 下载成功！文件已存放在: {file_path}')
     except Exception as e:
         print(f'❌ 下载报错: {e}')
-```。</description><guid isPermaLink="true">https://feeday.cn/hf-mirror-download.html</guid><pubDate>Mon, 04 May 2026 07:16:42 +0000</pubDate></item><item><title>iptables</title><link>https://feeday.cn/iptables.html</link><description>Linux 系统上常用的防火墙命令代码。</description><guid isPermaLink="true">https://feeday.cn/iptables.html</guid><pubDate>Mon, 04 May 2026 05:39:32 +0000</pubDate></item><item><title>centos-hostname</title><link>https://feeday.cn/centos-hostname.html</link><description>通过 hostname 命令修改主机名。</description><guid isPermaLink="true">https://feeday.cn/centos-hostname.html</guid><pubDate>Mon, 04 May 2026 05:35:50 +0000</pubDate></item><item><title>sql-root-centos</title><link>https://feeday.cn/sql-root-centos.html</link><description>centos 重置数据库 root 密码。</description><guid isPermaLink="true">https://feeday.cn/sql-root-centos.html</guid><pubDate>Mon, 04 May 2026 05:26:21 +0000</pubDate></item><item><title>formatting-wordpress</title><link>https://feeday.cn/formatting-wordpress.html</link><description>通过修改配置文件的代码可以改文章字数。</description><guid isPermaLink="true">https://feeday.cn/formatting-wordpress.html</guid><pubDate>Mon, 04 May 2026 05:21:58 +0000</pubDate></item><item><title>js-url-go</title><link>https://feeday.cn/js-url-go.html</link><description>通过判断识别终端自动跳转到指定的网址。</description><guid isPermaLink="true">https://feeday.cn/js-url-go.html</guid><pubDate>Mon, 04 May 2026 05:15:11 +0000</pubDate></item><item><title>CentOS-7.6-SSH</title><link>https://feeday.cn/CentOS-7.6-SSH.html</link><description>#  普通连接
+```。</description><guid isPermaLink="true">https://md.cpuck.com/hf-mirror-download.html</guid><pubDate>Mon, 04 May 2026 07:16:42 +0000</pubDate></item><item><title>iptables</title><link>https://md.cpuck.com/iptables.html</link><description>Linux 系统上常用的防火墙命令代码。</description><guid isPermaLink="true">https://md.cpuck.com/iptables.html</guid><pubDate>Mon, 04 May 2026 05:39:32 +0000</pubDate></item><item><title>centos-hostname</title><link>https://md.cpuck.com/centos-hostname.html</link><description>通过 hostname 命令修改主机名。</description><guid isPermaLink="true">https://md.cpuck.com/centos-hostname.html</guid><pubDate>Mon, 04 May 2026 05:35:50 +0000</pubDate></item><item><title>sql-root-centos</title><link>https://md.cpuck.com/sql-root-centos.html</link><description>centos 重置数据库 root 密码。</description><guid isPermaLink="true">https://md.cpuck.com/sql-root-centos.html</guid><pubDate>Mon, 04 May 2026 05:26:21 +0000</pubDate></item><item><title>formatting-wordpress</title><link>https://md.cpuck.com/formatting-wordpress.html</link><description>通过修改配置文件的代码可以改文章字数。</description><guid isPermaLink="true">https://md.cpuck.com/formatting-wordpress.html</guid><pubDate>Mon, 04 May 2026 05:21:58 +0000</pubDate></item><item><title>js-url-go</title><link>https://md.cpuck.com/js-url-go.html</link><description>通过判断识别终端自动跳转到指定的网址。</description><guid isPermaLink="true">https://md.cpuck.com/js-url-go.html</guid><pubDate>Mon, 04 May 2026 05:15:11 +0000</pubDate></item><item><title>CentOS-7.6-SSH</title><link>https://md.cpuck.com/CentOS-7.6-SSH.html</link><description>#  普通连接
 
 ```
 ssh -p 22 root@192.168.1.1
@@ -898,4 +898,4 @@ ln -sfn /run/fail2ban /var/run/fail2ban
 # 7) 语法测试 &amp; 启动
 msg '校验 fail2ban 配置语法 ...'
 if ! fail2ban-client -t; then
-  err '配置语法校验失败，请检查上方输出。</description><guid isPermaLink="true">https://feeday.cn/CentOS-7.6-SSH.html</guid><pubDate>Wed, 22 Apr 2026 23:13:17 +0000</pubDate></item><item><title>hi</title><link>https://feeday.cn/hi.html</link><description>hello。</description><guid isPermaLink="true">https://feeday.cn/hi.html</guid><pubDate>Sun, 19 Apr 2026 03:24:50 +0000</pubDate></item></channel></rss>
+  err '配置语法校验失败，请检查上方输出。</description><guid isPermaLink="true">https://md.cpuck.com/CentOS-7.6-SSH.html</guid><pubDate>Wed, 22 Apr 2026 23:13:17 +0000</pubDate></item><item><title>hi</title><link>https://md.cpuck.com/hi.html</link><description>hello。</description><guid isPermaLink="true">https://md.cpuck.com/hi.html</guid><pubDate>Sun, 19 Apr 2026 03:24:50 +0000</pubDate></item></channel></rss>
