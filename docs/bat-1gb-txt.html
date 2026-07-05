@@ -147,6 +147,33 @@ kilobyte (kB):1048576
 megabyte (MB):1024
 gigabyte (GB):	1
 </code></pre>
+<h2>一件生成大文件</h2>
+<pre class="notranslate"><code class="notranslate">@echo off
+chcp 65001 &gt;nul
+title 真实GB文件生成工具
+
+echo ================================
+echo   真实写入文件（占用磁盘空间）
+echo ================================
+echo.
+
+set /p size=请输入大小（GB）： 
+set /p drive=请输入盘符（例如 F:\）： 
+
+set filename=%drive%%size%GB.bin
+
+echo.
+echo 正在生成 %size%GB 文件（真实写入数据）...
+echo 文件：%filename%
+echo 请稍等...
+
+powershell -NoProfile -Command ^
+"$size=%size%; $path='%filename%'; $buffer = New-Object byte[](1MB); $fs=[System.IO.File]::OpenWrite($path); for($i=0;$i -lt $size*1024;$i++){ $fs.Write($buffer,0,$buffer.Length) }; $fs.Close()"
+
+echo.
+echo 完成！
+pause
+</code></pre>
 <h2>复制文件速度对比</h2>
 <p>K70 三星U盘 百度网盘<br>
 <a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/456ae287350c1d0a1747346b2226e986799a60097457bd3ff965d768001dba08/68747470733a2f2f692e696d6775722e636f6d2f424c6d627a6b472e706e67"><img src="https://camo.githubusercontent.com/456ae287350c1d0a1747346b2226e986799a60097457bd3ff965d768001dba08/68747470733a2f2f692e696d6775722e636f6d2f424c6d627a6b472e706e67" alt="ScreenShot_2026-07-05_132445_931.png" data-canonical-src="https://i.imgur.com/BLmbzkG.png" style="max-width: 100%;"></a></p></div>
