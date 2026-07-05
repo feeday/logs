@@ -11,3 +11,6 @@ kilobyte (kB):1048576
 megabyte (MB):1024
 gigabyte (GB):	1
 ```
+## 复制文件速度对比
+ K70 三星U盘 百度网盘
+![ScreenShot_2026-07-05_132445_931.png](https://i.imgur.com/BLmbzkG.png)
