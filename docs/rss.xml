@@ -1,52 +1,132 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MD Demo</title><link>https://md.datxy.com</link><description>BB Work No Money</description><copyright>MD Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://md.datxy.com</link></image><lastBuildDate>Mon, 13 Jul 2026 14:12:14 +0000</lastBuildDate><managingEditor>MD Demo</managingEditor><ttl>60</ttl><webMaster>MD Demo</webMaster><item><title>realfake-img</title><link>https://md.datxy.com/realfake-img.html</link><description>图像真伪检测
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MD Demo</title><link>https://md.datxy.com</link><description>BB Work No Money</description><copyright>MD Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://md.datxy.com</link></image><lastBuildDate>Mon, 13 Jul 2026 14:16:26 +0000</lastBuildDate><managingEditor>MD Demo</managingEditor><ttl>60</ttl><webMaster>MD Demo</webMaster><item><title>realfake-img</title><link>https://md.datxy.com/realfake-img.html</link><description>图像真伪检测
 
-# AI图片真伪检测模型成本对比
+# [Poixe AI 图片模型成本对比](https://poixe.com/pricing?i=token)
 
-| 模型 | 平台 | 单张成本（美元） | 单张成本（人民币≈7.2汇率） | 速度 | 特点 | 推荐用途 |
-|---|---|---:|---:|---|---|---|
-| Gemini-3.1-flash-lite | Google | $0.000462～$0.000469 | ≈0.0033～0.0034元/张 | 快（约1.7～1.8秒） | 成本极低，响应快，适合大规模视觉分析 | **批量初筛首选** |
-| GPT-4o | Azure/OpenAI | $0.00325～$0.00418 | ≈0.023～0.030元/张 | 中等（约6.7～6.9秒） | 综合视觉理解能力强，细节判断稳定 | **重点图片复核** |
-| Grok-3 | xAI | $0.0128～$0.0162 | ≈0.092～0.117元/张 | 较慢（约8.6～11秒） | 推理能力强，但成本最高 | **疑难案例分析** |
-
-
-# 成本规模对比
-
-| 检测数量 | Gemini-3.1-flash-lite | GPT-4o | Grok-3 |
-|---|---:|---:|---:|
-| 100张 | ≈0.33元 | ≈2.5～3元 | ≈9～12元 |
-| 1000张 | ≈3.3元 | ≈25～30元 | ≈90～120元 |
-| 1万张 | ≈33元 | ≈250～300元 | ≈900～1200元 |
-| 10万张 | ≈330元 | ≈2500～3000元 | ≈9000～12000元 |
+| 模型 | 单张实际价格（美元） | 折合人民币/张（≈7.2汇率） | 速度 | 特点 | 推荐用途 |
+|---|---:|---:|---:|---|---|
+| gemini-3.1-flash-lite | $0.000462 ～ $0.000469 | ≈0.0033 ～ 0.0034元 | ≈1.7秒 | 成本最低，速度快，适合大量图片分析 | 批量初筛首选 |
+| gpt-4o | $0.003250 ～ $0.004182 | ≈0.023 ～ 0.030元 | ≈6.7秒 | 图片理解能力强，细节分析稳定 | 重点图片复核 |
+| grok-3 | $0.0127968 ～ $0.0162408 | ≈0.092 ～ 0.117元 | ≈8.6～11秒 | 推理能力强，但成本最高 | 疑难图片最终判断 |
 
 
-# AI图片真伪检测推荐方案
-
-| 阶段 | 模型 | 作用 |
-|---|---|---|
-| 第一层 | Gemini-3.1-flash-lite | 全量扫描，快速判断真实/AI伪造 |
-| 第二层 | GPT-4o | 对低置信度、疑似AI图片进行复核 |
-| 第三层 | Grok-3 | 对复杂案例、争议图片进行最终分析 |
 
 
-# 推荐策略
-
-10000张图片：
-
-- Gemini初筛：
-  - 成本约33元
-  - 快速得到全部结果
-
-- 筛选其中5%异常图片：
-  - 500张 × GPT-4o
-  - 成本约12～15元
-
-- 极少量争议图片：
-  - Grok-3复核
 
 
-综合成本：
-约50元左右完成1万张高质量AI真伪检测。</description><guid isPermaLink="true">https://md.datxy.com/realfake-img.html</guid><pubDate>Mon, 13 Jul 2026 13:54:21 +0000</pubDate></item><item><title>bat-1gb-txt</title><link>https://md.datxy.com/bat-1gb-txt.html</link><description>通过代码命令快速创建指定大小容量的文件。</description><guid isPermaLink="true">https://md.datxy.com/bat-1gb-txt.html</guid><pubDate>Sun, 05 Jul 2026 05:17:17 +0000</pubDate></item><item><title>hf-up</title><link>https://md.datxy.com/hf-up.html</link><description>- https://colab.new
+
+
+
+
+
+```
+# -*- coding: utf-8 -*-
+
+import sys
+import subprocess
+import importlib
+import os
+import base64
+import mimetypes
+import time
+import re
+from pathlib import Path
+
+
+# ==================================================
+# 自动安装缺失依赖
+# ==================================================
+
+def install_package(package):
+    try:
+        importlib.import_module(package)
+    except ImportError:
+        print(f'正在安装依赖: {package}')
+        subprocess.check_call([
+            sys.executable,
+            '-m',
+            'pip',
+            'install',
+            package
+        ])
+
+
+required_packages = [
+    'requests',
+    'pandas',
+    'tqdm',
+    'openpyxl'
+]
+
+for pkg in required_packages:
+    install_package(pkg)
+
+
+import requests
+import pandas as pd
+from tqdm import tqdm
+
+
+# ==================================================
+# API 配置
+# ==================================================
+
+API_URL = 'https://api.poixe.com/v1/chat/completions'
+
+# 不建议把 Key 写死在代码里
+# 运行后手动输入更安全
+API_KEY = input('请输入你的 Poixe API Key：').strip()
+
+headers = {
+    'Content-Type': 'application/json',
+    'Authorization': f'Bearer {API_KEY}'
+}
+
+
+# ==================================================
+# 模型选择
+# ==================================================
+
+'''
+可选模型：
+
+1. gpt-4o
+2. grok-3
+3. gemini-3.1-flash-lite
+'''
+
+MODEL = 'gemini-3.1-flash-lite'
+
+
+# ==================================================
+# 图片目录与输出文件
+# ==================================================
+
+image_dir = Path(r'C:\img')
+output_excel = Path(r'C:\真伪检测结果.xlsx')
+
+INCLUDE_SUBFOLDERS = True
+
+
+# ==================================================
+# 支持格式
+# ==================================================
+
+image_ext = {
+    '.jpg',
+    '.jpeg',
+    '.png',
+    '.webp',
+    '.bmp'
+}
+
+
+# ==================================================
+# AI 检测提示词
+# ==================================================
+
+prompt = '''
+你是一名专业的AI生成内容鉴定专家。</description><guid isPermaLink="true">https://md.datxy.com/realfake-img.html</guid><pubDate>Mon, 13 Jul 2026 13:54:21 +0000</pubDate></item><item><title>bat-1gb-txt</title><link>https://md.datxy.com/bat-1gb-txt.html</link><description>通过代码命令快速创建指定大小容量的文件。</description><guid isPermaLink="true">https://md.datxy.com/bat-1gb-txt.html</guid><pubDate>Sun, 05 Jul 2026 05:17:17 +0000</pubDate></item><item><title>hf-up</title><link>https://md.datxy.com/hf-up.html</link><description>- https://colab.new
 - https://hf-mirror.com
 - https://huggingface.co/datasets/datxy/demo/blob/main/test/eso1242a.psb
 - https://hf-mirror.com/datasets/datxy/demo/blob/main/test/eso1242a.psb

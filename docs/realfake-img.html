@@ -12,101 +12,261 @@
     </script>
 <meta name="description" content="图像真伪检测
 
-# AI图片真伪检测模型成本对比
+# [Poixe AI 图片模型成本对比](https://poixe.com/pricing?i=token)
 
-| 模型 | 平台 | 单张成本（美元） | 单张成本（人民币≈7.2汇率） | 速度 | 特点 | 推荐用途 |
-|---|---|---:|---:|---|---|---|
-| Gemini-3.1-flash-lite | Google | $0.000462～$0.000469 | ≈0.0033～0.0034元/张 | 快（约1.7～1.8秒） | 成本极低，响应快，适合大规模视觉分析 | **批量初筛首选** |
-| GPT-4o | Azure/OpenAI | $0.00325～$0.00418 | ≈0.023～0.030元/张 | 中等（约6.7～6.9秒） | 综合视觉理解能力强，细节判断稳定 | **重点图片复核** |
-| Grok-3 | xAI | $0.0128～$0.0162 | ≈0.092～0.117元/张 | 较慢（约8.6～11秒） | 推理能力强，但成本最高 | **疑难案例分析** |
-
-
-# 成本规模对比
-
-| 检测数量 | Gemini-3.1-flash-lite | GPT-4o | Grok-3 |
-|---|---:|---:|---:|
-| 100张 | ≈0.33元 | ≈2.5～3元 | ≈9～12元 |
-| 1000张 | ≈3.3元 | ≈25～30元 | ≈90～120元 |
-| 1万张 | ≈33元 | ≈250～300元 | ≈900～1200元 |
-| 10万张 | ≈330元 | ≈2500～3000元 | ≈9000～12000元 |
+| 模型 | 单张实际价格（美元） | 折合人民币/张（≈7.2汇率） | 速度 | 特点 | 推荐用途 |
+|---|---:|---:|---:|---|---|
+| gemini-3.1-flash-lite | $0.000462 ～ $0.000469 | ≈0.0033 ～ 0.0034元 | ≈1.7秒 | 成本最低，速度快，适合大量图片分析 | 批量初筛首选 |
+| gpt-4o | $0.003250 ～ $0.004182 | ≈0.023 ～ 0.030元 | ≈6.7秒 | 图片理解能力强，细节分析稳定 | 重点图片复核 |
+| grok-3 | $0.0127968 ～ $0.0162408 | ≈0.092 ～ 0.117元 | ≈8.6～11秒 | 推理能力强，但成本最高 | 疑难图片最终判断 |
 
 
-# AI图片真伪检测推荐方案
-
-| 阶段 | 模型 | 作用 |
-|---|---|---|
-| 第一层 | Gemini-3.1-flash-lite | 全量扫描，快速判断真实/AI伪造 |
-| 第二层 | GPT-4o | 对低置信度、疑似AI图片进行复核 |
-| 第三层 | Grok-3 | 对复杂案例、争议图片进行最终分析 |
 
 
-# 推荐策略
-
-10000张图片：
-
-- Gemini初筛：
-  - 成本约33元
-  - 快速得到全部结果
-
-- 筛选其中5%异常图片：
-  - 500张 × GPT-4o
-  - 成本约12～15元
-
-- 极少量争议图片：
-  - Grok-3复核
 
 
-综合成本：
-约50元左右完成1万张高质量AI真伪检测。">
+
+
+
+
+
+```
+# -*- coding: utf-8 -*-
+
+import sys
+import subprocess
+import importlib
+import os
+import base64
+import mimetypes
+import time
+import re
+from pathlib import Path
+
+
+# ==================================================
+# 自动安装缺失依赖
+# ==================================================
+
+def install_package(package):
+    try:
+        importlib.import_module(package)
+    except ImportError:
+        print(f'正在安装依赖: {package}')
+        subprocess.check_call([
+            sys.executable,
+            '-m',
+            'pip',
+            'install',
+            package
+        ])
+
+
+required_packages = [
+    'requests',
+    'pandas',
+    'tqdm',
+    'openpyxl'
+]
+
+for pkg in required_packages:
+    install_package(pkg)
+
+
+import requests
+import pandas as pd
+from tqdm import tqdm
+
+
+# ==================================================
+# API 配置
+# ==================================================
+
+API_URL = 'https://api.poixe.com/v1/chat/completions'
+
+# 不建议把 Key 写死在代码里
+# 运行后手动输入更安全
+API_KEY = input('请输入你的 Poixe API Key：').strip()
+
+headers = {
+    'Content-Type': 'application/json',
+    'Authorization': f'Bearer {API_KEY}'
+}
+
+
+# ==================================================
+# 模型选择
+# ==================================================
+
+'''
+可选模型：
+
+1. gpt-4o
+2. grok-3
+3. gemini-3.1-flash-lite
+'''
+
+MODEL = 'gemini-3.1-flash-lite'
+
+
+# ==================================================
+# 图片目录与输出文件
+# ==================================================
+
+image_dir = Path(r'C:\img')
+output_excel = Path(r'C:\真伪检测结果.xlsx')
+
+INCLUDE_SUBFOLDERS = True
+
+
+# ==================================================
+# 支持格式
+# ==================================================
+
+image_ext = {
+    '.jpg',
+    '.jpeg',
+    '.png',
+    '.webp',
+    '.bmp'
+}
+
+
+# ==================================================
+# AI 检测提示词
+# ==================================================
+
+prompt = '''
+你是一名专业的AI生成内容鉴定专家。">
 <meta property="og:title" content="realfake-img">
 <meta property="og:description" content="图像真伪检测
 
-# AI图片真伪检测模型成本对比
+# [Poixe AI 图片模型成本对比](https://poixe.com/pricing?i=token)
 
-| 模型 | 平台 | 单张成本（美元） | 单张成本（人民币≈7.2汇率） | 速度 | 特点 | 推荐用途 |
-|---|---|---:|---:|---|---|---|
-| Gemini-3.1-flash-lite | Google | $0.000462～$0.000469 | ≈0.0033～0.0034元/张 | 快（约1.7～1.8秒） | 成本极低，响应快，适合大规模视觉分析 | **批量初筛首选** |
-| GPT-4o | Azure/OpenAI | $0.00325～$0.00418 | ≈0.023～0.030元/张 | 中等（约6.7～6.9秒） | 综合视觉理解能力强，细节判断稳定 | **重点图片复核** |
-| Grok-3 | xAI | $0.0128～$0.0162 | ≈0.092～0.117元/张 | 较慢（约8.6～11秒） | 推理能力强，但成本最高 | **疑难案例分析** |
-
-
-# 成本规模对比
-
-| 检测数量 | Gemini-3.1-flash-lite | GPT-4o | Grok-3 |
-|---|---:|---:|---:|
-| 100张 | ≈0.33元 | ≈2.5～3元 | ≈9～12元 |
-| 1000张 | ≈3.3元 | ≈25～30元 | ≈90～120元 |
-| 1万张 | ≈33元 | ≈250～300元 | ≈900～1200元 |
-| 10万张 | ≈330元 | ≈2500～3000元 | ≈9000～12000元 |
+| 模型 | 单张实际价格（美元） | 折合人民币/张（≈7.2汇率） | 速度 | 特点 | 推荐用途 |
+|---|---:|---:|---:|---|---|
+| gemini-3.1-flash-lite | $0.000462 ～ $0.000469 | ≈0.0033 ～ 0.0034元 | ≈1.7秒 | 成本最低，速度快，适合大量图片分析 | 批量初筛首选 |
+| gpt-4o | $0.003250 ～ $0.004182 | ≈0.023 ～ 0.030元 | ≈6.7秒 | 图片理解能力强，细节分析稳定 | 重点图片复核 |
+| grok-3 | $0.0127968 ～ $0.0162408 | ≈0.092 ～ 0.117元 | ≈8.6～11秒 | 推理能力强，但成本最高 | 疑难图片最终判断 |
 
 
-# AI图片真伪检测推荐方案
-
-| 阶段 | 模型 | 作用 |
-|---|---|---|
-| 第一层 | Gemini-3.1-flash-lite | 全量扫描，快速判断真实/AI伪造 |
-| 第二层 | GPT-4o | 对低置信度、疑似AI图片进行复核 |
-| 第三层 | Grok-3 | 对复杂案例、争议图片进行最终分析 |
 
 
-# 推荐策略
-
-10000张图片：
-
-- Gemini初筛：
-  - 成本约33元
-  - 快速得到全部结果
-
-- 筛选其中5%异常图片：
-  - 500张 × GPT-4o
-  - 成本约12～15元
-
-- 极少量争议图片：
-  - Grok-3复核
 
 
-综合成本：
-约50元左右完成1万张高质量AI真伪检测。">
+
+
+
+
+
+```
+# -*- coding: utf-8 -*-
+
+import sys
+import subprocess
+import importlib
+import os
+import base64
+import mimetypes
+import time
+import re
+from pathlib import Path
+
+
+# ==================================================
+# 自动安装缺失依赖
+# ==================================================
+
+def install_package(package):
+    try:
+        importlib.import_module(package)
+    except ImportError:
+        print(f'正在安装依赖: {package}')
+        subprocess.check_call([
+            sys.executable,
+            '-m',
+            'pip',
+            'install',
+            package
+        ])
+
+
+required_packages = [
+    'requests',
+    'pandas',
+    'tqdm',
+    'openpyxl'
+]
+
+for pkg in required_packages:
+    install_package(pkg)
+
+
+import requests
+import pandas as pd
+from tqdm import tqdm
+
+
+# ==================================================
+# API 配置
+# ==================================================
+
+API_URL = 'https://api.poixe.com/v1/chat/completions'
+
+# 不建议把 Key 写死在代码里
+# 运行后手动输入更安全
+API_KEY = input('请输入你的 Poixe API Key：').strip()
+
+headers = {
+    'Content-Type': 'application/json',
+    'Authorization': f'Bearer {API_KEY}'
+}
+
+
+# ==================================================
+# 模型选择
+# ==================================================
+
+'''
+可选模型：
+
+1. gpt-4o
+2. grok-3
+3. gemini-3.1-flash-lite
+'''
+
+MODEL = 'gemini-3.1-flash-lite'
+
+
+# ==================================================
+# 图片目录与输出文件
+# ==================================================
+
+image_dir = Path(r'C:\img')
+output_excel = Path(r'C:\真伪检测结果.xlsx')
+
+INCLUDE_SUBFOLDERS = True
+
+
+# ==================================================
+# 支持格式
+# ==================================================
+
+image_ext = {
+    '.jpg',
+    '.jpeg',
+    '.png',
+    '.webp',
+    '.bmp'
+}
+
+
+# ==================================================
+# AI 检测提示词
+# ==================================================
+
+prompt = '''
+你是一名专业的AI生成内容鉴定专家。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://md.datxy.com/realfake-img.html">
 <meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
@@ -232,192 +392,45 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
     <div id="content">
 <div class="markdown-body" id="postBody"><p>图像真伪检测</p>
-<h1>AI图片真伪检测模型成本对比</h1>
+<h1><a href="https://poixe.com/pricing?i=token" rel="nofollow">Poixe AI 图片模型成本对比</a></h1>
 <markdown-accessiblity-table><table role="table">
 <thead>
 <tr>
 <th>模型</th>
-<th>平台</th>
-<th align="right">单张成本（美元）</th>
-<th align="right">单张成本（人民币≈7.2汇率）</th>
-<th>速度</th>
+<th align="right">单张实际价格（美元）</th>
+<th align="right">折合人民币/张（≈7.2汇率）</th>
+<th align="right">速度</th>
 <th>特点</th>
 <th>推荐用途</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Gemini-3.1-flash-lite</td>
-<td>Google</td>
-<td align="right">$0.000462～$0.000469</td>
-<td align="right">≈0.0033～0.0034元/张</td>
-<td>快（约1.7～1.8秒）</td>
-<td>成本极低，响应快，适合大规模视觉分析</td>
-<td><strong>批量初筛首选</strong></td>
+<td>gemini-3.1-flash-lite</td>
+<td align="right">$0.000462 ～ $0.000469</td>
+<td align="right">≈0.0033 ～ 0.0034元</td>
+<td align="right">≈1.7秒</td>
+<td>成本最低，速度快，适合大量图片分析</td>
+<td>批量初筛首选</td>
 </tr>
 <tr>
-<td>GPT-4o</td>
-<td>Azure/OpenAI</td>
-<td align="right">$0.00325～$0.00418</td>
-<td align="right">≈0.023～0.030元/张</td>
-<td>中等（约6.7～6.9秒）</td>
-<td>综合视觉理解能力强，细节判断稳定</td>
-<td><strong>重点图片复核</strong></td>
+<td>gpt-4o</td>
+<td align="right">$0.003250 ～ $0.004182</td>
+<td align="right">≈0.023 ～ 0.030元</td>
+<td align="right">≈6.7秒</td>
+<td>图片理解能力强，细节分析稳定</td>
+<td>重点图片复核</td>
 </tr>
 <tr>
-<td>Grok-3</td>
-<td>xAI</td>
-<td align="right">$0.0128～$0.0162</td>
-<td align="right">≈0.092～0.117元/张</td>
-<td>较慢（约8.6～11秒）</td>
+<td>grok-3</td>
+<td align="right">$0.0127968 ～ $0.0162408</td>
+<td align="right">≈0.092 ～ 0.117元</td>
+<td align="right">≈8.6～11秒</td>
 <td>推理能力强，但成本最高</td>
-<td><strong>疑难案例分析</strong></td>
+<td>疑难图片最终判断</td>
 </tr>
 </tbody>
 </table></markdown-accessiblity-table>
-<h1>成本规模对比</h1>
-<markdown-accessiblity-table><table role="table">
-<thead>
-<tr>
-<th>检测数量</th>
-<th align="right">Gemini-3.1-flash-lite</th>
-<th align="right">GPT-4o</th>
-<th align="right">Grok-3</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>100张</td>
-<td align="right">≈0.33元</td>
-<td align="right">≈2.5～3元</td>
-<td align="right">≈9～12元</td>
-</tr>
-<tr>
-<td>1000张</td>
-<td align="right">≈3.3元</td>
-<td align="right">≈25～30元</td>
-<td align="right">≈90～120元</td>
-</tr>
-<tr>
-<td>1万张</td>
-<td align="right">≈33元</td>
-<td align="right">≈250～300元</td>
-<td align="right">≈900～1200元</td>
-</tr>
-<tr>
-<td>10万张</td>
-<td align="right">≈330元</td>
-<td align="right">≈2500～3000元</td>
-<td align="right">≈9000～12000元</td>
-</tr>
-</tbody>
-</table></markdown-accessiblity-table>
-<h1>AI图片真伪检测推荐方案</h1>
-<markdown-accessiblity-table><table role="table">
-<thead>
-<tr>
-<th>阶段</th>
-<th>模型</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>第一层</td>
-<td>Gemini-3.1-flash-lite</td>
-<td>全量扫描，快速判断真实/AI伪造</td>
-</tr>
-<tr>
-<td>第二层</td>
-<td>GPT-4o</td>
-<td>对低置信度、疑似AI图片进行复核</td>
-</tr>
-<tr>
-<td>第三层</td>
-<td>Grok-3</td>
-<td>对复杂案例、争议图片进行最终分析</td>
-</tr>
-</tbody>
-</table></markdown-accessiblity-table>
-<h1>推荐策略</h1>
-<p>10000张图片：</p>
-<ul>
-<li>
-<p>Gemini初筛：</p>
-<ul>
-<li>成本约33元</li>
-<li>快速得到全部结果</li>
-</ul>
-</li>
-<li>
-<p>筛选其中5%异常图片：</p>
-<ul>
-<li>500张 × GPT-4o</li>
-<li>成本约12～15元</li>
-</ul>
-</li>
-<li>
-<p>极少量争议图片：</p>
-<ul>
-<li>Grok-3复核</li>
-</ul>
-</li>
-</ul>
-<p>综合成本：<br>
-约50元左右完成1万张高质量AI真伪检测。</p>
-<h1>综合评价</h1>
-<markdown-accessiblity-table><table role="table">
-<thead>
-<tr>
-<th>指标</th>
-<th>Gemini-3.1-flash-lite</th>
-<th>GPT-4o</th>
-<th>Grok-3</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>成本</td>
-<td>★★★★★</td>
-<td>★★★</td>
-<td>★</td>
-</tr>
-<tr>
-<td>速度</td>
-<td>★★★★★</td>
-<td>★★★</td>
-<td>★★</td>
-</tr>
-<tr>
-<td>视觉理解</td>
-<td>★★★★</td>
-<td>★★★★★</td>
-<td>★★★★★</td>
-</tr>
-<tr>
-<td>批量检测</td>
-<td>★★★★★</td>
-<td>★★★</td>
-<td>★★</td>
-</tr>
-<tr>
-<td>复杂伪造识别</td>
-<td>★★★☆</td>
-<td>★★★★★</td>
-<td>★★★★★</td>
-</tr>
-<tr>
-<td>性价比</td>
-<td>★★★★★</td>
-<td>★★★★</td>
-<td>★★</td>
-</tr>
-</tbody>
-</table></markdown-accessiblity-table>
-<p>结论：</p>
-<blockquote>
-<p>大规模AI图片鉴伪，Gemini-3.1-flash-lite负责99%的初筛，GPT-4o/Grok-3负责疑难复核，是成本和准确率最优组合。</p>
-</blockquote>
 <pre class="notranslate"><code class="notranslate"># -*- coding: utf-8 -*-
 
 import sys
