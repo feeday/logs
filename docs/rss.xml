@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MD Demo</title><link>https://md.datxy.com</link><description>BB Work No Money</description><copyright>MD Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://md.datxy.com</link></image><lastBuildDate>Mon, 13 Jul 2026 14:16:26 +0000</lastBuildDate><managingEditor>MD Demo</managingEditor><ttl>60</ttl><webMaster>MD Demo</webMaster><item><title>realfake-img</title><link>https://md.datxy.com/realfake-img.html</link><description>图像真伪检测
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MD Demo</title><link>https://md.datxy.com</link><description>BB Work No Money</description><copyright>MD Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://md.datxy.com</link></image><lastBuildDate>Mon, 13 Jul 2026 14:17:54 +0000</lastBuildDate><managingEditor>MD Demo</managingEditor><ttl>60</ttl><webMaster>MD Demo</webMaster><item><title>realfake-img</title><link>https://md.datxy.com/realfake-img.html</link><description>图像真伪检测
 
 # [Poixe AI 图片模型成本对比](https://poixe.com/pricing?i=token)
 
@@ -8,6 +8,12 @@
 | gemini-3.1-flash-lite | $0.000462 ～ $0.000469 | ≈0.0033 ～ 0.0034元 | ≈1.7秒 | 成本最低，速度快，适合大量图片分析 | 批量初筛首选 |
 | gpt-4o | $0.003250 ～ $0.004182 | ≈0.023 ～ 0.030元 | ≈6.7秒 | 图片理解能力强，细节分析稳定 | 重点图片复核 |
 | grok-3 | $0.0127968 ～ $0.0162408 | ≈0.092 ～ 0.117元 | ≈8.6～11秒 | 推理能力强，但成本最高 | 疑难图片最终判断 |
+
+| 检测数量 | gemini-3.1-flash-lite | gpt-4o | grok-3 |
+|---|---:|---:|---:|
+| 1000张 | ≈3.3元 | ≈25～30元 | ≈90～120元 |
+| 1万张 | ≈33元 | ≈250～300元 | ≈900～1200元 |
+| 10万张 | ≈330元 | ≈2500～3000元 | ≈9000～12000元 |
 
 
 
