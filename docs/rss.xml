@@ -1,5 +1,58 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MD Demo</title><link>https://md.datxy.com</link><description>BB Work No Money</description><copyright>MD Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://md.datxy.com</link></image><lastBuildDate>Sun, 05 Jul 2026 07:24:05 +0000</lastBuildDate><managingEditor>MD Demo</managingEditor><ttl>60</ttl><webMaster>MD Demo</webMaster><item><title>bat-1gb-txt</title><link>https://md.datxy.com/bat-1gb-txt.html</link><description>通过代码命令快速创建指定大小容量的文件。</description><guid isPermaLink="true">https://md.datxy.com/bat-1gb-txt.html</guid><pubDate>Sun, 05 Jul 2026 05:17:17 +0000</pubDate></item><item><title>hf-up</title><link>https://md.datxy.com/hf-up.html</link><description>- https://colab.new
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MD Demo</title><link>https://md.datxy.com</link><description>BB Work No Money</description><copyright>MD Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://md.datxy.com</link></image><lastBuildDate>Mon, 13 Jul 2026 13:54:55 +0000</lastBuildDate><managingEditor>MD Demo</managingEditor><ttl>60</ttl><webMaster>MD Demo</webMaster><item><title>realfake-img</title><link>https://md.datxy.com/realfake-img.html</link><description>图像真伪检测
+
+```
+# -*- coding: utf-8 -*-
+
+import os
+import base64
+import requests
+import pandas as pd
+from tqdm import tqdm
+
+
+# ===============================
+# API 配置
+# ===============================
+
+url = 'https://api.poixe.com/v1/chat/completions'
+
+headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'sk-你的KEY'
+}
+
+
+# ===============================
+# 图片目录
+# ===============================
+
+image_dir = r'c:\img'
+
+output_excel = r'c:\img\真伪检测结果.xlsx'
+
+
+
+# ===============================
+# 支持图片格式
+# ===============================
+
+image_ext = [
+    '.jpg',
+    '.jpeg',
+    '.png',
+    '.webp'
+]
+
+
+
+# ===============================
+# AI检测提示词
+# ===============================
+
+prompt = '''
+
+你是一名专业的 AI 生成内容鉴定专家。</description><guid isPermaLink="true">https://md.datxy.com/realfake-img.html</guid><pubDate>Mon, 13 Jul 2026 13:54:21 +0000</pubDate></item><item><title>bat-1gb-txt</title><link>https://md.datxy.com/bat-1gb-txt.html</link><description>通过代码命令快速创建指定大小容量的文件。</description><guid isPermaLink="true">https://md.datxy.com/bat-1gb-txt.html</guid><pubDate>Sun, 05 Jul 2026 05:17:17 +0000</pubDate></item><item><title>hf-up</title><link>https://md.datxy.com/hf-up.html</link><description>- https://colab.new
 - https://hf-mirror.com
 - https://huggingface.co/datasets/datxy/demo/blob/main/test/eso1242a.psb
 - https://hf-mirror.com/datasets/datxy/demo/blob/main/test/eso1242a.psb
