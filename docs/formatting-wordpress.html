@@ -106,6 +106,41 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     padding: 5px 8px;
     font-size: 12px;
 }
+.snippet-clipboard-content.is-collapsible {
+    padding-bottom: 42px;
+}
+.snippet-clipboard-content.is-collapsed pre {
+    max-height: 240px;
+    overflow: hidden;
+}
+.snippet-clipboard-content.is-collapsed::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 42px;
+    left: 0;
+    height: 72px;
+    pointer-events: none;
+    background: linear-gradient(transparent, var(--color-canvas-default));
+}
+.code-fold-button {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 34px;
+    border: 0;
+    border-top: 1px solid var(--color-border-muted);
+    border-radius: 0;
+    color: var(--color-accent-fg);
+    background: var(--color-canvas-subtle);
+    cursor: pointer;
+}
+.code-fold-button:hover {
+    background: var(--color-neutral-muted);
+}
 </style>
 
 
@@ -305,10 +340,38 @@ document.addEventListener('DOMContentLoaded', () => {
     handleCodeElements('pre.notranslate > code.notranslate');
     handleCodeElements('div.highlight > pre.notranslate');
 
+    const language = document.documentElement.lang;
+    const foldLabels = language === 'zh-CN'
+        ? {expand: '展开代码', collapse: '收起代码'}
+        : language === 'ru'
+            ? {expand: 'Показать код', collapse: 'Скрыть код'}
+            : {expand: 'Show code', collapse: 'Hide code'};
+
+    document.querySelectorAll('.snippet-clipboard-content').forEach((snippet, index) => {
+        const codeBlock = snippet.querySelector('pre');
+        if (!codeBlock || codeBlock.scrollHeight <= 240) return;
+
+        const codeId = `code-block-${index}`;
+        const foldButton = document.createElement('button');
+        codeBlock.id = codeId;
+        snippet.classList.add('is-collapsible', 'is-collapsed');
+        foldButton.type = 'button';
+        foldButton.className = 'code-fold-button';
+        foldButton.setAttribute('aria-controls', codeId);
+        foldButton.setAttribute('aria-expanded', 'false');
+        foldButton.textContent = foldLabels.expand;
+        foldButton.addEventListener('click', () => {
+            const isCollapsed = snippet.classList.toggle('is-collapsed');
+            foldButton.setAttribute('aria-expanded', String(!isCollapsed));
+            foldButton.textContent = isCollapsed ? foldLabels.expand : foldLabels.collapse;
+        });
+        snippet.appendChild(foldButton);
+    });
+
     let currentFeedback = null;
     document.querySelectorAll('clipboard-copy').forEach(copyButton => {
         copyButton.addEventListener('click', () => {
-            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const codeContent = copyButton.closest('.snippet-clipboard-content').querySelector('code').innerText;
             const tempTextArea = document.createElement('textarea');
             tempTextArea.value = codeContent;
             document.body.appendChild(tempTextArea);
