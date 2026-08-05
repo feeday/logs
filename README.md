@@ -1,6 +1,6 @@
-# feeday :link: https://feeday.cn 
-### :page_facing_up: [25](https://feeday.cn/tag.html) 
+# feeday :link: https://feeday.xyz 
+### :page_facing_up: [25](https://feeday.xyz/tag.html) 
 ### :speech_balloon: 0 
 ### :hibiscus: 88791 
-### :alarm_clock: 2026-08-05 20:33:04 
+### :alarm_clock: 2026-08-05 20:37:40 
 ### Powered by :heart: [Gmeek](https://github.com/Meekdai/Gmeek)
