@@ -1,5 +1,58 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>feeday</title><link>https://feeday.xyz</link><description>BB Work No Money</description><copyright>feeday</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://feeday.xyz</link></image><lastBuildDate>Tue, 01 Sep 2026 01:16:09 +0000</lastBuildDate><managingEditor>feeday</managingEditor><ttl>60</ttl><webMaster>feeday</webMaster><item><title>del db</title><link>https://feeday.xyz/del%20db.html</link><description>```
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>feeday</title><link>https://feeday.xyz</link><description>BB Work No Money</description><copyright>feeday</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://feeday.xyz</link></image><lastBuildDate>Tue, 01 Sep 2026 01:19:12 +0000</lastBuildDate><managingEditor>feeday</managingEditor><ttl>60</ttl><webMaster>feeday</webMaster><item><title>mv txt line</title><link>https://feeday.xyz/mv%20txt%20line.html</link><description>```
+# -*- coding: utf-8 -*-
+
+from pathlib import Path
+import shutil
+import csv
+import re
+
+# ================= 配置区 =================
+
+TXT_FILE = Path(r'd:\line.txt')
+
+SEARCH_DIR = Path(r'd:\1')
+
+TARGET_DIR = Path(r'd:\2')
+
+INCLUDE_SUBFOLDERS = True
+
+OVERWRITE = True
+
+# True：保留源目录结构
+# False：所有文件直接放到 TARGET_DIR
+KEEP_FOLDER_STRUCTURE = True
+
+# 日志文件
+LOG_FILE = TARGET_DIR / 'list.csv'
+
+# ================= 操作模式 =================
+# 0 = 预览（只打印不操作）
+# 1 = 复制
+# 2 = 移动
+MODE = 1
+# ===========================================
+
+
+# ================= TXT清洗 =================
+def clean_text(x: str):
+    '''去除不可见字符和空白字符'''
+    if not x:
+        return ''
+
+    x = x.replace('\ufeff', '')
+    x = x.replace('\u200b', '')
+    x = x.replace('\u200c', '')
+    x = x.replace('\u200d', '')
+
+    x = re.sub(r'\s+', '', x)
+
+    return x.lower()
+
+
+def read_txt_names(txt_file: Path):
+    '''
+    读取TXT中的文件名。</description><guid isPermaLink="true">https://feeday.xyz/mv%20txt%20line.html</guid><pubDate>Tue, 01 Sep 2026 01:18:43 +0000</pubDate></item><item><title>del db</title><link>https://feeday.xyz/del%20db.html</link><description>```
 from pathlib import Path
 
 def delete_db_files_recursively(target_directory):
