@@ -1,5 +1,17 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>feeday</title><link>https://feeday.xyz</link><description>BB Work No Money</description><copyright>feeday</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://feeday.xyz</link></image><lastBuildDate>Wed, 05 Aug 2026 12:37:40 +0000</lastBuildDate><managingEditor>feeday</managingEditor><ttl>60</ttl><webMaster>feeday</webMaster><item><title>realfake-img</title><link>https://feeday.xyz/realfake-img.html</link><description>图像真伪检测
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>feeday</title><link>https://feeday.xyz</link><description>BB Work No Money</description><copyright>feeday</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://feeday.xyz</link></image><lastBuildDate>Tue, 01 Sep 2026 01:16:09 +0000</lastBuildDate><managingEditor>feeday</managingEditor><ttl>60</ttl><webMaster>feeday</webMaster><item><title>del db</title><link>https://feeday.xyz/del%20db.html</link><description>```
+from pathlib import Path
+
+def delete_db_files_recursively(target_directory):
+    # 将字符串路径转换为 Path 对象
+    base_path = Path(target_directory)
+    
+    # rglob('*') 表示递归查找所有文件，过滤出 .db 文件
+    # 如果只想删除当前层级不包含子目录，使用 glob('*.db')
+    db_files = list(base_path.rglob('*.db'))
+    
+    if not db_files:
+        print('未找到 .db 文件。</description><guid isPermaLink="true">https://feeday.xyz/del%20db.html</guid><pubDate>Tue, 01 Sep 2026 01:15:40 +0000</pubDate></item><item><title>realfake-img</title><link>https://feeday.xyz/realfake-img.html</link><description>图像真伪检测
 
 # [Poixe AI 图片模型成本对比](https://poixe.com/pricing?i=token)
 
